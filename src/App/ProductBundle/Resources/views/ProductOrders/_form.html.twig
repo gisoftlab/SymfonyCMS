@@ -1,0 +1,49 @@
+<form action="{{ getUri() }}" method="post" {{ form_enctype() }}>
+    &nbsp;
+    
+    <fieldset>
+        <div>
+        {{ form_errors(form) }}
+        {{ form_widget(form._token) }}        
+        </div>   
+            <div class="field"></div>     {# 
+            <div class="field">
+                <div>{{ form_label(form.product) }}</div>
+                <div>{{ form_widget(form.product, { 'attr': {'class': 'foo'} }) }}</div>
+                <div>{{ form_errors(form.product) }}</div>
+            </div>  #}
+            <div class="field">
+                <div>{{ form_label(form.name) }}</div>
+                <div>{{ form_widget(form.name, { 'attr': {'class': 'foo'} }) }}</div>
+                <div>{{ form_errors(form.name) }}</div>
+            </div>  
+            <div class="field">
+                <div>{{ form_label(form.email) }}</div>
+                <div>{{ form_widget(form.email, { 'attr': {'class': 'foo'} }) }}</div>
+                <div>{{ form_errors(form.email) }}</div>        
+            </div>  
+            <div class="field">
+                <div>{{ form_label(form.dateFrom) }}</div>
+                <div>{{ form_widget(form.dateFrom, { 'attr': {'class': 'foo'} }) }}</div>
+                <div>{{ form_errors(form.dateFrom) }}</div>        
+            </div>  
+            <div class="field">
+                <div>{{ form_label(form.dateTo) }}</div>
+                <div>{{ form_widget(form.dateTo, { 'attr': {'class': 'foo'} }) }}</div>
+                <div>{{ form_errors(form.dateTo) }}</div>        
+            </div>  
+            
+            <div class="field">
+                <div>{{ form_label(form.description) }}</div>
+                <div>{{ form_widget(form.description) }}</div>
+                <div>{{ form_errors(form.description) }}</div>        
+            </div>              
+
+            {{ form_rest(form) }}
+            <div class="field" style="margin-top: 10px;">       
+                <a class="btn round box-shadow" href="{{ path('_product_orders_show', mergeParams(null,{'id':''})) }}">Powrót</a>    
+                <input type="submit" value="Save" class="round"/>                
+            </div> 
+        </fieldset>
+       
+    </form>

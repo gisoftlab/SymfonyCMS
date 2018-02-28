@@ -1,0 +1,7 @@
+_newsletterEmail:
+    path:  /newsletterEmailSent
+    defaults: { _controller: WebNewsletterBundle:NewsletterEmail:sent }
+    
+_newsletterEmailShow:
+    path:  /newsletterEmailShow
+    defaults: { _controller: WebNewsletterBundle:NewsletterEmail:show }    

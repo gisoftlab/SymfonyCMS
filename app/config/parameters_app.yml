@@ -1,0 +1,36 @@
+parameters:
+  app.version:        3.1.1
+  app.company.host:   www.gisoft.pl
+  app.company.name:   GISOFT
+  app.company.title:  MANAGMENT
+  
+  app.backend.metatag.title:        Gisoft - CMS
+  app.backend.metatag.keywords:     Gisoft, Symfony3
+  app.backend.metatag.description:  Symfony3  Framework -  CMS to menage data
+  app.backend.metatag.author:       GISOFT - DAMIAN OSTRASZEWSKI
+ 
+  pager.max_per_page: 5
+ 
+  #es_ES
+  app.locale.pl:    pl
+  #pt_BR
+  app.locale.en:    en
+  #es_ES
+  app.culture.pl:   pl_PL
+  #pt_BR
+  app.culture.en:   en_UK
+  
+  #es_ES
+  app.country.pl:   PL
+  #pt_BR
+  app.country.en:   UK
+    
+  mailer_sender:
+      name:   service
+      email:  service@orient-med.pl
+         
+  # -------------
+  # MAXMIND Geo localization  http://www.maxmind.com
+  # -------------  
+  geoLite2.city.mmdb: '%kernel.root_dir%/../data/geolite2/GeoLite2-City.mmdb'
+  geoLite2.country.mmdb: '%kernel.root_dir%/../data/geolite2/GeoLite2-Country.mmdb'

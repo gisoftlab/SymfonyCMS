@@ -1,0 +1,23 @@
+"Zapomniałeś hasła?": "Forgot your password?"
+resetting.request.title: Write your email and reset password
+resetting.request.username: Email or Username
+resetting.request.placeholder: Login or email...
+resetting.request.invalid_username: Email or Login '%username%' is invalid
+resetting.request.submit: Reset Password
+resetting.request.return: Return
+resetting.reset.title: reset title
+Forgot Password: Forgot Password
+resetting.reset.new_password: resetting.reset.new_password
+resetting.reset.new_password: resetting.reset.new_password
+resetting.reset.new_password_confirmation: resetting.reset.new_password_confirmation
+resetting.reset.submit: resetting.reset.submit
+resetting.password_already_requested: resetting.password_already_requested
+resetting.email.subject: resetting.email.subject
+resetting.email.message: resetting.email.message
+check_email.title: check_email.title
+resetting.check_email.title: resetting.check_email.title
+resetting.check_email.message: resetting.check_email.message
+resetting.check_email.button: resetting.check_email.button
+"title": Podaj
+"title": Podaj
+"title": Podaj

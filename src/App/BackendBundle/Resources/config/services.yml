@@ -1,0 +1,11 @@
+
+
+services:            
+    app.twig.menu_extension:
+        class: 'App\BackendBundle\Twig\MenuExtension'
+        arguments:
+          doctrine: '@doctrine'
+          container: '@service_container'
+        tags:
+          - { name: twig.extension }     
+     

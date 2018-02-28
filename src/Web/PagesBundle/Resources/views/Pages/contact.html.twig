@@ -1,0 +1,20 @@
+{% extends "WebWebBundle::layout.html.twig" %}
+
+{% block title %}{{ (page.metaTitle)?page.metaTitle:meta.title }}{% endblock %}
+
+{% block keywords %}{{ (page.metaKeywords)?page.metaKeywords:meta.keywords }}}{% endblock %}
+
+{% block description %}{{ (page.metaDescription)?page.metaDescription:meta.description }}{% endblock %}
+
+{% block navigation %}
+    {% include 'WebPagesBundle:Navigation:show.html.twig' with { 'request' : app.request,'category':category,'page':page,'product':product} %}         
+{% endblock %} 
+
+{% block content %}
+<h2>{{page.title}} </h2>
+<div class="simple-text">
+    {{page.description|raw}}     
+    {{ render(controller('WebContactBundle:Contact:show', { 'request': app.request })) }}
+</div> 
+{% endblock %}
+      

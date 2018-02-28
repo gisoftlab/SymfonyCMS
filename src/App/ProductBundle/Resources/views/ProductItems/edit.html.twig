@@ -1,0 +1,23 @@
+{% extends "AppBackendBundle::layout.html.twig" %}
+
+{% block title "Edit - Parametr" %}
+
+{% block content_header '' %}
+
+{% block content %}
+  <div id="page-heading"><h1>Edytuj Parametr </h1></div>
+
+<div class="content-table-inner more-round">		
+    <!--  start table-content  -->
+    <div class="table-content">           
+        <h2></h2>  
+        <legend>Formularz do edycji danych metatag</legend>
+          {% include 'AppProductBundle:ProductItems:_form.html.twig' with {'form': form} %}	
+    </div>   
+    <!--  end content-table-inner ............................................END  -->
+    <div class="clear"></div>
+</div>	
+
+{% endblock %}
+
+    

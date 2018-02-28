@@ -1,0 +1,15 @@
+# Internal routing configuration to handle ESI
+#_internal:
+#    resource: '@FrameworkBundle/Resources/config/routing/internal.xml'
+#    prefix:   /_internal
+
+app_user:
+    resource: '@AppUserBundle/Resources/config/routing/frontend.yml'
+
+_backend:
+    resource: '@AppBackendBundle/Resources/config/routing.yml'
+    prefix:   /backend
+
+_frontend:
+    resource: '@WebWebBundle/Resources/config/routing.yml'
+    prefix:   /

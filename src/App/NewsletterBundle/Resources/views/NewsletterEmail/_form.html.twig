@@ -1,0 +1,34 @@
+<form action="{{ getUri() }}" method="post" {{ form_enctype }}>
+    &nbsp;
+    
+    <fieldset>
+        <div>
+        {{ form_errors(form) }}
+        {{ form_widget(form._token) }}        
+        </div>   
+            <div class="field"></div>      
+            <div class="field">
+                <div>{{ form_label(form.title) }}</div>
+                <div>{{ form_widget(form.title, { 'attr': {'class': 'foo'} }) }}</div>
+                <div>{{ form_errors(form.title) }}</div>
+            </div>  
+            <div class="field">
+                <div>{{ form_label(form.keywords) }}</div>
+                <div>{{ form_widget(form.keywords, { 'attr': {'class': 'foo'} }) }}</div>
+                <div>{{ form_errors(form.keywords) }}</div>        
+            </div>  
+            
+            <div class="field">
+                <div>{{ form_label(form.description) }}</div>
+                <div>{{ form_widget(form.description) }}</div>
+                <div>{{ form_errors(form.description) }}</div>        
+            </div>              
+
+            {{ form_rest(form) }}
+            <div class="field" style="margin-top: 10px;">       
+                <a class="btn round box-shadow" href="{{ path('_metatag_show') }}">Powrót</a>    
+                <input type="submit" value="Save" class="round"/>                
+            </div> 
+        </fieldset>
+       
+    </form>

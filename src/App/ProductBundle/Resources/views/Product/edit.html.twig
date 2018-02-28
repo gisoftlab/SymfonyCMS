@@ -1,0 +1,36 @@
+{% extends "AppBackendBundle::layout.html.twig" %}
+
+{% block title "Edit - Page" %}
+
+{% block content_header '' %}
+
+{% block javascripts %}   
+{% endblock%}
+
+
+{% block content %}
+  <div id="page-heading"><h1>Edytuj Produkt </h1></div>
+
+<div class="content-table-inner more-round">		
+    <!--  start table-content  -->
+    <div class="table-content">           
+        <h2></h2>  
+        <legend>Formularz do edycji danych statycznej strony</legend>
+        {% include 'AppProductBundle:Product:_form.html.twig' with {'form': form} %}	         
+    </div>   
+    <!--  end content-table-inner ............................................END  -->
+    <div class="clear"></div>
+</div>	
+  {% autoescape 'html' %}
+<div id="Uploader"></div>  
+{% endautoescape %}
+<div class="clear"></div>
+
+  <script type="text/javascript">
+    $(document).ready(function(){        
+        gsAjax.loadUploader("#Uploader","{{ path('_files_product_upload') }}","{{ id }}");                    
+    });
+</script>
+
+
+{% endblock %}

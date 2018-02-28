@@ -1,0 +1,15 @@
+<div class="box-inside more-round-upper">                        
+    <h2>Koszyk </h2>
+    {% if items  %}
+    <ul>
+        {% for key, item in items %}  
+        <li>
+            <a href="{{ path('_web_show_page',{'slug':item.product.slug}) }}">{{item.product.title}}</a>
+        </li>
+        {% endfor %}             
+    </ul>         
+    <a href="{{ path('_web_order_rent') }}" class="btn orange round">wypożycz</a>    
+    <a href="{{ path('_web_order_clear') }}" class="btn gray round margin-right">wyczysc</a>
+    {% endif %}
+    <br class="clear"/>
+</div>  

@@ -1,0 +1,20 @@
+{% extends "WebWebBundle::layout.html.twig" %}
+
+{% block title %}{{ (page.metaTitle)?page.metaTitle:meta.title }}{% endblock %}
+
+{% block keywords %}{{ (page.metaKeywords)?page.metaKeywords:meta.keywords }}}{% endblock %}
+
+{% block description %}{{ (page.metaDescription)?page.metaDescription:meta.description }}{% endblock %}
+{% block navigation %}
+    {% include 'WebPagesBundle:Navigation:show.html.twig' with { 'request' : app.request,'category':category,'page':page,'product':product} %}         
+{% endblock %} 
+
+{% block category %}    
+{% include 'WebPagesBundle:Pages:_category.html.twig' with { 'request' : app.request,'category':category,'page':page} %}
+{% endblock%}
+{% block content %}
+<h2>{{page.title}}</h2>
+<div>{{page.description|raw}}</div>
+{{ render(controller('WebProductBundle:Product:show', { 'request': app.request,'ids':ids })) }}
+{% endblock %}
+      

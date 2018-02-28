@@ -1,0 +1,13 @@
+<div class="clear"></div>     
+{{ render_esi(controller('WebPagesBundle:Footer:show')) }}
+<!-- footer -->
+<div id="footer">
+    <div class="copyright">
+        {{ "now"|date("Y")}} &copy; Copyright 
+        <a href="http://{{showSettingCompanyHost()}}" target="blank">{{showSettingCompanyName()}}</a>
+    </div>                  
+    <div class="right">
+        Power by
+        <a href="http://{{company.host}}" target="blank">{{company.name}}</a>
+    </div>
+</div>

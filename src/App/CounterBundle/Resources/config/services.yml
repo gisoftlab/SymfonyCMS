@@ -1,0 +1,37 @@
+parameters:  
+  entity.Counter: 'App\CounterBundle\Entity\Counter'
+  entity.Country: 'App\CounterBundle\Entity\Country'
+  entity.Ip2Country: 'App\CounterBundle\Entity\Ip2Country'
+  
+services:
+    service.counter:
+        class: 'App\CounterBundle\Services\CounterService'
+        arguments: ['@request_stack', '@doctrine', '@service_container']
+    
+    app.twig.counter_extension:
+        class: 'App\CounterBundle\Twig\CounterExtension'
+        arguments:
+          doctrine: '@doctrine'
+          context: '@security.token_storage'
+        tags:
+          - { name: twig.extension }
+          
+    repo.counter:
+      class: '%entity.Counter%'
+      factory: ['@app.repo.factory', 'getRepository']
+      arguments:
+        - '%entity.Counter%'
+
+    repo.country:
+      class: '%entity.Country%'
+      factory: ['@app.repo.factory', 'getRepository']
+      arguments:
+        - '%entity.Country%'
+        
+    repo.ip2Country:
+      class: '%entity.Ip2Country%'
+      factory: ['@app.repo.factory', 'getRepository']
+      arguments:
+        - '%entity.Ip2Country%'
+                
+     

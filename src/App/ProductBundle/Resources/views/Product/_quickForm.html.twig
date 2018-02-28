@@ -1,0 +1,83 @@
+<div class="content-table-inner more-round">		
+    <div class="table-content">
+        <form id="quickForm{{ id }}" class="quickForm" action="{{ path('_product_quickEdit', {'id':id,'PageId':PageId,'quick':quick}) }}" method="post" {{ form_enctype() }}>
+            <fieldset>
+                <div>
+                    {{ form_errors(form) }}
+                    {{ form_widget(form._token) }}    
+                </div>   
+                <div class="field"></div>      
+                <div class="field">
+                    <div>{{ form_label(form.title) }}</div>
+                    <div>{{ form_widget(form.title, { 'attr': {'class': 'foo'} }) }}</div>
+                    <div>{{ form_errors(form.title) }}</div>    
+                </div>  
+                <div class="field">
+                    <div>{{ form_label(form.price) }}</div>
+                    <div>{{ form_widget(form.price, { 'attr': {'class': 'foo'} }) }}</div>
+                    <div>{{ form_errors(form.price) }}</div>        
+                </div>  
+                <div class="field">
+                    <div>{{ form_label(form.deposit) }}</div>
+                    <div>{{ form_widget(form.deposit, { 'attr': {'class': 'foo'} }) }}</div>
+                    <div>{{ form_errors(form.deposit) }}</div>        
+                </div>  
+                <div class="field">
+                    <div>{{ form_label(form.published) }}</div>
+                    <div>{{ form_widget(form.published, { 'attr': {'class': 'foo'} }) }}</div>
+                    <div>{{ form_errors(form.published) }}</div>            
+                </div>  
+                <div class="field">
+                    <div>{{ form_label(form.promoted) }}</div>
+                    <div>{{ form_widget(form.promoted, { 'attr': {'class': 'foo'} }) }}</div>
+                    <div>{{ form_errors(form.promoted) }}</div>            
+                </div>  
+                    <div class="field">
+                        <div>{{ form_label(form.description) }}</div>
+                        <div>{{ form_widget(form.description, { 'attr': {'style': 'width:900px;height:150px'} }) }}                                                    
+                        </div>
+                        <div>{{ form_errors(form.description) }}</div>                                
+                    </div>  
+                 <div>                    
+                    <a href="#" onclick="gsAjax.ToggleParent(this); return false" class="btn-meta">Pokaż Kategorię</a>
+                    <div class="parent-content">                                              
+                        <div class="field">
+                            <div>{{ form_label(form.page) }}</div>
+                            <div>{{ form_widget(form.page, { 'attr': {'class': 'foo'} }) }}</div>
+                            <div>{{ form_errors(form.page) }}</div>    
+                        </div>                      
+                     </div>   
+                </div>
+                <div>                    
+                    <a href="#" onclick="gsAjax.ToggleMeta(this); return false" class="btn-meta">Edytuj MetaTagi</a>
+                    <div class="meta-tag-content">                                              
+                        <div class="field">
+                            <div>{{ form_label(form.metaTitle) }}</div>
+                            <div>{{ form_widget(form.metaTitle, { 'attr': {'class': 'foo'} }) }}</div>
+                            <div>{{ form_errors(form.metaTitle) }}</div>              
+                        </div>  
+                        <div class="field">
+                            <div>{{ form_label(form.metaKeywords) }}</div>
+                            <div>{{ form_widget(form.metaKeywords, { 'attr': {'class': 'foo'} }) }}</div>
+                            <div>{{ form_errors(form.metaKeywords) }}</div>            
+                        </div>    
+                        <div class="field">
+                            <div>{{ form_label(form.metaDescription) }}</div>
+                            <div>{{ form_widget(form.metaDescription, { 'attr': {'class': 'foo'} }) }}</div>
+                            <div>{{ form_errors(form.metaDescription) }}</div>                
+                        </div> 
+                     </div>   
+                </div>     
+                
+                <div class="field">           
+                    <a class="btn close round box-shadow" href="#load-form{{ id }}" onclick="gsAjax.CloseForm(this,{{ id }})">Zamknij</a> 
+                    <div class="submit">        
+                        <input type="submit" value="Zapisz" onclick="gsAjax.saveForm('#load-form', {id:{{ id }},feedback:'{{ feedback }}',PageId:'{{ PageId }}'});return false;" class="round"/>        
+                        <span class="loader"><p id="LoadingInfo{{ id }}"></p></span>
+                    </div> 
+                </div> 
+            </fieldset>
+
+        </form>
+    </div>   
+</div>

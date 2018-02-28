@@ -1,0 +1,10 @@
+{% extends "AppBackendBundle::layout.html.twig" %}
+
+{% block title "Edit - Metatag"|trans({},'gsPages') %}
+{% block page_title "Edytuj Metatag"|trans({},'gsPages') %}
+
+{% block content %}
+    <div class="x_content">
+        {% include 'AppPagesBundle:Metatag:_form.html.twig' with {'form': form,'description':'Formularz do edycji danych metatag'|trans({},'gsPages') } %}
+    </div>
+{% endblock %}

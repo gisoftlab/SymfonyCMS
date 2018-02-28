@@ -1,0 +1,23 @@
+_counter_show:
+    path:  /counter/{page}
+    defaults: { _controller: AppCounterBundle:Counter:index, page: 1}         
+    
+_statistic_year:
+    path:  /statistic/year
+    defaults: { _controller: AppCounterBundle:Statistic:year}     
+    
+_statistic_browser:
+    path:  /statistic/browser
+    defaults: { _controller: AppCounterBundle:Statistic:browser}     
+    
+_statistic_ip:
+    path:  /statistic/ip
+    defaults: { _controller: AppCounterBundle:Statistic:ip}     
+    
+_statistic_day:
+    path:  /statistic/day
+    defaults: { _controller: AppCounterBundle:Statistic:day}     
+    
+_statistic_month:
+    path:  /statistic/month
+    defaults: { _controller: AppCounterBundle:Statistic:month}

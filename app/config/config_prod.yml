@@ -1,0 +1,32 @@
+imports:
+    - { resource: config.yml }
+
+#framework:
+#    cache:
+#        system: cache.adapter.apcu
+
+#doctrine:
+#    orm:
+#       metadata_cache_driver:
+#           type: service
+#           id: "@doctrine.cache.chain"
+#       result_cache_driver:
+#           type: service
+#           id: "@doctrine.cache.chain"
+#       query_cache_driver:
+#           type: service
+#           id: "@doctrine.cache.chain"
+
+monolog:
+    handlers:
+        main:
+            type:         fingers_crossed
+            action_level: error
+            handler:      nested
+        nested:
+            type:  stream
+            path:  '%kernel.logs_dir%/%kernel.environment%.log'
+            level: debug
+        console:
+            type:  console
+

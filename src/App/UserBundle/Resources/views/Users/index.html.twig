@@ -1,0 +1,118 @@
+{% extends "AppBackendBundle::layout.html.twig" %}
+
+{% block title "Lista użytkowników" %}
+{% block page_title "Lista użytkowników" %}
+
+{% block content_header '' %}
+
+{% block content %}
+<div class="col-md-12 col-sm-12 col-xs-12">
+    <div class="x_panel">
+        <div class="x_title">
+            <h2>Lista użytkowników <small> zarzadzanie danymi</small></h2>
+            <ul class="nav navbar-right panel_toolbox">
+
+                <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="#">Settings 1</a>
+                        </li>
+                        <li><a href="#">Settings 2</a>
+                        </li>
+                    </ul>
+                </li>
+                <li><a class="close-link"><i class="fa fa-close"></i></a>
+                </li>
+            </ul>
+            <div class="clearfix"></div>
+        </div>
+
+        <div class="x_content">
+            <div class="row">
+                <a class="btn btn-primary" href="{{ path('_users_new')}}" title="Add">Add User</a>
+            </div>
+            <div class="table-responsive">
+                <form action="#" id="multiform" method="post" name="multiform">
+                    <table class="table table-striped jambo_table bulk_action">
+                        <thead>
+                        <tr class="headings">
+                            <th>
+                                <input type="checkbox" id="check-all" class="flat">
+                            </th>
+                            <th class="column-title">{{ knp_pagination_sortable(pager,'#', 'a.id')|raw }}</th>
+                            <th class="column-title {% if pager.isSorted('g.name') %} sorted{% endif %}">{{ knp_pagination_sortable(pager,'Role', 'g.name')|raw }}</th>
+                            <th class="column-title {% if pager.isSorted('a.Username') %} sorted{% endif %}">{{ knp_pagination_sortable(pager,'Login', 'a.username')|raw }}</th>
+                            <th class="column-title {% if pager.isSorted('a.Firstname') %} sorted{% endif %}">{{ knp_pagination_sortable(pager,'Full Name', 'a.firstname')|raw }}</th>
+                            <th class="column-title {% if pager.isSorted('a.Email') %} sorted{% endif %}">{{ knp_pagination_sortable(pager,'Email', 'a.email')|raw }}</th>
+                            <th class="column-title {% if pager.isSorted('a.Enabled') %} sorted{% endif %}">{{ knp_pagination_sortable(pager,'Active', 'a.enabled')|raw }}</th>
+                            <th class="column-title {% if pager.isSorted('a.CreatedAt') %} sorted{% endif %}">{{ knp_pagination_sortable(pager,'Created', 'a.createdAt')|raw }}</th>
+                            <th class="column-title {% if pager.isSorted('a.lastLogin') %} sorted{% endif %}">{{ knp_pagination_sortable(pager,'Last Login', 'a.lastLogin')|raw }}</th>
+                            <th class="column-title no-link last"><span class="nobr">Action</span>
+                            </th>
+                            <th class="bulk-actions" colspan="10">
+                                <a class="antoo" style="color:#fff; font-weight:500;">Operacja na wielu wierszach ( <span class="action-cnt"> </span> ) <i class="fa fa-chevron-down"></i></a>
+                            </th>
+                        </tr>
+                        </thead>
+
+                        <tbody>
+
+                        {% for key, row in pager %}
+                            {% if row.username != 'super' %}
+                                <tr {% if loop.index is odd %}class="even pointer"{% else %} class="odd pointer"{% endif %}>
+                                    <td class="a-center ">
+                                        <input type="checkbox" class="flat" name="multiCheckBox[]" value="{{ row.id }}">
+                                    </td>
+                                    <td><a title="Edit User" href="{{ path('_users_edit', {'id': row.id}) }}">{{ getIIter(pager,key) }}</a></td>
+                                    <td>{{ row.role }}</td>
+                                    <td><a title="Edit User" href="{{ path('_users_edit', {'id': row.id}) }}">{{ row.username }}</a></td>
+                                    <td>{{ row.fullname }}</td>
+                                    <td>{{ row.email }}</td>
+                                    <td>{% if row.enabled %}
+                                            <a Title="Active User" onclick="return confirm('User has been inactivate ?')"  href="{{ path('_users_inactivate', {'id': row.id}) }}"><span style="color: #00542a;font-weight: bold">Yes</span></a>
+                                        {% else %}
+                                            <a Title="Inactivate User" onclick="return confirm('User has been activate ?')" href="{{ path('_users_activate', {'id': row.id}) }}"><span style="color: #660000">No</span></a>
+                                        {% endif %}
+                                    </td>
+                                    <td>{{ row.createdAt|date("Y/m/d") }}</td>
+                                    <td>{{ row.lastLogin|date("Y/m/d") }}</td>
+                                    <td class=" last">
+                                        <a class="icon dark info-tooltip" href="{{ path('_users_edit', {'id': row.id}) }}" title="Edit"> <i class="fa fa-pencil"></i></a>
+                                        <!--
+                                       <a class="icon-3 info-tooltip" href="<?php echo url_for('users/changePassword' . mergeParams($row)) ?>" title="Zmiana hasła - Hasło zostanie wysłane na maila"> </a>
+                                        -->
+
+                                        <!--                        <a class="icon-3 info-tooltip" href="<?php //echo url_for('users/profile' . mergeParams($row)) ?>" title="Edit Profile"> Edit Profile</a>                              -->
+                                        <a class="icon red info-tooltip" href="{{ path('_users_delete', {'id': row.id}) }}" onclick="return confirm('Napewno chcesz skasować użytkownika ?')" title="Usuń"><i class="fa fa-remove"></i> </a>
+                                    </td>
+                                </tr>
+                            {% endif %}
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </form>
+                {{ knp_pagination_render(pager) }}
+            </div>
+            <div class="btn-group">
+                <button class="btn btn-danger" type="button">Wybierz</button>
+                <button class="btn btn-danger dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
+                    <span class="caret"></span>
+                    <span class="sr-only">Toggle Dropdown</span>
+                </button>
+                <ul class="dropdown-menu" role="menu">
+                    <li>
+                        <a class="action-delete" href="{{ path('_users_multi', mergeParams())}}" id="actions-box-slider-delete" title="{{ 'Multi-kasowanie'|trans({},'gsPages') }}">{{ 'Usuń'|trans({},'gsPages') }}</a>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <a href="#">Separated link</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+      

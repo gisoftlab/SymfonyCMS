@@ -1,0 +1,37 @@
+{% if msg is defined %}
+
+<span id="notification">
+{% if msg.error is defined %}
+<span class="flash error">
+    <span class="flash-content">
+        <span> {{ msg.error }}</span>
+    <a class="close"></a>
+    </span>
+</span>
+{% endif %}        
+{% if msg.ok is defined %}        
+<span class="flash ok">
+    <span class="flash-content">
+        <span> {{ msg.ok }}</span>        
+    <a class="close"></a>
+    </span>
+</span>
+{% endif %}
+{% if msg.info is defined %}
+<span class="flash info">
+    <span class="flash-content">
+        <span> {{ msg.info }}</span>
+    <a class="close"></a>
+    </span>
+</span>
+{% endif %}
+{% if msg.notice is defined %}
+<span class="flash notice">
+    <span class="flash-content">
+        <span> {{ msg.notice }}</span>        
+    <a class="close"></a>
+    </span>
+</span>
+{% endif %}
+</span>
+{% endif %}

@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" datatype="plaintext" original="file.ext">
+        <body>        
+            <trans-unit id="1">
+                <source>Gisoft - Panel do zarządzania</source>
+                <target>Gisoft - Managment Panel</target>
+            </trans-unit>            
+            <trans-unit id="2">
+                <source>Gisoft, Symfony2</source>
+                <target>Gisoft, Symfony2</target>
+            </trans-unit>            
+            <trans-unit id="3">
+                <source>Symfony2  Framework -  Panel do zarządzania danymi.</source>
+                <target>Symfony2  Framework -  Panel to manage data.</target>
+            </trans-unit>                                 
+        </body>
+    </file>
+</xliff>

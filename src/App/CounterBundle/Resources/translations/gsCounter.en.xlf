@@ -1,0 +1,147 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" datatype="plaintext" original="file.ext">
+        <body>
+            <trans-unit id="1">
+                <source>Odwiedzin</source>
+                <target>Odwiedzin</target>
+            </trans-unit>
+            <trans-unit id="2">
+                <source>Wszystkie</source>
+                <target>Wszystkie</target>
+            </trans-unit>
+            <trans-unit id="3">
+                <source>Ilość odwiedzin w roku</source>
+                <target>Ilość odwiedzin w roku</target>
+            </trans-unit>
+            <trans-unit id="4">
+                <source>Ilość odwiedzin w miesiącu</source>
+                <target>Ilość odwiedzin w miesiącu</target>
+            </trans-unit>            
+            <trans-unit id="5">
+                <source>Ilość odwiedzin w dniu</source>
+                <target>Ilość odwiedzin w dniu</target>
+            </trans-unit>
+            <trans-unit id="6">
+                <source>Ilość odwiedzin w dniu i IP</source>
+                <target>Ilość odwiedzin w dniu i IP</target>
+            </trans-unit>
+            <trans-unit id="7">
+                <source>Ilość odwiedzin w dniu i przeglądarce</source>
+                <target>Ilość odwiedzin w dniu i przeglądarce</target>
+            </trans-unit>            
+            <trans-unit id="8">
+                <source>Counter - Licznik</source>
+                <target>Counter - Licznik</target>
+            </trans-unit>            
+            <trans-unit id="9">
+                <source>Logi odzwiedzin</source>
+                <target>Logi odzwiedzin</target>
+            </trans-unit>            
+            <trans-unit id="10">
+                <source>Ile</source>
+                <target>Ile</target>
+            </trans-unit>            
+            <trans-unit id="11">
+                <source>Domain</source>
+                <target>Domain</target>
+            </trans-unit>            
+            <trans-unit id="12">
+                <source>IP</source>
+                <target>IP</target>
+            </trans-unit>     
+            <trans-unit id="13">
+                <source>Przegladarka</source>
+                <target>Przegladarka</target>
+            </trans-unit>                 
+            <trans-unit id="14">
+                <source>Ver.</source>
+                <target>Ver.</target>
+            </trans-unit>
+            <trans-unit id="15">
+                <source>System</source>
+                <target>System</target>
+            </trans-unit>
+            <trans-unit id="16">
+                <source>Kraj</source>
+                <target>Kraj</target>
+            </trans-unit>
+            <trans-unit id="17">
+                <source>ISO</source>
+                <target>ISO</target>
+            </trans-unit>
+            <trans-unit id="18">
+                <source>ISO3</source>
+                <target>ISO3</target>
+            </trans-unit>
+            <trans-unit id="19">
+                <source>User Agent</source>
+                <target>User Agent</target>
+            </trans-unit>
+            <trans-unit id="20">
+                <source>Created</source>
+                <target>Created</target>
+            </trans-unit>
+            <trans-unit id="21">
+                <source>Statystyki Ilość odwiedzin w dniu i przeglądarce</source>
+                <target>Statystyki Ilość odwiedzin w dniu i przeglądarce</target>
+            </trans-unit>
+            <trans-unit id="22">
+                <source>Ilość odwiedzin w dniu i przeglądarce</source>
+                <target>Ilość odwiedzin w dniu i przeglądarce</target>
+            </trans-unit>
+            <trans-unit id="23">
+                <source>Browser</source>
+                <target>Browser</target>
+            </trans-unit>
+            <trans-unit id="24">
+                <source>Data</source>
+                <target>Data</target>
+            </trans-unit>
+            <trans-unit id="25">
+                <source>Ilość odwiedzin w dniu</source>
+                <target>Ilość odwiedzin w dniu</target>
+            </trans-unit>
+            <trans-unit id="26">
+                <source>Data</source>
+                <target>Data</target>
+            </trans-unit>
+            <trans-unit id="27">
+                <source>Ilość odwiedzin w dniu i IP</source>
+                <target>Ilość odwiedzin w dniu i IP</target>
+            </trans-unit>
+            <trans-unit id="28">
+                <source>IP</source>
+                <target>IP</target>
+            </trans-unit>
+            <trans-unit id="29">
+                <source>Statystyki Ilość odwiedzin w Miesiącu</source>
+                <target>Statystyki Ilość odwiedzin w Miesiącu</target>
+            </trans-unit>
+            <trans-unit id="30">
+                <source>Statystyki Ilość odwiedzin w dniu i IP</source>
+                <target>Statystyki Ilość odwiedzin w dniu i IP</target>
+            </trans-unit>
+            <trans-unit id="31">
+                <source>Statystyk Ilość odwiedzin w dniu</source>
+                <target>Statystyk Ilość odwiedzin w dniu</target>
+            </trans-unit>
+            <trans-unit id="32">
+                <source>Miesiąc</source>
+                <target>Miesiąc</target>
+            </trans-unit>
+            <trans-unit id="33">
+                <source>Rok</source>
+                <target>Rok</target>
+            </trans-unit>
+            <trans-unit id="34">
+                <source>Statystyk Ilość odwiedzin w roku</source>
+                <target>Statystyk Ilość odwiedzin w roku</target>
+            </trans-unit>
+            <trans-unit id="35">
+                <source>Ilość odwiedzin w roku</source>
+                <target>Ilość odwiedzin w roku</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

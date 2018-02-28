@@ -1,0 +1,48 @@
+{% extends "WebWebBundle::layout.html.twig" %}
+
+{% block title %}{{ (page.metaTitle)?page.metaTitle:meta.title }}{% endblock %}
+
+{% block keywords %}{{ (page.metaKeywords)?page.metaKeywords:meta.keywords }}}{% endblock %}
+
+{% block description %}{{ (page.metaDescription)?page.metaDescription:meta.description }}{% endblock %}
+
+{% block navigation %}
+    {% include 'WebPagesBundle:Navigation:show.html.twig' with { 'request' : app.request,'category':category,'page':page,'product':product} %}         
+{% endblock %} 
+
+{% block category %}    
+{% include 'WebPagesBundle:Pages:_category.html.twig' with { 'request' : app.request,'category':category,'page':page} %}
+{% endblock%}
+
+{% block head %}
+<script type="text/javascript" src="/backend/js/jquery-ui-1.10.1/js/jquery-ui-1.10.1.custom.min.js"></script>
+<script type="text/javascript" src="/backend/js/jquery-ui-1.10.1/js/jquery.ui.datepicker-pl.js"></script>
+<link rel="stylesheet" href="/backend/js/jquery-ui-1.10.1/css/ui-lightness/jquery-ui-1.10.1.custom.min.css" />
+{% endblock%}
+
+{% block content %}
+<h2>{{product.title}}</h2>
+<div class="p">                
+    <div class="product-img">
+        <figure class="img-indent-bot-1">
+            <a href="{{ getImage(product.icon,'big') }}" class="oneView" >{{ thumbnail(product.icon,'small') }}</a>
+        </figure>                                                                 
+        <div class="prices">                                
+            <div><span>Cena:</span> {{product.price}}  PLN</div>
+            <div><span>Kaucja:</span> {{product.deposit}} PLN</div>
+        </div>                                   
+    </div>    
+    {{ render(controller('WebProductBundle:Order:show', { 'request': app.request,'id':product.id })) }}
+    <br class="clear"/>                            
+    <div class="product-description">                
+           {% if count(product.items) != 0 %}
+                {% for key, row in product.items %}
+            <div><span class="label">{{row.field}}</span><span class="desc">{{row.content}}</span></div>
+                {% endfor %}                               
+            {% endif %}       
+     </div> 
+ </div>   
+<div class="simple-text">
+       {{product.description|raw}}
+</div>
+{% endblock %}

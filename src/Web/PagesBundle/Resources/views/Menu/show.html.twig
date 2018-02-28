@@ -1,0 +1,9 @@
+<div class="top-links-block round">
+    <ul class="links">              
+        {% for  key , value in entities  %}
+        <li class="{% if request.attributes.get("slug") == value.slug %}active {% endif %} round">            
+            <a class="round" title="{{ value.title}}" href="{{ path('_web_show_page',{'slug':value.slug}) }}">{{ value.title}}</a>
+        </li>                                                            
+        {% endfor %}                                     
+    </ul>
+</div>  

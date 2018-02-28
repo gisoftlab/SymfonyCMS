@@ -1,0 +1,20 @@
+<div id="box-promotion" class="more-round">
+    <div class="box-ins-desc more-round-left">
+        <h2>NAJCZĘŚCIEJ </h2>
+        <h3>Wypożyczane</h3>
+        <span><a href="{{ path('_web_show_page',{'slug':'wypozyczalnia'}) }}">sprawdź wszystkie</a></span>                                                
+    </div>
+    {% for key, entity in entities %}    
+    <div class="box-ins-product prod{{entity.short}}" >        
+        <a href="{{ path('_web_show_page',{'slug':entity.slug}) }}" class="btn orange round">więcej</a>
+    </div>
+     {% endfor %}   {#
+    <div class="box-ins-product prod2">
+        <!--                        <h2>Glebogryzarka </h2>-->
+        <a href="productsItem.html" class="btn orange round">więcej</a>
+    </div>
+    <div class="box-ins-product prod3 more-round-right">
+        <!--                        <h2>Koparka </h2>-->
+        <a href="productsItem.html" class="btn orange round">więcej</a>
+    </div>                   #}
+</div>

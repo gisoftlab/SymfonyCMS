@@ -1,0 +1,7 @@
+_contact:
+    path:  /contactSent
+    defaults: { _controller: WebContactBundle:Contact:sent }
+    
+_contactShow:
+    path:  /contactShow
+    defaults: { _controller: WebContactBundle:Contact:show }    

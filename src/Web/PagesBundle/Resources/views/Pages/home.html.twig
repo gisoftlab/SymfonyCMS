@@ -1,0 +1,17 @@
+{% extends "WebWebBundle::layout.html.twig" %}
+
+{% block title %}{{ meta.title }}{% endblock %}
+
+{% block keywords %}{{ meta.keywords }}{% endblock %}
+
+{% block description %}{{ meta.description }}{% endblock %}
+
+{% block navigation %}
+    {% include 'WebPagesBundle:Navigation:show.html.twig' with { 'request' : app.request,'category':category,'page':page,'product':product, 'static':static} %}
+{% endblock %} 
+
+{% block slider %}{{ render(controller('WebPagesBundle:Slider:show', { 'request': app.request })) }}{% endblock%}  
+
+{% block content %}
+    {{ render(controller('WebProductBundle:Product:home', { 'request': app.request })) }}
+{% endblock %}

@@ -1,0 +1,88 @@
+
+_users_new:
+    path:  /users/new
+    defaults: { _controller: AppUserBundle:Users:new}
+    requirements:          
+      
+_users_edit:
+    path:  /users/{id}/edit
+    defaults: { _controller: AppUserBundle:Users:edit}
+    requirements: { id: \d+ }
+
+_users_delete:
+    path:  /users/{id}/delete
+    defaults: { _controller: AppUserBundle:Users:delete}
+    requirements: { id: \d+ }
+
+_users_block:
+    path:  /users/{id}/block
+    defaults: { _controller: AppUserBundle:Users:block}
+    requirements: { id: \d+ }    
+
+_users_unblock:
+    path:  /users/{id}/unblock
+    defaults: { _controller: AppUserBundle:Users:unblock}
+    requirements: { id: \d+ }
+
+_users_multi:
+    path:  /users/multi
+    defaults: { _controller: AppUserBundle:Users:multi}
+    
+_users_activate:
+    path:  /users/{id}/activate
+    defaults: { _controller: AppUserBundle:Users:activate}
+    requirements: { id: \d+ }    
+    
+_users_inactivate:
+    path:  /users/{id}/inactivate
+    defaults: { _controller: AppUserBundle:Users:inactivate}
+    requirements: { id: \d+ }    
+    
+_users_show:
+    path:  /users/{page}/{PagesId}
+    defaults: { _controller: AppUserBundle:Users:index, page: 1, PagesId: null }
+#    requirements:            
+  
+_email_reporting_new:
+    path:  /emailreporting/new
+    defaults: { _controller: AppUserBundle:EmailReporting:new}
+      
+_email_reporting_edit:
+    path:  /emailreporting/{id}/edit
+    defaults: { _controller: AppUserBundle:EmailReporting:edit}
+    requirements: { id: \d+ }
+
+_email_reporting_delete:
+    path:  /emailreporting/{id}/delete
+    defaults: { _controller: AppUserBundle:EmailReporting:delete}
+    requirements: { id: \d+ }
+    
+_email_reporting_show:
+    path:  /emailreporting/{page}
+    defaults: { _controller: AppUserBundle:EmailReporting:index, page: 1}
+
+_email_reporting_multi:
+    path:  /emailreporting/multi
+    defaults: { _controller: AppUserBundle:EmailReporting:multi}
+    
+_users_logs_new:
+    path:  /userslogs/new
+    defaults: { _controller: AppUserBundle:UsersLogs:new}
+      
+_users_logs_edit:
+    path:  /userslogs/{id}/edit
+    defaults: { _controller: AppUserBundle:UsersLogs:edit}
+    requirements: { id: \d+ }
+
+_users_logs_delete:
+    path:  /userslogs/{id}/delete
+    defaults: { _controller: AppUserBundle:UsersLogs:delete}
+    requirements: { id: \d+ }
+
+_users_logs_multi:
+    path:  /userslogs/multi
+    defaults: { _controller: AppUserBundle:UsersLogs:multi}
+
+_users_logs_show:
+    path:  /userslogs/{page}
+    defaults: { _controller: AppUserBundle:UsersLogs:index, page: 1}

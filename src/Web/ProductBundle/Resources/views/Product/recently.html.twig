@@ -1,0 +1,13 @@
+<div class="box-lastview more-round-upper">
+    <h2>Ostatnio oglądane </h2>
+    {% if entities.item is defined %}
+    <ul>
+        {% for key, entity in entities.item %}  
+        <li>            
+            <a href="{{ path('_web_show_page',{'slug':entity.slug}) }}">{{entity.title|truncate(40)}}</a>
+        </li>
+        {% endfor %}      
+    </ul>
+    {% endif %}
+    <br class="clear"/>
+</div>  

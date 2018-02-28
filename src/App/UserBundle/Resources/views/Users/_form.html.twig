@@ -1,0 +1,54 @@
+{% form_theme form with 'AppBackendBundle:Form:form_admin_fields.html.twig' %}
+
+<form action="{{ getUri() }}" method="post" {{ form_enctype() }} data-parsley-validate >
+    <span class="section">{{ description is defined ? description: '' }}</span>
+    {{ form_errors(form) }}
+    {{ form_widget(form._token) }}
+
+    <div>{{ form_label(form.username) }}</div>
+    <div>{{ form_widget(form.username, { 'attr': {
+            'required':'required'
+    } }) }}</div>
+    <div>{{ form_errors(form.username) }}</div>
+
+    <div>{{ form_label(form.firstname) }}</div>
+    <div>{{ form_widget(form.firstname, { 'attr': {
+        } }) }}</div>
+    <div>{{ form_errors(form.firstname) }}</div>
+
+    <div>{{ form_label(form.lastname) }}</div>
+    <div>{{ form_widget(form.lastname) }}</div>
+    <div>{{ form_errors(form.lastname) }}</div>
+
+    <div>{{ form_label(form.plainPassword) }}</div>
+    <div>{{ form_widget(form.plainPassword) }}</div>
+    <div>{{ form_errors(form.plainPassword) }}</div>
+
+    <div>{{ form_label(form.email) }}</div>
+    <div>{{ form_widget(form.email, { 'attr': {
+            'data-parsley-trigger':'change',
+            'data-parsley-type':'email',
+            'required':'required'
+        } }) }}</div>
+    <div>{{ form_errors(form.email) }}</div>
+
+    <div class="checkbox">
+        <label>{{ form_widget(form.enabled, { 'attr': {
+            'class': 'flat',
+        } }) }}
+        </label>
+    </div>
+    <div>{{ form_errors(form.enabled) }}</div>
+
+    <div>{{ form_label(form.groups) }}</div>
+    <div>{{ form_widget(form.groups, { 'attr': {
+            'class': 'form-control'
+        } }) }}</div>
+    <div>{{ form_errors(form.groups) }}</div>
+
+    <div class="ln_solid"></div>
+    <div>
+        <a class="btn btn-primary" href="{{ path('_users_show') }}">Powrót</a>
+        <button id="send" type="submit" class="btn btn-success">Zapisz</button>
+    </div>
+</form>

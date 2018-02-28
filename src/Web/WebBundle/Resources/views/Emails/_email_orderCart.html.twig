@@ -1,0 +1,18 @@
+<p></p>
+<p></p>
+{% for key, item in items %}
+    {% if loop.index == 1 %}
+        <p><strong>Dane Zamawiającego</strong></p>
+        <p>Imie Nazwisko  : {{item.order.name}}</p>
+        <p>Email   : {{item.order.email}}</p>
+   {% endif %}     
+     <p></p>   
+     <p><strong>Produkt <a href="{{ path('_web_show_page',{'slug':item.product.slug}) }}">{{item.product.title}}</a></strong></p>    
+    <p>Nazwa  : {{item.product.title}}</p>
+    <p>Cena  : {{item.product.price}} PLN</p>
+    <p>Kaucja  : {{item.product.deposit}} PLN</p>
+    <p></p>   
+    <p><strong>Rezerwacja</strong></p>
+     <p>Od   : {{item.order.from}} Do   : {{item.order.to}}</p>
+     <p>Treść   : {{item.order.description}}</p>       
+{% endfor %}    

@@ -1,0 +1,23 @@
+{% extends "WebWebBundle::layout.html.twig" %}
+
+{% block title %}
+    {{meta.title}}
+{% endblock %}
+
+{% block keywords %}
+    {{meta.keywords}}
+{% endblock %}
+
+{% block description %}
+    {{meta.description}}
+{% endblock %}
+
+
+{% block content %}
+<h1>{{page.title}}</h1>
+<div class="indent1">
+   <h3>{{page.short|raw}}</h3>
+   {{page.description|raw}}
+</div>
+{% endblock %}
+      

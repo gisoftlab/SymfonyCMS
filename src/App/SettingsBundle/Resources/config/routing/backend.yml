@@ -1,0 +1,60 @@
+
+_settings_new:
+    path:  /settings/new
+    defaults: { _controller: AppSettingsBundle:Settings:new}
+    requirements:          
+      
+_settings_edit:
+    path:  /settings/{id}/edit
+    defaults: { _controller: AppSettingsBundle:Settings:edit}
+    requirements: { id: \d+ }
+
+_settings_delete:
+    path:  /settings/{id}/delete
+    defaults: { _controller: AppSettingsBundle:Settings:delete}
+    requirements: { id: \d+ }
+    
+_settings_show:
+    path:  /settings/{page}
+    defaults: { _controller: AppSettingsBundle:Settings:index, page: 1 }
+    requirements:              
+      
+_languages_new:
+    path:  /languages/new
+    defaults: { _controller: AppSettingsBundle:Languages:new}
+    requirements:          
+      
+_languages_edit:
+    path:  /languages/{id}/edit
+    defaults: { _controller: AppSettingsBundle:Languages:edit}
+    requirements: { id: \d+ }
+
+_languages_delete:
+    path:  /languages/{id}/delete
+    defaults: { _controller: AppSettingsBundle:Languages:delete}
+    requirements: { id: \d+ }
+    
+_languages_show:
+    path:  /languages/{page}
+    defaults: { _controller: AppSettingsBundle:Languages:index, page: 1 }
+    requirements:      
+      
+_languages_activate:
+    path:  /languages/{id}/activate
+    defaults: { _controller: AppSettingsBundle:Languages:activate}
+    requirements: { id: \d+ }    
+    
+_languages_inactivate:
+    path:  /languages/{id}/inactivate
+    defaults: { _controller: AppSettingsBundle:Languages:inactivate}
+    requirements: { id: \d+ }    
+    
+_languages_higher:
+    path:  /languages/{id}/higher/{sequence}/{sidx}
+    defaults: { _controller: AppSettingsBundle:Languages:higher}
+    requirements: { id: \d+ }    
+    
+_languages_lower:
+    path:  /languages/{id}/lower/{sequence}/{sidx}
+    defaults: { _controller: AppSettingsBundle:Languages:lower}
+    requirements: { id: \d+ }     

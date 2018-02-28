@@ -1,0 +1,75 @@
+parameters:  
+  entity.User: 'App\UserBundle\Entity\User'
+  entity.Group: 'App\UserBundle\Entity\Group'
+  entity.LoginHistory: 'App\UserBundle\Entity\LoginHistory'
+  entity.EmailReporting: 'App\UserBundle\Entity\EmailReporting'
+  
+services:
+    # FORM
+    app_user.registration.form.type:
+        class: 'App\UserBundle\Form\RegistrationFormType'
+        arguments: ['%fos_user.model.user.class%','@doctrine']
+        tags:
+            - { name: form.type, alias: app_user_registration }       
+
+    # PROVIDER
+    app_user.custom_provider:
+        class: App\UserBundle\Security\Provider\CustomProvider
+        public: false
+#        parent: '@fos_user.user_manager.default'
+        arguments:
+              userManager: '@fos_user.user_manager'
+              entityManager: '@doctrine.orm.entity_manager'        
+              
+              
+#    login_listener:
+#        class: 'App\UserBundle\Listener\LoginListener'
+#        arguments: ['@security.token_storage', '@doctrine', '@router','@service_container']
+#        tags:
+#            - { name: 'kernel.event_listener', event: 'security.interactive_login' }
+#
+#    logout_listener:
+#       class: 'App\UserBundle\Listener\LogoutListener'
+#       arguments:  ['@security.token_storage','@service_container']
+
+    # LISTNER
+    user.password_resseting:
+        class: 'App\UserBundle\Listener\PasswordResettingListener'
+        arguments: ['@router']
+        tags:
+            - { name: kernel.event_subscriber }              
+
+    # TWIG
+    app.twig.user_extension:
+        class: App\UserBundle\Twig\UserExtension
+        arguments:
+          doctrine: '@doctrine'
+          context: '@security.token_storage'        
+        tags:
+          - { name: twig.extension }              
+
+    # REPOSITORY
+    repo.user:
+      class: '%entity.User%'
+      factory: ['@app.repo.factory', 'getRepository']
+      arguments:
+        - '%entity.User%'
+        
+    repo.group:
+      class: '%entity.Group%'
+      factory: ['@app.repo.factory', 'getRepository']
+      arguments:
+        - '%entity.Group%'
+        
+    repo.loginHistory:
+      class: '%entity.LoginHistory%'
+      factory: ['@app.repo.factory', 'getRepository']
+      arguments:
+        - '%entity.LoginHistory%'
+        
+    repo.emailReporting:
+      class: '%entity.EmailReporting%'
+      factory: ['@app.repo.factory', 'getRepository']
+      arguments:
+        - '%entity.EmailReporting%'
+               

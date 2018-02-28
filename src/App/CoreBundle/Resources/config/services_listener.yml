@@ -1,0 +1,43 @@
+services:                                        
+    #
+    # LISTENER
+    #
+    # tree behavior
+    # KernelRequest listener
+#    app.core.doctrine.extension.listener:
+#        class: App\CoreBundle\EventListener\bsDoctrineExtensionListener
+#        calls:
+#            - [ setContainer, [ "@service_container" ] ]
+#        tags:
+#            # translatable sets locale after router processing
+#            - { name: kernel.event_listener, event: kernel.request, method: onLateKernelRequest, priority: -10 }
+#            # loggable hooks user username if one is in security context
+#            - { name: kernel.event_listener, event: kernel.request, method: onKernelRequest }          
+#            
+#    app.core.locale.listener:
+#        class: App\CoreBundle\EventListener\bsLocaleListener
+#        arguments:              
+#              locale: %locale%              
+#        tags:
+#            -  { name: kernel.event_subscriber }      
+
+    # tree behavior
+    # KernelRequest listener
+    app.core.doctrine.extension.listener:
+        class: 'App\CoreBundle\EventListener\GsDoctrineExtensionListener'
+        calls:
+            - [ setContainer, [ '@service_container' ] ]
+        tags:
+            # translatable sets locale after router processing
+            - { name: kernel.event_listener, event: kernel.request, method: onLateKernelRequest, priority: -10 }
+            # loggable hooks user username if one is in security context
+            - { name: kernel.event_listener, event: kernel.request, method: onKernelRequest }
+
+    #
+    # ANNOTATIONS EXTENTIONS            
+    #
+    set_max_sequance_listener:
+        class: 'App\CoreBundle\Annotations\Driver\SetMaxSequanceDriver'
+        tags:
+          - {name: doctrine.event_listener, event: prePersist}
+        arguments: ['@annotation_reader','@doctrine']

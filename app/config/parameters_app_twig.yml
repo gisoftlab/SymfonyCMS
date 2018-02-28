@@ -1,0 +1,23 @@
+twig:
+  globals:
+    version: '%app.version%'
+    company:
+        host: '%app.company.host%'
+        name: '%app.company.name%'
+        title: '%app.company.title%'
+
+    backend:
+        metatag:
+            title: '%app.backend.metatag.title%'
+            description: '%app.backend.metatag.description%'
+            keywords: '%app.backend.metatag.keywords%'
+            author: '%app.backend.metatag.author%'
+
+#    locale:
+#      pl: %app.locale.pl%    
+#      en: %app.locale.en%   
+#    
+#    culture:
+#      pl: %app.culture.pl%    
+#      en: %app.culture.en%           
+               

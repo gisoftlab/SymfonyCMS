@@ -1,0 +1,25 @@
+{% extends "AppBackendBundle::layout.html.twig" %}
+
+{% block title "Edit - USER" %}
+{% block page_title "Edytuj - Użytkownika" %}
+
+
+{% block content_header '' %}
+
+{% block javascripts_after %}
+
+    <!-- Select2 -->
+    <script src="{{ asset('assets/vendors/select2/dist/js/select2.full.min.js') }}"></script>
+    <!-- Parsley -->
+    <script src="{{ asset('assets/vendors/parsleyjs/dist/parsley.min.js') }}"></script>
+    <!-- Custom Cms -->
+    <script src="{{ asset('backend/js/gs/custom_cms.js') }}"></script>
+{% endblock %}
+
+{% block content %}
+    <div class="x_content">
+        {% include 'AppUserBundle:Users:_form.html.twig' with {'form': form,'description':'Formularz do edycji danych użytkownika'} %}
+    </div>
+{% endblock %}
+
+    

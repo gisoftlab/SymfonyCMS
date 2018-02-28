@@ -1,0 +1,125 @@
+/*
+Skin Name: Nivo Slider Dark Theme
+Skin URI: http://nivo.dev7studios.com
+Description: A yellow skin for the Nivo Slider.
+Version: 1.0
+Author: Gilbert Pellegrom
+Author URI: http://dev7studios.com
+Supports Thumbs: true
+*/
+
+.theme-yellow.slider-wrapper {
+    background: #FFB900;
+    padding: 10px;
+    margin-top: 10px; 
+}
+.theme-yellow .nivoSlider {
+	position:relative;
+	background:#fff url(loading.gif) no-repeat 50% 50%;
+    margin-bottom:10px;
+    overflow: visible;
+}
+.theme-yellow .nivoSlider img {
+	position:absolute;
+	top:0px;
+	left:0px;
+	display:none;
+}
+.theme-yellow .nivoSlider a {
+	border:0;
+	display:block;
+}
+
+.theme-yellow .nivo-controlNav {
+	text-align: left;
+	padding: 0;
+	position: relative;
+	z-index: 10;
+}
+.theme-yellow .nivo-controlNav a {
+	display:inline-block;
+	width:10px;
+	height:10px;
+	background:url(bullets.png) no-repeat 0 2px;
+	text-indent:-9999px;
+	border:0;
+	margin: 0 2px;
+}
+.theme-yellow .nivo-controlNav a.active {
+	background-position:0 100%;
+}
+
+.theme-yellow .nivo-directionNav a {
+	display:block;
+	width:30px;
+	height:20px;
+	background: url(arrows.png) no-repeat;
+	text-indent:-9999px;
+	border:0;
+	top: auto;
+	bottom: -25px;
+	z-index: 11;
+}
+.theme-yellow .nivo-directionNav a:hover {
+    background-color: #FF9C00;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+}
+.theme-yellow a.nivo-nextNav {
+	background-position:-16px 50%;
+	right:0px;
+}
+.theme-yellow a.nivo-prevNav {
+    background-position:11px 50%;
+    left: auto;
+	right: 35px;
+}
+
+.theme-yellow .nivo-caption {
+    font-family: Helvetica, Arial, sans-serif;
+}
+.theme-yellow .nivo-caption a {
+    color:#777676;
+    border-bottom:1px dotted #fff;
+}
+.theme-yellow .nivo-caption a:hover {
+    color:#777676;
+}
+
+.theme-yellow .nivo-controlNav.nivo-thumbs-enabled {
+	width: 80%;
+}
+.theme-yellow .nivo-controlNav.nivo-thumbs-enabled a {
+	width: auto;
+	height: auto;
+	background: none;
+	margin-bottom: 5px;
+}
+.theme-yellow .nivo-controlNav.nivo-thumbs-enabled img {
+	display: block;
+	width: 120px;
+	height: auto;
+}
+
+.theme-yellow div.nivo-caption{display: block;background: transparent;left: 28px;top: 0px;text-align: left;}
+.theme-yellow div.nivo-caption{width:  440px; margin:20px 0 0 5px;}
+.theme-yellow div.nivo-caption .lightSlide,
+.theme-yellow div.nivo-caption .darkSlide{min-height: 120px;background-color: #F4F3ED;padding: 15px 15px; -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=70)";filter: alpha(opacity=70); -moz-opacity:0.7;-khtml-opacity: 0.7;opacity: 0.7;}
+
+.theme-yellow div.nivo-caption h1{margin-left: 18px;display: inline-block;position: relative;z-index: 999;color: #A50200;font-size: 33px}
+.theme-yellow div.nivo-caption h1:hover{color: #8E0000}
+.theme-yellow .slider-description{text-align: left;padding: 10px 5px 5px 30px}
+.theme-yellow .slider-description a{color: #6B0100;font-size: 15px;z-index: 999;position: relative; text-shadow: 0 1px 1px rgba(0,0,0,.3); line-height: 30px;font-weight: bold;}
+.theme-yellow .slider-description a:hover{color: #777676}
+
+.theme-yellow .slider-description a.red{color: #BC2800;font-size: 18px;}
+.theme-yellow .slider-description a.red:hover{color: #9E1F00}
+
+.theme-yellow .slider-description a.blue{color: #001696;}
+.theme-yellow .slider-description a.blue:hover{color: #000A44}
+
+.theme-yellow .slider-description ul li{color: #6B0100;font-size: 16px; text-shadow: 0 1px 1px rgba(0,0,0,.3);list-style-type: circle}
+
+
+.theme-yellow #panel2{height: 180px}

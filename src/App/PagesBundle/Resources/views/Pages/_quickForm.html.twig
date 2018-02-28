@@ -1,0 +1,88 @@
+{% form_theme form with 'AppBackendBundle:Form:form_admin_fields.html.twig' %}
+
+<div class="content-table-inner more-round">
+    <form id="quickForm{{ pageId }}" class="quickForm" action="{{ path('_pages_quickEdit', {'id':pageId,'parentId':parentId,'quick':quick}) }}" method="post" >
+        <fieldset>
+        <div>
+            {{ form_errors(form) }}
+            {{ form_widget(form._token) }}
+        </div>
+
+        <div>{{ form_label(form.title, '', { 'label_attr': {'class': ''} }) }}</div>
+        <div>
+            {{ form_widget(form.title, { 'attr': {
+                'style': 'max-width:60%',
+                'required':'required'
+            } }) }}
+        </div>
+        <div>{{ form_errors(form.title) }}</div>
+
+        <div>{{ form_label(form.short) }}</div>
+        <div>{{ form_widget(form.short, { 'attr': {'style': 'max-width:60%'} }) }}</div>
+        <div>{{ form_errors(form.short) }}</div>
+
+        <div>{{ form_label(form.description) }}</div>
+        {# quick is necessery to activate multi tinymce #}
+        <div>{{ form_widget(form.description, {'id': 'quick_description_'~pageId, 'attr': {'style': 'max-width:60%;height:150px'} }) }}</div>
+        <div>{{ form_errors(form.description) }}</div>
+
+        <div class="checkbox">
+            <label>{{ form_widget(form.published, { 'attr': {
+                    'class': 'flat',
+                } }) }}
+            </label>
+        </div>
+
+        <a href="#" class="btnShowBlock">{{ 'Edytuj rodzica'|trans({},'gsPages') }}</a>
+        <div class="showBlock">
+            <div>{{ form_label(form.parent) }}</div>
+            <div>{{ form_widget(form.parent, { 'attr': {'style': 'width:150px'} }) }}</div>
+            <div>{{ form_errors(form.parent) }}</div>
+
+            <div>{{ form_label(form.category) }}</div>
+            <div>{{ form_widget(form.category, { 'attr': {'style': 'width:150px'} }) }}</div>
+            <div>{{ form_errors(form.category) }}</div>
+        </div>
+
+        <a href="#" class="btnShowBlock">{{ 'Edytuj Url'|trans({},'gsPages') }}</a>
+        <div class="showBlock">
+            <div>{{ form_label(form.slug) }}</div>
+            <div>{{ form_widget(form.slug, { 'attr': {'class': ''} }) }}</div>
+            <div>{{ form_errors(form.slug) }}</div>
+
+            <div>{{ form_label(form.uri) }}</div>
+            <div>{{ form_widget(form.uri, { 'attr': {'class': ''} }) }}</div>
+            <div>{{ form_errors(form.uri) }}</div>
+        </div>
+
+        <a href="#" class="btnShowBlock">{{ 'Edytuj metatagi'|trans({},'gsPages') }}</a>
+        <div class="showBlock">
+            <div>{{ form_label(form.metaTitle) }}</div>
+            <div>{{ form_widget(form.metaTitle, { 'attr': {'class': ''} }) }}</div>
+            <div>{{ form_errors(form.metaTitle) }}</div>
+
+            <div>{{ form_label(form.metaKeywords) }}</div>
+            <div>{{ form_widget(form.metaKeywords, { 'attr': {'class': ''} }) }}</div>
+            <div>{{ form_errors(form.metaKeywords) }}</div>
+
+            <div>{{ form_label(form.metaDescription) }}</div>
+            <div>{{ form_widget(form.metaDescription, { 'attr': {'class': ''} }) }}</div>
+            <div>{{ form_errors(form.metaDescription) }}</div>
+        </div>
+
+        {{ form_rest(form) }}
+        <div class="ln_solid"></div>
+        <div class="btn-group">
+            <a class="btn btn-primary closeQuickAction" href='#load-form{{ pageId }}' ajax='{"id": "{{ pageId }}"}'>{{ 'Zamknij'|trans({},'gsPages') }}</a>
+
+            <div class="submit">
+                <button type="submit" class="btn btn-success saveQuickAction" ajax='{"target":"#load-form","data":{"id":"{{ pageId }}","feedback": "{{ feedback }}", "parentId": "{{ parentId }}" }}' >{{ 'Zapisz'|trans({},'gsPages') }}</button>
+                <span class="loader"><p id="LoadingInfo{{ pageId }}"></p></span>
+            </div>
+        </div>
+        </fieldset>
+    </form>
+</div>
+
+{# Render Js in line in javascript loaded sources#}
+{{ renderJsInline() }}

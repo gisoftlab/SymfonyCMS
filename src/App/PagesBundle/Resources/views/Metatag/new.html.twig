@@ -1,0 +1,10 @@
+{% extends "AppBackendBundle::layout.html.twig" %}
+
+{% block title "Create - Metatag"|trans({},'gsPages') %}
+{% block page_title "Utwórz Metatag"|trans({},'gsPages') %}
+
+{% block content %}
+    <div class="x_content">
+        {% include 'AppPagesBundle:Metatag:_form.html.twig' with {'form': form,'description':'Formularz do dodawania metatag'|trans({},'gsPages') } %}
+    </div>
+{% endblock %}

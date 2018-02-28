@@ -1,0 +1,14 @@
+services:
+     
+    web.twig.page_extension:
+        class: 'Web\PagesBundle\Twig\PageExtension'
+        arguments:
+          #doctrine: '@doctrine'
+          container: '@service_container'
+        tags:
+          - { name: twig.extension }           
+        
+        
+      
+               
+     

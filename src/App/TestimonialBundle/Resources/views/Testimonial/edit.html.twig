@@ -1,0 +1,10 @@
+{% extends "AppBackendBundle::layout.html.twig" %}
+
+{% block title "Edit - Opinię" %}
+{% block page_title "Edytuj Opinię" %}
+
+{% block content %}
+    <div class="x_content">
+        {% include 'AppTestimonialBundle:Testimonial:_form.html.twig' with {'form': form,'description':'Formularz do edycji danych opinii'} %}
+    </div>
+{% endblock %}

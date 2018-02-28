@@ -1,0 +1,14 @@
+services:
+    #
+    # memcached
+    #
+    memcached:
+        class: Memcached
+        calls:
+        - [ addServers, [ '%memcached.servers%' ]]
+
+    memcached.service:
+        class: App\CoreBundle\Services\MemcachedService
+        arguments:
+          container: '@service_container'
+          memcached: '@memcached'

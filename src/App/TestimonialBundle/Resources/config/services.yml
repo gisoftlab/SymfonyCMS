@@ -1,0 +1,11 @@
+parameters:  
+  entity.Testimonial: App\TestimonialBundle\Entity\Testimonial
+  
+services:               
+    
+    repo.testimonial:
+      class: '%entity.Testimonial%'
+      factory: ['@app.repo.factory', 'getRepository']
+      arguments:
+        - '%entity.Testimonial%'
+         

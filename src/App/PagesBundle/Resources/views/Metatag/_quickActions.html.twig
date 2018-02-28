@@ -1,0 +1,3 @@
+<span>{{ 'Szybkie Akcje:'|trans({},'gsPages') }}</span>
+
+<a  ajax='{"action":"loadGetAction","targetTag":"#load-form", "post":{"id":"{{ model.id }}"}}' class="quick-link info-tooltip" href="{{ path('_metatag_quickEdit', {'id':model.id,'quick':1}) }}" title="{{ 'Szybka edycja informacji'|trans({},'gsPages') }}">{{ 'Edycja'|trans({},'gsPages') }}</a>

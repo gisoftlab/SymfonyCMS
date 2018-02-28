@@ -1,0 +1,21 @@
+{% extends "AppBackendBundle::layout.html.twig" %}
+
+{% block title "Create - Metatag" %}
+
+{% block content_header '' %}
+
+{% block content %}
+  <div id="page-heading"><h1>Utwórz Metatag </h1></div>
+
+<div class="content-table-inner more-round">		
+    <!--  start table-content  -->
+    <div class="table-content">           
+        <h2></h2>  
+        <legend>Formularz do dodawania metatag</legend>
+        {% include 'AppPagesBundle:Metatag:_form.html.twig' with {'form': form} %}	         
+    </div>   
+    <!--  end content-table-inner ............................................END  -->
+    <div class="clear"></div>
+</div>	
+
+{% endblock %}

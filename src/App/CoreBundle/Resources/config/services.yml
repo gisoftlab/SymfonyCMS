@@ -1,0 +1,51 @@
+services:
+
+    #
+    # GENERAL SERVICES
+    #
+    slugger:
+        class: 'App\CoreBundle\Utils\Slugger'
+
+    markdown:
+        class: 'App\CoreBundle\Utils\Markdown'
+
+    app.repo.factory:
+      alias: 'doctrine.orm.default_entity_manager'
+
+    app.repo.TRANSLATION.factory:
+            alias: 'doctrine.orm.default_entity_manager'
+
+    paginator.parameters_holder:
+        class: 'App\CoreBundle\Libraries\Paginator\sfParameterHolder'
+
+    paginator.pager:
+        class: 'App\CoreBundle\Libraries\gsPager'
+        arguments:
+          parameters_holder: '@paginator.parameters_holder'
+          max_per_page: '%pager.max_per_page%'
+    #
+    # GEO
+    #
+    app.geoip:
+        class: 'App\CoreBundle\Services\ServiceGeoIP'
+        arguments:
+          api_user_id       : ''
+          api_key           : ''
+          geo_lite_2_city   : '%geoLite2.city.mmdb%'
+          geo_Lite_2_country: '%geoLite2.country.mmdb%'
+
+    #
+    # SESSION
+    #
+    #    session:
+    #        class:          App\CoreBundle\Libraries\gsSession
+    #        arguments:
+    #          - '@session.storage'
+    #          - %locale%
+    
+
+
+
+      
+      
+     

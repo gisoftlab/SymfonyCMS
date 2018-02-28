@@ -1,0 +1,110 @@
+<div class="col-md-3 left_col">
+    <div class="left_col scroll-view">
+        <div class="navbar nav_title" style="border: 0;">
+            <a href="{{ path('_pages_show') }}" alt="{{company.name}}" class="site_title">
+                <img src="{{ asset('assets/images/favicon.png') }}" alt="" style="width: 35px;height: 35px" class="img-circle">
+                <span>{{company.name}}</span></a>
+        </div>
+
+        <div class="clearfix"></div>
+
+        <!-- menu profile quick info -->
+        <div class="profile">
+            <div class="profile_pic">
+                <img src="{{ asset('assets/images/user.png') }}" alt="..." class="img-circle profile_img">
+            </div>
+            <div class="profile_info">
+                <span>{{ 'Witam'|trans({},'gsLayout') }}</span>
+                <h2>{{ app.user?app.user.fullName:''}}</h2>
+                <a href="{{ path('fos_user_security_logout') }}">{{ 'Wyloguj'|trans({},'gsLayout') }}  </a>
+            </div>
+        </div>
+        <!-- /menu profile quick info -->
+
+        <div class="clearfix"></div>
+
+        <!-- sidebar menu -->
+        <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+            <div class="menu_section">
+                <h3>Menu</h3>
+                <ul class="nav side-menu">
+                    <li class=""><a><i class="fa fa-home"></i> Dashboard  <span class="fa fa-chevron-down"></span></a>
+                        <ul class="nav child_menu" style="display: none;">
+                            <li><a href="{{ path('_pages_show') }}" id="acc-stats">{{ 'Strony'|trans({},'gsSettingMenu') }}</a></li>
+                            <li><a href="{{ path('_pages_block_show') }}" id="acc-stats">{{ 'Blok'|trans({},'gsSettingMenu') }}</a></li>
+                            <li><a href="{{ path('_metatag_show') }}" id="acc-settings">{{ 'Meta Tagi'|trans({},'gsSettingMenu') }}</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="menu_section">
+                <h3>Zarzadzanie</h3>
+                <ul class="nav side-menu">
+                    <li>
+                        <a><i class="fa fa-book"></i> Strony <span class="fa fa-chevron-down"></span></a>
+                        <ul class="nav child_menu">
+                            <li><a class="symfony-docs" href="{{ path('_pages_show') }}">Wszystkie</a></li>
+                            <li><a class="symfony-docs" href="{{ path('_pages_new') }}">Dodaj</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a><i class="fa fa-book"></i> Strony Menu <span class="fa fa-chevron-down"></span></a>
+                        {{ render(controller('AppBackendBundle:Menu:build', { 'request': app.request })) }}
+                    </li>
+
+                    <li>
+                        <a><i class="fa fa-book"></i> Strony Footer <span class="fa fa-chevron-down"></span></a>
+                        {{ render(controller('AppBackendBundle:Menu:footerBuild', { 'request': app.request })) }}
+                    </li>
+
+                    <li><a href="{{ path('_testimonial_show') }}"><i class="fa fa-user"></i> Opinie</a></li>
+                    <li>
+                        <a><i class="fa fa-book"></i> Produkty <span class="fa fa-chevron-down"></span></a>
+                        <ul class="nav child_menu">
+                            {#
+                            <li><a class="symfony-docs" href="http://symfony.com/doc/current/index.html">Symfony1</a></li>
+                            #}
+                        </ul>
+                    </li>
+                    <li class=""><a><i class="fa fa-calendar"></i> Konfiguracja <span class="fa fa-chevron-down"></span></a>
+                        <ul class="nav child_menu" style="display: none;">
+                            <li><a href="{{ path('_users_show') }}" id="acc-stats">{{ 'Użytkownicy'|trans({},'gsSettingMenu') }}</a></li>
+                            <li><a href="{{ path('_settings_show') }}" id="acc-stats">{{ 'Ustawienia'|trans({},'gsSettingMenu') }}</a></li>
+                            <li><a href="{{ path('_languages_show') }}" id="acc-stats">{{ 'Tłumaczenia'|trans({},'gsSettingMenu') }}</a></li>
+
+                        </ul>
+                    </li>
+                    <li class=""><a><i class="fa fa-calendar"></i> Logii <span class="fa fa-chevron-down"></span></a>
+                        <ul class="nav child_menu" style="display: none;">
+                            <li><a href="{{ path('_counter_show') }}" id="acc-stats">{{ 'Statystyki'|trans({},'gsSettingMenu') }}</a></li>
+                            <li><a href="{{ path('_users_logs_show') }}" id="acc-stats">{{ 'Logi użytkowników'|trans({},'gsSettingMenu') }}</a></li>
+                            <li><a href="{{ path('_email_reporting_show') }}" id="acc-stats">{{ 'Email Reporting'|trans({},'gsSettingMenu') }}</a></li>
+                            <li><a href="{{ path('_newsletter_show') }}" id="acc-stats">{{ 'Newsletter Emaile'|trans({},'gsSettingMenu') }}</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="{{ path('_homepage', {page: 'index'}) }}"><i class="fa fa-search"></i> Szukaj</a></li>
+                </ul>
+            </div>
+
+        </div>
+        <!-- /sidebar menu -->
+
+        <!-- /menu footer buttons -->
+        <div class="sidebar-footer hidden-small">
+            <a href="#" data-toggle="tooltip" data-placement="top" title="Settings">
+                <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+            </a>
+            <a data-toggle="tooltip" data-placement="top" title="FullScreen">
+                <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
+            </a>
+            <a data-toggle="tooltip" data-placement="top" title="Lock">
+                <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
+            </a>
+            <a data-toggle="tooltip" data-placement="top" title="Logout" href="{{ path('fos_user_security_logout') }}">
+                <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
+            </a>
+        </div>
+        <!-- /menu footer buttons -->
+    </div>
+</div>

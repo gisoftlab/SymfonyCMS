@@ -1,0 +1,97 @@
+{% extends "AppBackendBundle::layout.html.twig" %}
+
+{% block title "Show - Tłumaczenia" %}
+{% block page_title "Lista Tłumaczeń" %}
+
+{% block content_header '' %}
+
+{% block content %}
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2></h2>
+                <ul class="nav navbar-right panel_toolbox">
+
+                    <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="#">Settings 1</a>
+                            </li>
+                            <li><a href="#">Settings 2</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li><a class="close-link"><i class="fa fa-close"></i></a>
+                    </li>
+                </ul>
+                <div class="clearfix"></div>
+            </div>
+
+            <div class="x_content">
+                <div class="row">
+                    <a class="btn btn-primary" href="{{ path('_languages_new')}}" title="Add">Dodaj Tłumaczenie</a>
+                </div>
+
+                <div class="table-responsive">
+                    <table class="table table-striped jambo_table bulk_action">
+                        <thead>
+                        <tr class="headings">
+                            <th class="column-title">{{ knp_pagination_sortable(pager,'#', 'a.id')|raw }}</th>
+                            <th class="column-title {% if pager.isSorted('a.culture') %} sorted{% endif %}">{{knp_pagination_sortable(pager,'Culture', 'a.culture')|raw }}</th>
+                            <th class="column-title {% if pager.isSorted('c.iso') %} sorted{% endif %}">{{knp_pagination_sortable(pager,'ISO', 'c.iso')|raw }}</th>
+                            <th class="column-title {% if pager.isSorted('c.name') %} sorted{% endif %}">{{knp_pagination_sortable(pager,'Kraj', 'c.name')|raw }}</th>
+                            <th class="column-title {% if pager.isSorted('a.countryName') %} sorted{% endif %}">{{knp_pagination_sortable(pager,'Nazwa (Widok)', 'a.countryName')|raw }}</th>
+                            <th class="column-title {% if pager.isSorted('a.isUsed') %} sorted{% endif %}">{{knp_pagination_sortable(pager,'Włączony', 'a.isUsed')|raw }}</th>
+                            <th class="column-title {% if pager.isSorted('a.sequence') %} sorted{% endif %}">{{knp_pagination_sortable(pager,'Przesuń', 'a.sequence')|raw }}</th>
+                            <th class="column-title {% if pager.isSorted('a.createdAt') %} sorted{% endif %}">{{knp_pagination_sortable(pager,'Created', 'a.createdAt')|raw }}</th>
+                            <th class="column-title {% if pager.isSorted('a.updatedAt') %} sorted{% endif %}">{{knp_pagination_sortable(pager,'Updated', 'a.updatedAt')|raw }}</th>
+                            <th class="column-title no-link last"><span class="nobr">Action</span></th>
+                        </tr>
+                        </thead>
+
+                        <tbody>
+
+                        {% for key, row in pager %}
+                            <tr {% if loop.index is odd %}class="even pointer"{% else %} class="odd pointer"{% endif %}>
+                                <td><a title="Edit Tłumaczenie" href="{{ path('_languages_edit', {'id': row.id}) }}">{{ getIIter(pager,key) }}</a></td>
+                                <td><a title="Edit Tłumaczenie" href="{{ path('_languages_edit', {'id': row.id}) }}">{{ row.culture }}</a></td>
+                                <td>{{ row.country.iso }}</td>
+                                <td>{{ row.country }}</td>
+                                <td>{{ row.countryName }}</td>
+                                <td>
+                                    {% if row.isUsed %}
+                                        <a class="icon-5-ok info-tooltip" Title="Nie wyświetlaj języka" href="{{ path('_languages_inactivate', {'id': row.id}) }}"></a>
+                                    {% else %}
+                                        <a class="icon-5 info-tooltip" Title="Wyświetl język" href="{{ path('_languages_activate', {'id': row.id}) }}"></a>
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    {% if key != 0 %}
+                                        <a class="ui-state-default ui-corner-all info-tooltip" title="Do góry" href="{{ path('_languages_higher', {'id': row.id,'sequence': row.sequence,'sidx': sidx}) }}">
+                                            <span class="ui-icon ui-icon-circle-triangle-n"></span>
+                                        </a>
+                                    {% endif %}
+                                    {% if (count(pager) != key+1) %}
+                                        <a class="ui-state-default ui-corner-all info-tooltip" title="Na dół" href="{{ path('_languages_lower', {'id': row.id,'sequence': row.sequence,'sidx': sidx}) }}">
+                                            <span class="ui-icon ui-icon-circle-triangle-s"></span>
+                                        </a>
+                                    {% endif %}
+                                </td>
+                                <td>{{ row.createdAt|date("Y/m/d") }}</td>
+                                <td>{{ row.updatedAt|date("Y/m/d") }}</td>
+                                <td class="last">
+                                    <a class="icon-1 info-tooltip" href="{{ path('_languages_edit', {'id': row.id}) }}" title="Edit"> <i class="fa fa-pencil"></i> </a>
+                                    <a class="icon-2 info-tooltip" href="{{ path('_languages_delete', {'id': row.id}) }}" onclick="return confirm('Napewno chcesz skasować tłumaczenie ?')" title="Usuń"><i class="fa fa-remove"></i>  </a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                    {{ knp_pagination_render(pager) }}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+      

@@ -1,0 +1,11 @@
+Options +FollowSymLinks +ExecCGI
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+
+
+  RewriteRule ^(.*)$ /web/$1
+  
+
+</IfModule>

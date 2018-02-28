@@ -1,0 +1,145 @@
+<div class="content-gallery">     
+{% for  key , value in files  %}        
+    {% if value.file.fileType == getTypeName("Images") %}        
+    <div class="left relative">
+        <div class="formTitle">                   
+            <div class="field">
+                
+                <form class="titleFileEdit" id="FileTitle{{value.file.id}}" method="post" enctype="multipart/form-data" action="{{ path('_files_editTitle') }}">
+                    <input type="hidden" value="{{value.file.id}}" name="Title[FilesId]">
+                    <input type="hidden" value="{{value.product.id}}" name="Title[ProductId]">
+                    <input type="text" name="Title[FileTitle]" value="{{ getImageTitle(value.file) }} ">                    
+                    <a class="btn-green" href="#">Zapisz</a>
+                </form>
+            </div>
+        </div>    
+        <div class="imageTitle">
+            <span><a class="btn-title" href="#">Zobacz Tytuł</a></span>            
+            <span class="showImageTitle"><a href="#">{{ getImageTitle(value.file) }}</a></span>
+            <span><a class="btn-edit-title" href="#">Edytuj Tytuł</a></span>
+            <span>                 
+                {% if isIconProd(value) %}              
+                    <b class="round-upper">ikona</b>
+                {% else %}
+                    <span class="blank">&nbsp;</span>
+               {% endif %}
+            </span>
+        </div>    
+        <div>                 
+            <span id="showIcon">
+                <img src='{{ getImage(value.file,"smaller") }} '   alt='{{ getImageTitle(value.file) }}' />                
+            </span>
+            <span>         
+                {% if isIconProd(value) != true %}        
+                <a class="btn green round" idx="{{value.product.id}}" srcx="{{ getImage(value.file,"smaller") }}" alt="{{ getImageTitle(value.file) }}"  href="{{ path('_files_setIcon_product', {'id':value.product.id,'fileId':value.file.id}) }}">Ustaw Ikonę</a>
+                 {% endif %}
+                <a class="btn red round {{ isIconProd(value)?'icon':'' }}" idx="{{value.product.id}}" callback="{{ path('_files_product_upload', {'id':value.product.id,'quick':1}) }}" href="{{ path('_files_delete_product', {'id':value.product.id,'fileId':value.file.id}) }}">Usuń</a>
+            </span>
+        </div>     
+      </div>       
+    {% endif %}    
+{% endfor %}
+    <div class="clear"></div>
+ </div> 
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        
+        $(".titleFileEdit a.btn-green").click(function(){          
+           var form = $(this).parent();    
+           form.submit();            
+           return false;
+        })
+        
+        $(".titleFileEdit").submit(function(){                                                                               
+            var form  = $(this);                                   
+            var field = $(form).parent().parent().parent();
+            
+            console.log($(form).attr("action"));
+            
+            $(this).ajaxSubmit({
+                type: "POST",
+                url: $(form).attr("action"),                
+                data: {},
+                dataType: "html",
+
+                beforeSend: function(data){                        
+                    //console.log(data);
+                },
+                success: function(data){                             
+                                        
+                    $(".formTitle").hide();
+                    $("a.btn-edit-title").html("Edytuj Tytuł");
+                    $("div.imageTitle span.showImageTitle a",field).html($("input[type=text]",field).val());
+                },
+                error:function(data){
+                    console.log(data);
+                },
+                complete:function(data){
+                }
+
+            });
+            return false;
+
+        }); 
+            
+        $(".content-gallery a.btn.red").click(function(){  
+             confirmed = confirm('Skasować Plik?');
+             if (confirmed){
+                 gsAjax.uploaderAction($(this).attr("href"));
+                         if($(this).hasClass("icon")){
+                             var idx = $(this).attr("idx");
+                             var callback = $(this).attr("callback");
+                             
+                             var iconTag = "<a  onclick=\"gsAjax.loadQuickUploader($(this),'.load-form','"+idx+"'); return false;\" class='add-icon info-tooltip' href="+callback+" title='Dodaj Ikonę - dodaj obrazek w galerii - zaznacz jako ikona'>&nbsp;</a>"
+                             $("#productIcon"+idx).html(iconTag);                                                     
+                         }                                                        
+             }
+                          
+             return false;             
+        })
+        
+        $(".imageTitle a.btn-edit-title").click(function(){
+            
+            var formField = $(this).parent().parent().parent();                        
+            
+            if($(this).html() == "Edytuj Tytuł")
+            {
+                $(".formTitle").hide();
+                $("a.btn-edit-title").html("Edytuj Tytuł");               
+                $(".formTitle",formField).show();
+                
+               $(this).html("Anuluj Edycję"); 
+            }
+            else
+            {
+               $(".formTitle",formField).hide();
+               $(this).html("Edytuj Tytuł");
+            }                
+            return false;                             
+        })
+        
+        $(".imageTitle a.btn-title").click(function(){            
+               return false;             
+        })
+        
+        $(".imageTitle a.btn-title").mousemove(function(){              
+             $(this).parent().next(".showImageTitle").show();                                                            
+        })
+        
+        $(".imageTitle a.btn-title").mouseout(function(){              
+             $(this).parent().next(".showImageTitle").hide();                                                    
+        })
+        
+         $(".content-gallery a.btn.green").click(function(){
+             gsAjax.uploaderAction($(this).attr("href"));
+              var idx = $(this).attr("idx");
+              var srcx = $(this).attr("srcx");
+              var iconTag = "<img alt='' title='' src='"+srcx+"'>";
+             $("#productIcon"+idx).html(iconTag);       
+                        
+             return false;             
+        })
+                                         
+    });
+</script>

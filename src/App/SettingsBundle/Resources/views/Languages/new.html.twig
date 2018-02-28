@@ -1,0 +1,20 @@
+{% extends "AppBackendBundle::layout.html.twig" %}
+
+{% block title "Create - Languages" %}
+{% block page_title "Dodaj Jezyk" %}
+
+{% block content_header '' %}
+
+{% block javascripts_after %}
+
+    <!-- Select2 -->
+    <script src="{{ asset('assets/vendors/select2/dist/js/select2.full.min.js') }}"></script>
+    <!-- Parsley -->
+    <script src="{{ asset('assets/vendors/parsleyjs/dist/parsley.min.js') }}"></script>
+{% endblock %}
+
+{% block content %}
+    <div class="x_content">
+        {% include 'AppSettingsBundle:Languages:_form.html.twig' with {'form': form,'description':'Formularz do dodawania jezykow'} %}
+    </div>
+{% endblock %}

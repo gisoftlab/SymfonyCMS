@@ -1,0 +1,39 @@
+parameters:  
+  entity.Product: 'App\ProductBundle\Entity\Product'
+  entity.ProductFiles: 'App\ProductBundle\Entity\ProductFiles'  
+  entity.ProductItems: 'App\ProductBundle\Entity\ProductItems'
+  entity.ProductOrders: 'App\ProductBundle\Entity\ProductOrders'  
+  
+services:       
+
+    # REPOSITORY
+    repo.product:
+      class: '%entity.Product%'
+      factory: ['@app.repo.factory', 'getRepository']
+      arguments:
+        - '%entity.Product%'
+        
+    repo.productFiles:
+      class: '%entity.ProductFiles%'
+      factory: ['@app.repo.factory', 'getRepository']
+      arguments:
+        - '%entity.ProductFiles%'
+        
+    repo.productItems:
+      class: '%entity.ProductItems%'
+      factory: ['@app.repo.factory', 'getRepository']
+      arguments:
+        - '%entity.ProductItems%'
+        
+    repo.productOrders:
+      class: '%entity.ProductOrders%'
+      factory: ['@app.repo.factory', 'getRepository']
+      arguments:
+        - '%entity.ProductOrders%'
+        
+      #  FORM    
+    form.product:
+        class:       'App\ProductBundle\Form\ProductType'
+        arguments:     
+          doctrine:  '@doctrine'
+          container: '@service_container'

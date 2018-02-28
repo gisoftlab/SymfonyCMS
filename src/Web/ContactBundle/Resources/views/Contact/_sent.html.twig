@@ -1,0 +1,82 @@
+<form action="{{ path('_contact') }}" method="POST" id="contact-form">
+    {{ form_errors(form) }}
+    {{ form_widget(form._token) }}
+    <ul class="form-style-1 field-divided-60">
+        <li>
+            {{ form_label(form.firstname, '', {'label_attr': {'class': 'field-line'} }) }}
+            {{ form_widget(form.firstname, { 'attr': {'class': 'field-divided-65', 'placeholder': 'Imię'} }) }}
+        </li>
+        <li>
+            {{ form_label(form.lastname, '', {'label_attr': {'class': 'field-line'} }) }}
+            {{ form_widget(form.lastname, { 'attr': {'class': 'field-divided-65', 'placeholder': 'Nazwisko'} }) }}
+        </li>
+
+        <li>
+            {{ form_label(form.email, '', {'label_attr': {'class': 'field-line'} }) }}
+            {{ form_widget(form.email, { 'attr': {'class': 'field-divided-65', 'placeholder': 'Email'} }) }}
+        </li>
+        <li>
+            {{ form_label(form.phone, '', {'label_attr': {'class': 'field-line'} }) }}
+            {{ form_widget(form.phone, { 'attr': {'class': 'field-divided-65', 'placeholder': 'Telefon'} }) }}
+        </li>
+    </ul>
+    <ul class="form-style-1 field-divided-40">
+        <li>
+            {{ form_label(form.message)  }}
+            {{ form_widget(form.message, { 'attr': {'class': 'field-long field-textarea'} }) }}
+        </li>
+    </ul>
+    <ul class="form-style-1 field-long">
+        <li>
+            <input type="submit" value="Wyślij" />
+        </li>
+    </ul>
+</form>
+
+<script type="text/javascript">
+    $(document).ready(function(){                             
+         $("#contact-form").submit(function(e){
+             e.preventDefault(); // <-- important
+                var form  = $("#contact-form");
+                $(this).ajaxSubmit({
+                    type: "POST",
+                    url: $(form).attr("action"),
+                    data: {},
+                    dataType: "html",
+                    
+                    beforeSend: function(data){                        
+                        $("#LoadingInfo").show();
+                    },
+                    success: function(data){     
+                        
+                       var json = $.parseJSON(data);
+                         
+                        if(json.note != "ok"){   
+                            $("#target-contact-form").html(json.html);                            
+                            
+                            if(json.note == "error"){   
+                                notification(json.note,json.msg,"#notification");
+                            }
+                        } else{
+                            notification(json.note,json.msg,"#notification");
+                            
+                            $("textarea ",form).val("");
+                            $("input[type=text]",form).val("");
+                            $("input[type=email]",form).val("");
+                            $(".input-error").html("");                               
+                            $(".input").removeClass("error");                            
+                            $("textarea").removeClass("input-validation-error");    
+                            $("#LoadingInfo").hide();
+                        }                                                
+                    },
+                    error:function(data){
+                        console.log(data);
+                    },
+                    complete:function(data){
+                    }
+                });
+                return false;                    
+            });                          
+    });    
+</script>
+

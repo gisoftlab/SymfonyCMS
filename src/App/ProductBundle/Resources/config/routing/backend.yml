@@ -1,0 +1,137 @@
+
+_product_new:
+    path:  /product/new/{page}/{PagesId}
+    defaults: { _controller: AppProductBundle:Product:new, page: 1, PagesId: null }
+      
+_product_edit:
+    path:  /product/{id}/edit/{page}/{PagesId}
+    defaults: { _controller: AppProductBundle:Product:edit, page: 1, PagesId: null }
+    requirements: { id: \d+ }
+    
+    
+_product_quickEdit:
+    path:  /product/{id}/quickEdit/{quick}
+    defaults: { _controller: AppProductBundle:Product:quickEdit }
+    requirements: { id: \d+ }    
+     
+_product_delete:
+    path:  /product/{id}/delete
+    defaults: { _controller: AppProductBundle:Product:delete}
+    requirements: { id: \d+ }
+    
+_product_higher:
+    path:  /product/{sequence}/higher/{move}/{page}/{PagesId}/{category}
+    defaults: { _controller: AppProductBundle:Product:move, move: 'up', page: 1, PagesId: null, category: null }
+    requirements: { sequence: \d+ }    
+
+_product_lower:
+    path:  /product/{sequence}/lower/{move}/{page}/{PagesId}/{category}
+    defaults: { _controller: AppProductBundle:Product:move, move: 'down', page: 1, PagesId: null, category: null }
+    requirements: { sequence: \d+ }            
+
+_product_published:
+    path:  /product/{id}/published/{value}/{page}/{PagesId}
+    defaults: { _controller: AppProductBundle:Product:published, value: 1, page: 1, PagesId: null }
+    requirements: { id: \d+ }        
+    
+_product_unpublished:
+    path:  /product/{id}/unpublished/{value}/{page}/{PagesId}
+    defaults: { _controller: AppProductBundle:Product:published, value: 0, page: 1, PagesId: null }
+    requirements: { id: \d+ }            
+    
+_product_promoted:
+    path:  /product/{id}/promoted/{value}/{page}/{PagesId}
+    defaults: { _controller: AppProductBundle:Product:promoted, value: 1, page: 1, PagesId: null }
+    requirements: { id: \d+ }        
+    
+_product_unpromoted:
+    path:  /product/{id}/unpromoted/{value}/{page}/{PagesId}
+    defaults: { _controller: AppProductBundle:Product:promoted, value: 0, page: 1, PagesId: null }
+    requirements: { id: \d+ }    
+    
+_product_icon_promoted_delete:
+    path:  /product/{id}/deleteIconPromoted/{page}/{PagesId}
+    defaults: { _controller: AppProductBundle:Product:deleteIconPromoted,  page: 1, PagesId: null }
+    requirements: { id: \d+ }    
+    
+_product_multi:
+    path:  /product/multi/{page}/{PagesId}
+    defaults: { _controller: AppProductBundle:Product:multi, page: 1, PagesId: null }
+    requirements:                
+
+   
+_product_show:
+    path:  /product/{page}/{PagesId}
+    defaults: { _controller: AppProductBundle:Product:index, page: 1, PagesId: null }
+    
+    
+    
+_product_items_new:
+    path:  /productItems/new/{productId}/{page}/{PagesId}
+    defaults: { _controller: AppProductBundle:ProductItems:new, page: 1, PagesId: null }
+
+_product_items_edit:
+    path:  /productItems/{id}/edit/{productId}/{page}/{PagesId}
+    defaults: { _controller: AppProductBundle:ProductItems:edit, page: 1, PagesId: null }
+    requirements: { id: \d+ }    
+    
+_product_items_delete:
+    path:  /productItems/{id}/delete/{productId}
+    defaults: { _controller: AppProductBundle:ProductItems:delete}
+    requirements: { id: \d+ }
+    
+_product_items_higher:
+    path:  /productItems/{sequence}/higher/{move}/{productId}/{page}/{PagesId}
+    defaults: { _controller: AppProductBundle:ProductItems:move, move: 'up', page: 1, PagesId: null }
+    requirements: { sequence: \d+ }    
+
+_product_items_lower:
+    path:  /productItems/{sequence}/lower/{move}/{productId}/{page}/{PagesId}
+    defaults: { _controller: AppProductBundle:ProductItems:move, move: 'down', page: 1, PagesId: null }
+    requirements: { sequence: \d+ }     
+    
+_product_items_show:
+    path:  /productItems/{productId}/{page}/{PagesId}
+    defaults: { _controller: AppProductBundle:ProductItems:index, page: 1, PagesId: null }    
+    
+__product_items_multi:
+    path:  /productItems/multi//{productId}{page}/{PagesId}
+    defaults: { _controller: AppProductBundle:ProductItems:multi, page: 1, PagesId: null }
+    requirements:      
+    
+    
+    
+_product_orders_new:
+    path:  /productOrders/new/{page}/{PagesId}
+    defaults: { _controller: AppProductBundle:ProductOrders:new, page: 1, PagesId: null }
+
+_product_orders_edit:
+    path:  /productOrders/{id}/edit/{page}/{PagesId}
+    defaults: { _controller: AppProductBundle:ProductOrders:edit, page: 1, PagesId: null }
+    requirements: { id: \d+ }    
+    
+_product_orders_delete:
+    path:  /productOrders/{id}/delete
+    defaults: { _controller: AppProductBundle:ProductOrders:delete}
+    requirements: { id: \d+ }
+    
+_product_orders_higher:
+    path:  /productOrders/{sequence}/higher/{move}/{page}/{PagesId}
+    defaults: { _controller: AppProductBundle:ProductOrders:move, move: 'up', page: 1, PagesId: null }
+    requirements: { sequence: \d+ }    
+
+_product_orders_lower:
+    path:  /productOrders/{sequence}/lower/{move}/{page}/{PagesId}
+    defaults: { _controller: AppProductBundle:ProductOrders:move, move: 'down', page: 1, PagesId: null }
+    requirements: { sequence: \d+ }     
+    
+_product_orders_show:
+    path:  /productOrders/{page}/{PagesId}
+    defaults: { _controller: AppProductBundle:ProductOrders:index, page: 1, PagesId: null  }    
+    
+__product_orders_multi:
+    path:  /productOrders/multi/{page}/{PagesId}
+    defaults: { _controller: AppProductBundle:ProductOrders:multi, page: 1, PagesId: null }
+    requirements:  
+
+      

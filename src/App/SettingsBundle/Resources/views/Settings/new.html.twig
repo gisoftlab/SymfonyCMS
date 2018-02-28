@@ -1,0 +1,23 @@
+{% extends "AppBackendBundle::layout.html.twig" %}
+
+{% block title "Create - Settings" %}
+{% block page_title "Dodaj Ustawienie" %}
+
+{% block content_header '' %}
+
+{% block javascripts_after %}
+
+    <!-- Select2 -->
+    <script src="{{ asset('assets/vendors/select2/dist/js/select2.full.min.js') }}"></script>
+    <!-- Parsley -->
+    <script src="{{ asset('assets/vendors/parsleyjs/dist/parsley.min.js') }}"></script>
+    <!-- Custom Cms -->
+    <script src="{{ asset('backend/js/gs/custom_cms.js') }}"></script>
+
+{% endblock %}
+
+{% block content %}
+    <div class="x_content">
+        {% include 'AppSettingsBundle:Settings:_form.html.twig' with {'form': form,'description':'Formularz do dodawania ustawień'} %}
+    </div>
+{% endblock %}

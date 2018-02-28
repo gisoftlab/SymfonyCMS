@@ -1,0 +1,35 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+<div id="forgotbox" class="animate form forgot_form">
+    <div id="forgotbox-text">{{ 'resetting.request.title'|trans({}, 'gsSecurity') }}</div>
+    {% if invalid_username is defined %}
+    <div class="login-error"><p>{{ 'resetting.request.invalid_username'|trans({'%username%': invalid_username}) }}</p></div>
+    <div class="clear" style="margin-top: 10px"></div>
+    {% endif %}
+
+    <div id="forgot-inner">
+        <section class="login_content">
+        <form name="forgot-password" id="forgot-password" action="{{ path('fos_user_resetting_send_email') }}" method="POST" >
+            <div>
+                <label for="Email">{{ 'resetting.request.username'|trans({}) }}</label>
+            </div>
+            <div>
+                <input class="text-box single-line" type="text" id="username" name="username" required="required" placeholder="{{ 'resetting.request.placeholder'|trans({}) }}" />
+            </div>
+            <div class="clearfix"></div>
+            <p>
+                <input type="submit" class="submit-login" name="ForgotFormBtn" id="forgotFormBtn" value="{{ 'resetting.request.submit'|trans({}, 'gsSecurity') }}" />
+            </p>
+            <div class="clearfix"></div>
+
+            <div class="separator">
+                <p class="change_link">
+                    <a href="#signin" class="to_forgotbox"> Logowanie </a>
+                </p>
+
+                <div class="clearfix"></div>
+            </div>
+        </form>
+        </section>
+    </div>
+</div>

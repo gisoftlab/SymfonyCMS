@@ -1,0 +1,24 @@
+stfalcon_tinymce:
+    include_jquery: false
+    tinymce_jquery: true
+    selector: ".tinymce"
+    language: "%locale%"
+    theme:
+        # Advanced theme with almost all enabled plugins
+        simple:
+             theme: "modern"
+
+             plugins:
+                 - "advlist autolink lists link image charmap print preview hr anchor pagebreak"
+                 - "searchreplace wordcount visualblocks visualchars code fullscreen"
+                 - "insertdatetime media nonbreaking save table contextmenu directionality"
+                 - "template paste textcolor"
+             toolbar1: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image"
+#             toolbar2: "print preview media | forecolor backcolor | stfalcon | example"
+             image_advtab: true
+        # BBCode tag compatible theme (see http://www.bbcode.org/reference.php)
+        bbcode:
+             plugins: ["bbcode, code, link, preview"]
+             menubar: false
+             toolbar1: "bold,italic,underline,undo,redo,link,unlink,removeformat,cleanup,code,preview"
+

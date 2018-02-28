@@ -1,0 +1,83 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" datatype="plaintext" original="file.ext">
+        <body>        
+            <trans-unit id="1">
+                <source>Strony</source>
+                <target>Strony</target>
+            </trans-unit>            
+            <trans-unit id="2">
+                <source>Blok</source>
+                <target>Blok</target>
+            </trans-unit>            
+            <trans-unit id="3">
+                <source>Meta Tagi</source>
+                <target>Meta Tagi</target>
+            </trans-unit>            
+            <trans-unit id="4">
+                <source>Ustawienia</source>
+                <target>Ustawienia</target>
+            </trans-unit>            
+            <trans-unit id="5">
+                <source>Użytkownicy</source>
+                <target>Użytkownicy</target>
+            </trans-unit>            
+            <trans-unit id="6">
+                <source>Statystyki</source>
+                <target>Statystyki</target>
+            </trans-unit>            
+            <trans-unit id="7">
+                <source>Tłumaczenia</source>
+                <target>Tłumaczenia</target>
+            </trans-unit>            
+            <trans-unit id="8">
+                <source>Logi użytkowników</source>
+                <target>Logi użytkowników</target>
+            </trans-unit>            
+            <trans-unit id="9">
+                <source>Email Reporting</source>
+                <target>Email Reporting</target>
+            </trans-unit>           
+            <trans-unit id="10">
+                <source>Newsletter Emaile</source>
+                <target>Newsletter Emaile</target>
+            </trans-unit>
+            <trans-unit id="11">
+                <source>Powrot do strony</source>
+                <target>Powrot do strony</target>
+            </trans-unit>
+            <trans-unit id="12">
+                <source>Profile</source>
+                <target>Profile</target>
+            </trans-unit>
+            <trans-unit id="13">
+                <source>Pomoc</source>
+                <target>Pomoc</target>
+            </trans-unit>
+            <trans-unit id="14">
+                <source>Zmien podstawowe ustawienia</source>
+                <target>Zmien podstawowe ustawienia</target>
+            </trans-unit>
+            <trans-unit id="15">
+                <source>Zarzadzanie uzytkownikami</source>
+                <target>Zarzadzanie uzytkownikami</target>
+            </trans-unit>
+            <trans-unit id="16">
+                <source>Dodaj jezyk</source>
+                <target>Dodaj jezyk</target>
+            </trans-unit>
+            <trans-unit id="17">
+                <source>Sprawdz statystyki odwiedzin</source>
+                <target>Sprawdz statystyki odwiedzin</target>
+            </trans-unit>
+            <trans-unit id="18">
+                <source>Sprawdz ostatnie logowanie do systemu</source>
+                <target>Sprawdz ostatnie logowanie do systemu</target>
+            </trans-unit>
+            <trans-unit id="19">
+                <source>Sprawdz email reporting</source>
+                <target>Sprawdz email reporting</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

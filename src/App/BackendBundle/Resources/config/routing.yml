@@ -1,0 +1,45 @@
+
+#UsersLogs:
+#  url:   /UsersLogs
+#  param: { module: users, action: log }  
+#  
+#EmailReporting:
+#  url:   /EmailReporting
+#  param: { module: EmailReporting, action: log }  
+#  
+#Countries:
+#  url:   /Countries
+#  param: { module: Countries, action: index }    
+#  
+
+
+_users:
+    resource: '@AppUserBundle/Resources/config/routing/backend.yml'
+
+_pages:
+    resource: '@AppPagesBundle/Resources/config/routing/backend.yml'
+
+_product:
+    resource: '@AppProductBundle/Resources/config/routing/backend.yml'
+    
+_files:
+    resource: '@AppFilesBundle/Resources/config/routing/backend.yml'    
+
+_settings:
+    resource: '@AppSettingsBundle/Resources/config/routing/backend.yml'        
+
+_newsletter:
+    resource: '@AppNewsletterBundle/Resources/config/routing/backend.yml'
+
+_testimoanil:
+    resource: '@AppTestimonialBundle/Resources/config/routing/backend.yml'
+
+_counter:
+    resource: '@AppCounterBundle/Resources/config/routing/backend.yml'                
+      
+#_admin_homepage:
+#    pattern:  /
+#    defaults: { _controller: AppPagesBundle:Pages:index }
+#    requirements:
+      
+      

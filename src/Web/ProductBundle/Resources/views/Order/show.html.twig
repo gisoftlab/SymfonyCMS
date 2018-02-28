@@ -1,0 +1,118 @@
+<span id="target-order-form">
+<div class="product-form">     
+        <span id="FlashMessageOrder">{% include 'WebWebBundle::_noteSpan.html.twig' with {'msg': (msg is defined)?msg:null}%}</span>           
+        <form id="order_form" method="POST" action="#" {{ form_enctype() }}>
+            {{ form_errors(form) }}
+            {{ form_widget(form._token) }}    
+            {{ form_widget(form.productId) }}    
+            <div>{{ form_label(form.name) }}{{ form_widget(form.name, { 'attr': {'class': 'foo'} }) }}{{ form_errors(form.name) }}</div>
+            <div>{{ form_label(form.email) }}{{ form_widget(form.email, { 'attr': {'class': 'foo'} }) }}{{ form_errors(form.email) }}</div>
+            <div class="reservation"><span class="res">Rezerwacja</span> {{ form_label(form.dateFrom) }} {{ form_widget(form.dateFrom, { 'attr': {'class': 'dateFrom','readonly': 'readonly'} }) }}{{ form_label(form.dateTo) }} {{ form_widget(form.dateTo, { 'attr': {'class': 'dateTo','readonly': 'readonly'} }) }}
+            {{ form_errors(form.dateTo) }}
+            {{ form_errors(form.dateFrom) }}        
+            </div>
+            <div>{{ form_label(form.description) }} {{ form_widget(form.description, { 'attr': {'class': 'foo'} }) }}{{ form_errors(form.description) }}</div>
+            <div><input action="{{ path('_web_save_order') }}" type="submit" name="saveOrder" id="saveOrder" value="Zamów" class="btn orange round"><input action="{{ path('_web_save_cart') }}" name="saveCart" id="saveCart" type="submit" value="Do Koszyka" class="btn gray round"></div>
+            <p id="LoadingInfoOrder"></p>         
+        </form>
+</div>
+
+<span class="feedbackData">{% if msg.ok is defined %}<span class="msgc">ok</span>{% endif %}</span>
+
+<script type="text/javascript">
+    $(document).ready(function(){ 
+               
+     $( "#order_dateFrom" ).datepicker({
+      defaultDate: "+1w",
+      changeMonth: true,
+      numberOfMonths: 2,
+      dateFormat: "yy-mm-dd",
+      onClose: function( selectedDate ) {
+        $( "#order_dateTo" ).datepicker( "option", "minDate", selectedDate );
+      }
+    });
+    $( "#order_dateTo" ).datepicker({
+      defaultDate: "+1w",
+      changeMonth: true,
+      numberOfMonths: 2,
+      dateFormat: "yy-mm-dd",
+      onClose: function( selectedDate ) {
+        $( "#order_dateFrom" ).datepicker( "option", "maxDate", selectedDate);
+      }
+    });
+    
+        $("#FlashMessageOrder").click(function(){
+            $(this).html("");            
+        })
+    
+        var action = null;
+        $("#saveOrder").click(function(){            
+            executeForm($(this).attr("action"));            
+            return false;
+        });
+        
+        $("#saveCart").click(function(){            
+            executeForm($(this).attr("action"));
+            return false;
+        });
+        
+        function executeForm(action)
+        {                    
+                
+                var form  = $("#order_form");
+                
+                $(form).ajaxSubmit({
+                    type: "POST",
+                    url: action,                
+                    data: {},
+                    dataType: "HTML",
+                    
+                    beforeSend: function(data){                        
+                        $("#LoadingInfoOrder").show();
+                    },
+                    success: function(data){     
+                                               
+                      var msg = null;        
+                      var fraz = '<span class="msgc">';
+                      var start = data.indexOf(fraz, 0);                                                                     
+                      msg = data.substr( start+fraz.length ,2 );
+                                           
+                      data = data.replace(fraz,"");
+                                                                                                                    
+                       $("#target-order-form").html(data);                            
+                       $(".feedbackData").html("");
+                         
+                                              
+                       if(msg == "ok")                            
+                       _Redirect("{{request.headers.get("referer")}}");
+                             
+                    },
+                    error:function(data){
+                        //console.log(data);
+                    },
+                    complete:function(data){
+                    }
+                    
+                });
+                
+                return false;                                
+        }          
+        
+        function _Redirect (url) {
+
+            // IE8 and lower fix
+            if (navigator.userAgent.match(/MSIE\s(?!9.0)/)) {
+                var referLink = document.createElement('a');
+                referLink.href = url;
+                document.body.appendChild(referLink);
+                referLink.click();
+            } 
+
+            // All other browsers
+            else { window.location.href = url; }
+        }
+                                
+    });    
+</script>
+</span>       
+ 

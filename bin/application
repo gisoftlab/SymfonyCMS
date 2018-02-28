@@ -1,0 +1,25 @@
+#!/usr/bin/env php
+<?php
+
+echo '****************************************************************' . "\n";
+echo '* Welcome to Corcosoft\'s Web Application Boilerplate' . "\n";
+echo '*' . "\n";
+echo '* Warning: This script may need a few minutes to execute, so please be patient.' . "\n";
+echo '*' . "\n";
+echo '* WHAT\'S HAPPENING BEHIND THE SCENES?' . "\n";
+echo '* 1. Composer gets downloaded' . "\n";
+echo '* 2. Composer gets updated' . "\n";
+echo '* 2.1. Downloading dependencies to vendor folder' . "\n";
+echo '* 2.2. Once all dependencies are downloaded, then the following things needs to be executed:' . "\n";
+echo '* 2.2.1. Storage - Prepare (preparing the var/ directory - cache, logs, doctrine proxy, etc...)' . "\n";
+echo '* 2.2.2. Environment - Prepare (preparing the local environment config files)' . "\n";
+echo '* 2.2.3. Database Schema - Prepare (preparing the entities from doctrine)' . "\n";
+echo '* 2.2.4. Bower - Prepare (preparing the frontend dependencies)' . "\n";
+echo '****************************************************************' . "\n";
+echo '* Time start: ' . date('Y-m-d H:i:s') . "\n";
+echo '* WORKING...' . "\n";
+@shell_exec('curl -sS https://getcomposer.org/installer | php -- --install-dir=');
+@shell_exec('php composer.phar install');
+echo '* Time end: ' . date('Y-m-d H:i:s') . "\n";
+echo '****************************************************************' . "\n";
+echo '* It\'s done! Now you can use the application!' . "\n";

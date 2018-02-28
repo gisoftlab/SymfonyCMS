@@ -1,0 +1,63 @@
+fos_user:
+    db_driver: orm # other valid values are 'mongodb', 'couchdb' and 'propel'
+    firewall_name: main
+    user_class: 'App\UserBundle\Entity\User'
+#    use_listener:           true
+#    use_flash_notifications: false
+#    use_username_form_type: true
+##    model_manager_name:     null  # change it to the name of your entity/document manager if you don't want to use the default one.
+#
+#    from_email:
+#        address:        'webmaster@example.com'
+#        sender_name:    'webmaster'
+
+#    group:
+#        group_class: 'App\UserBundle\Entity\Group'
+#        form:
+#            type: acme_my_group
+#            name: acme_group_form
+#            validation_groups: [acme_group]
+        
+#    profile:  # Authentication Form
+#        form:
+#            type:               'fos_user_profile'
+#            name:               'fos_user_profile_form'
+#            validation_groups:  [Authentication] # Please note : this is not the default value
+#
+#    resetting:
+#        email:
+#            template: 'AppUserBundle:Email:resetting.email.twig'
+#            from_email:
+#                address:        'resetting@service.pl'
+#                sender_name:    'service'
+#        form:
+#            type:               'fos_user_resetting'
+#            name:               'fos_user_resetting_form'
+#      #      validation_groups:  [ResetPassword]
+#
+#    change_password:
+#        form:
+#            type:               'fos_user_change_password'
+#            name:               'fos_user_change_password_form'
+#            validation_groups:  [ChangePassword, Default]
+##            validation_groups:  [ChangePassword]
+#
+#    registration:
+#        form:
+#            type: 'app_user_registration'
+#        confirmation:
+#            enabled:    true
+#            template: 'AppUserBundle:Email:registration.email.twig'
+#            from_email:
+#                address:        'service@service.pl'
+#                sender_name:    'service'
+                
+#    service:
+#        #mailer:                 fos_user.mailer.default
+#        mailer:                  'fos_user.mailer.twig_swift'
+#        email_canonicalizer:     'fos_user.util.canonicalizer.default'
+#        username_canonicalizer:  'fos_user.util.canonicalizer.default'
+#        token_generator:         'fos_user.util.token_generator.default'
+#        user_manager:            'fos_user.user_manager.default'
+
+            

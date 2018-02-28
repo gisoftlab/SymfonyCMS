@@ -1,0 +1,10 @@
+{% extends "AppBackendBundle::layout.html.twig" %}
+
+{% block title "Create - Page"|trans({},'gsPages') %}
+{% block page_title "Utwórz Stronę"|trans({},'gsPages') %}
+
+{% block content %}
+    <div class="x_content">
+        {% include 'AppPagesBundle:Pages:_form.html.twig' with {'form': form,'description':'Formularz do dodawania statycznej strony'|trans({},'gsPages')} %}
+    </div>
+{% endblock %}

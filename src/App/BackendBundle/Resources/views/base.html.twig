@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <!-- Meta, title, CSS, favicons, etc. -->
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>{% block title %}Welcome!{% endblock %}</title>
+
+        {% block meta %}
+            <meta name="description" content="{% block meta_description %}{% endblock %}">
+            <meta name="keywords" content="{% block meta_keywords %}{% endblock %}">
+            <meta name="author" content="{% block meta_author %}{% endblock %}">
+        {% endblock %}
+        {% block stylesheets %}{% endblock %}
+        {% block stylesheets_after %}{% endblock %}
+        {% block stylesheets_render %}{% endblock %}
+        {% block stylesheets_custom %}{% endblock %}
+        <link rel="icon" sizes="16x16" href="{{ asset('/assets/images/favicon.png?v3') }}" />
+        {% block javascripts_top %}{% endblock %}
+    </head>
+    <body class="{% block bodyClass %}{% endblock %}">
+        {% block body %}{% endblock %}
+    </body>
+
+    {% block javascripts_main %}{% endblock %}
+    {% block javascripts_footer %}{% endblock %}
+    {% block javascripts_after %}{% endblock %}
+    {% block javascripts_render %}{% endblock %}
+    {% block tinymce_init %}{% endblock%}
+    {% block javascripts_custom %}{% endblock %}
+</html>

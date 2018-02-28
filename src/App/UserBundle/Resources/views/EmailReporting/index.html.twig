@@ -1,0 +1,106 @@
+{% extends "AppBackendBundle::layout.html.twig" %}
+
+{% block title "Email Reporting - Wysłane emaile" %}
+{% block page_title "Email Reporting - Wysłane emaile" %}
+
+{% block content_header '' %}
+
+{% block content %}
+<div class="col-md-12 col-sm-12 col-xs-12">
+    <div class="x_panel">
+        <div class="x_title">
+            <h2>logi emaili<small></small></h2>
+            <ul class="nav navbar-right panel_toolbox">
+
+                <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="#">Settings 1</a>
+                        </li>
+                        <li><a href="#">Settings 2</a>
+                        </li>
+                    </ul>
+                </li>
+                <li><a class="close-link"><i class="fa fa-close"></i></a>
+                </li>
+            </ul>
+            <div class="clearfix"></div>
+        </div>
+
+        <div class="x_content">
+            <div class="row">
+            </div>
+
+            <div class="table-responsive">
+                <form action="#" id="multiform" method="post" name="multiform">
+                    <table class="table table-striped jambo_table bulk_action">
+                        <thead>
+                        <tr class="headings">
+                            <th>
+                                <input type="checkbox" id="check-all" class="flat">
+                            </th>
+                            <th class="column-title">{{ knp_pagination_sortable(pager,'#', 'a.id')|raw }}</th>
+                            <th class="column-title {% if pager.isSorted('a.port') %} sorted{% endif %}">{{ knp_pagination_sortable(pager,'port', 'a.port')|raw }}</th>
+                            <th class="column-title {% if pager.isSorted('a.IP') %} sorted{% endif %}">{{ knp_pagination_sortable(pager,'ip', 'a.IP')|raw }}</th>
+                            <th class="column-title {% if pager.isSorted('a.subject') %} sorted{% endif %}">{{ knp_pagination_sortable(pager,'subject', 'a.subject')|raw }}</th>
+                            <th class="column-title {% if pager.isSorted('a.body') %} sorted{% endif %}">{{ knp_pagination_sortable(pager,'body', 'a.body')|raw }}</th>
+                            <th class="column-title {% if pager.isSorted('a.status') %} sorted{% endif %}">{{ knp_pagination_sortable(pager,'status', 'a.status')|raw }}</th>
+                            <th class="column-title {% if pager.isSorted('a.type') %} sorted{% endif %}">{{ knp_pagination_sortable(pager,'type', 'a.type')|raw }}</th>
+                            <th class="column-title {% if pager.isSorted('a.errorMessage') %} sorted{% endif %}">{{ knp_pagination_sortable(pager,'errorMessage', 'a.subject')|raw }}</th>
+                            <th class="column-title {% if pager.isSorted('a.createdAt') %} sorted{% endif %}">{{ knp_pagination_sortable(pager,'Created', 'a.createdAt')|raw }}</th>
+                            <th class="column-title no-link last"><span class="nobr">Action</span></th>
+                            <th class="bulk-actions" colspan="10">
+                                <a class="antoo" style="color:#fff; font-weight:500;">Operacja na wielu wierszach ( <span class="action-cnt"> </span> ) <i class="fa fa-chevron-down"></i></a>
+                            </th>
+                        </tr>
+                        </thead>
+
+                        <tbody>
+
+                        {% for key, row in pager %}
+                            <tr {% if loop.index is odd %}class="even pointer"{% else %} class="odd pointer"{% endif %}>
+                                <td class="a-center ">
+                                    <input type="checkbox" class="flat" name="multiCheckBox[]" value="{{ row.id }}">
+                                </td>
+                                <td>{{ getIIter(pager,key) }}</td>
+                                <td>{{ row.port }}</td>
+                                <td>{{ row.ip }}</td>
+                                <td>{{ row.subject }}</td>
+                                <td>{{ row.body }}</td>
+                                <td>{{ row.status }}</td>
+                                <td>{{ row.type }}</td>
+                                <td>{{ row.errorMessage }}</td>
+                                <td>{{ row.createdAt|date("Y/m/d") }}</td>
+                                <td class="last">
+                                    <a class="icon-2 info-tooltip" href="{{ path('_email_reporting_delete', {'id': row.id}) }}" onclick="return confirm('Napewno chcesz skasować Raport ?')" title="Usuń">><i class="fa fa-remove"></i> </a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </form>
+                {{ knp_pagination_render(pager) }}
+            </div>
+            <div class="btn-group">
+                <button class="btn btn-danger" type="button">Wybierz</button>
+                <button class="btn btn-danger dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
+                    <span class="caret"></span>
+                    <span class="sr-only">Toggle Dropdown</span>
+                </button>
+                <ul class="dropdown-menu" role="menu">
+                    <li>
+                        <a class="action-delete" href="{{ path('_email_reporting_multi', mergeParams())}}" id="actions-box-slider-delete" title="{{ 'Multi-kasowanie'|trans({},'gsPages') }}">{{ 'Usuń'|trans({},'gsPages') }}</a>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <a href="#">Separated link</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+      

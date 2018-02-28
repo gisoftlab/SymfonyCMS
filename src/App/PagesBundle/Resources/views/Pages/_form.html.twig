@@ -1,0 +1,74 @@
+{% form_theme form with 'AppBackendBundle:Form:form_admin_fields.html.twig' %}
+
+<form action="{{ getUri() }}" method="post" >
+
+    <span class="section">{{ description is defined ? description: '' }}</span>
+    <div>
+        {{ form_errors(form) }}
+        {{ form_widget(form._token) }}
+    </div>
+
+    <div>{{ form_label(form.title, '', { 'label_attr': {'class': ''} }) }}</div>
+    <div>
+         {{ form_widget(form.title, { 'attr': {
+                'required':'required'
+         } }) }}
+    </div>
+    <div>{{ form_errors(form.title) }}</div>
+
+    <div>{{ form_label(form.short) }}</div>
+    <div>{{ form_widget(form.short) }}</div>
+    <div>{{ form_errors(form.short) }}</div>
+
+    <div>{{ form_label(form.description) }}</div>
+    <div>{{ form_widget(form.description, { 'attr': {'style': 'width:100%;height:400px'} }) }}</div>
+    <div>{{ form_errors(form.description) }}</div>
+
+    <div class="checkbox">
+        <label>{{ form_widget(form.published, { 'attr': {
+                'class': 'flat',
+            } }) }}
+        </label>
+    </div>
+
+    <div>{{ form_label(form.parent) }}</div>
+    <div>{{ form_widget(form.parent, { 'attr': {'style': 'width:150px'} }) }}</div>
+    <div>{{ form_errors(form.parent) }}</div>
+
+    <div>{{ form_label(form.category) }}</div>
+    <div>{{ form_widget(form.category, { 'attr': {'style': 'width:150px'} }) }}</div>
+    <div>{{ form_errors(form.category) }}</div>
+
+    <a href="#" class="btnShowBlock">Pokaż URL</a>
+    <div class="showBlock">
+        <div>{{ form_label(form.slug) }}</div>
+        <div>{{ form_widget(form.slug, { 'attr': {'class': ''} }) }}</div>
+        <div>{{ form_errors(form.slug) }}</div>
+
+        <div>{{ form_label(form.uri) }}</div>
+        <div>{{ form_widget(form.uri, { 'attr': {'class': ''} }) }}</div>
+        <div>{{ form_errors(form.uri) }}</div>
+    </div>
+
+    <a href="#" class="btnShowBlock">Pokaż metatagi</a>
+    <div class="showBlock">
+        <div>{{ form_label(form.metaTitle) }}</div>
+        <div>{{ form_widget(form.metaTitle, { 'attr': {'class': ''} }) }}</div>
+        <div>{{ form_errors(form.metaTitle) }}</div>
+
+        <div>{{ form_label(form.metaKeywords) }}</div>
+        <div>{{ form_widget(form.metaKeywords, { 'attr': {'class': ''} }) }}</div>
+        <div>{{ form_errors(form.metaKeywords) }}</div>
+
+        <div>{{ form_label(form.metaDescription) }}</div>
+        <div>{{ form_widget(form.metaDescription, { 'attr': {'class': ''} }) }}</div>
+        <div>{{ form_errors(form.metaDescription) }}</div>
+    </div>
+
+    {{ form_rest(form) }}
+    <div class="ln_solid"></div>
+    <div>
+        <a class="btn btn-primary" href="{{ path('_pages_show', mergeParams(null,{'id':''})) }}">{{ 'Powrót:'|trans({},'gsPages') }}</a>
+        <button id="send" type="submit" class="btn btn-success">{{ 'Zapisz:'|trans({},'gsPages') }}</button>
+    </div>
+</form>

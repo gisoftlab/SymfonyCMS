@@ -1,0 +1,109 @@
+{% extends "AppBackendBundle::layout.html.twig" %}
+
+{% block title "Metatad - ogólne metatagi"|trans({},'gsPages') %}
+{% block page_title "Lista metatagów"|trans({},'gsPages') %}
+
+{% block tinymce_init %}
+    <!-- Tinymce -->
+    <script type="text/javascript" src="{{ asset('bundles/stfalcontinymce/vendor/tinymce/jquery.tinymce.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/stfalcontinymce/js/init.jquery.js') }}"></script>
+{% endblock%}
+
+{% block content %}
+<div class="col-md-12 col-sm-12 col-xs-12">
+    <div class="x_panel">
+        <div class="x_title">
+            <h2>{{ 'Metatagii ogolne'|trans({},'gsPages') }} <span> {{ 'wyswietlane tylko wtedy gdy na stronie nie beda uzupelnione'|trans({},'gsPages') }}/span></h2>
+            <ul class="nav navbar-right panel_toolbox">
+                <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                    <ul class="dropdown-menu" role="menu">
+                    </ul>
+                </li>
+                <li><a class="close-link"><i class="fa fa-close"></i></a>
+                </li>
+            </ul>
+            <div class="clearfix"></div>
+        </div>
+
+        <div class="x_content">
+            <div class="row">
+                <a class="btn btn-primary" href="{{ path('_metatag_new')}}" title="{{ 'Add Metatag'|trans({},'gsPages') }}">{{ 'Add Metatag'|trans({},'gsPages') }}</a>
+            </div>
+
+            <div class="table-responsive">
+                <form action="#" id="multiform" method="post" name="multiform">
+                    {#<form></form> <!-- dump form to allow nested forms-->#}
+                    <table class="table table-striped jambo_table bulk_action">
+                        <thead>
+                        <tr class="headings">
+                            <th>
+                                <input type="checkbox" id="check-all" class="flat">
+                            </th>
+                            <th class="column-title">{{ knp_pagination_sortable(pager,'#', 'a.id')|raw }}</th>
+                            <th class="column-title {% if pager.isSorted('a.title') %} sorted{% endif %}">{{ knp_pagination_sortable(pager,'Title'|trans({},'gsPages'), 'a.title')|raw }}</th>
+                            <th class="column-title {% if pager.isSorted('a.keywords') %} sorted{% endif %}">{{ knp_pagination_sortable(pager,'Keywords'|trans({},'gsPages'), 'a.keywords')|raw }}</th>
+                            <th class="column-title {% if pager.isSorted('a.description') %} sorted{% endif %}">{{ knp_pagination_sortable(pager,'Description'|trans({},'gsPages'), 'a.description')|raw }}</th>
+                            <th class="column-title {% if pager.isSorted('a.CreatedAt') %} sorted{% endif %}">{{ knp_pagination_sortable(pager,'Created'|trans({},'gsPages'), 'createdAt')|raw }}</th>
+                            <th class="column-title no-link last"><span class="nobr">Action</span></th>
+                            <th class="bulk-actions" colspan="10">
+                                <a class="antoo" style="color:#fff; font-weight:500;">{{ 'Operacja na wielu wierszach'|trans({},'gsPages') }} ( <span class="action-cnt"> </span> ) <i class="fa fa-chevron-down"></i></a>
+                            </th>
+                        </tr>
+                        </thead>
+
+                        <tbody>
+                            {% for key, row in pager %}
+                                <tr {% if loop.index is odd %}class="even pointer"{% else %} class="odd pointer"{% endif %}>
+                                    <td class="a-center ">
+                                        <input type="checkbox" class="flat" name="multiCheckBox[]" value="{{ row.id }}">
+                                    </td>
+
+                                    <td><a title="Edit Metatags" href="{{ path('_metatag_edit', {'id': row.id}) }}">{{ getIIter(pager,key) }}</a></td>
+                                    <td><a title="Edit Metatags" href="{{ path('_metatag_edit', {'id': row.id}) }}">{{ row.title }}</a></td>
+                                    <td>{{ row.keywords }}</td>
+                                    <td>{{ row.description|raw }}</td>
+                                    <td>{{ row.createdAt|date("Y/m/d") }}</td>
+                                    <td class="last">
+                                        <a class="icon info-tooltip" href="{{ path('_metatag_edit', {'id': row.id}) }}" title="Edit"><i class="fa fa-pencil"></i> </a>
+                                        <a class="icon red info-tooltip" href="{{ path('_metatag_delete', {'id': row.id}) }}" onclick="return confirm('Napewno chcesz skasować Metatagi ?')" title="Usuń"><i class="fa fa-remove"></i> </a>
+                                    </td>
+                                </tr>
+                                <tr class="second">
+                                    <td colspan="14">
+                                        <div class="quick-form" id="quick-form{{ row.id }}" style="margin-left: 5px;">
+                                            {% include "AppPagesBundle:Metatag:_quickActions.html.twig" with { model: row} %}
+                                            {% include "AppPagesBundle:Metatag:_languages.html.twig" with { model: row, languages: languages,lang: lang,} %}
+                                            <div class="load-form" id="load-form{{ row.id }}"></div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </form>
+                {{ knp_pagination_render(pager) }}
+            </div>
+            <div class="btn-group">
+                <button class="btn btn-danger" type="button">{{ 'Wybierz'|trans({},'gsPages') }}</button>
+                <button class="btn btn-danger dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
+                    <span class="caret"></span>
+                    <span class="sr-only">{{ 'Toggle Dropdown'|trans({},'gsPages') }}</span>
+                </button>
+                <ul class="dropdown-menu" role="menu">
+                    <li>
+                        <a class="action-delete" href="{{ path('_metatag_multi', mergeParams())}}" id="actions-box-slider-delete" title="{{ 'Multi-kasowanie'|trans({},'gsPages') }}">{{ 'Usuń'|trans({},'gsPages') }}</a>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        {#<a href="#">Separated link</a>#}
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+      

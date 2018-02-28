@@ -1,0 +1,47 @@
+parameters:
+  image_size_default: 5 #20MB           
+
+  file:
+      mimetypes:
+        images:     [ 'image/jpeg', 'image/png', 'image/x-png', 'image/gif' ]
+        documents:  [ 'application/msword', 'application/x-msword', 'text/plain', 'application/pdf', 'application/x-pdf', 'application/vnd.oasis.opendocument.text', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' ]
+        audio:      [ 'video/x-msvideo']
+        videos:     [ 'video/x-msvideo']  
+      size:   2    # exampel-20MB
+
+#gd (default) Use GD
+#imagick Use IMagick
+#gmagick Use GMagick
+
+app_files:
+   driver: gd
+   filePath: uploads/
+   waterMarkName: water.png
+   ImageDir: Images
+   FileDir: Files
+   contexts:
+        default:  # the default context is mandatory            
+            formats:
+                smaller: { width: 40 , quality: 95}
+                small:    { width: 100 , quality: 70}
+                big:       { width: 500 , quality: 70}   
+                
+        page:  # the default context is mandatory            
+            formats:
+                original:  { width: 0 , height: 0}
+                big:         { width: 600, height: 480, quality: 90}            
+                middel:    { width: 210, height: 300, quality: 95}            
+                small:      { width: 189 , quality: 95}
+                smaller:   { width: 120 , quality: 95}
+                rotate:    { width: 120 , quality: 95, rotate: 30}
+                crop1:     { width: 160, height: 120, quality: 70, type: crop}        
+        
+        product:  # the default context is mandatory            
+            formats:
+                original:  { width: 0 , height: 0}
+                big:         { width: 600, height: 480, quality: 90}                    
+                small:      { width: 189 , height: 157, quality: 95}
+                smaller:   { width: 90 , height: 90, quality: 95}                
+                crop1:     { width: 160, height: 120, quality: 70, type: crop}                
+                
+                

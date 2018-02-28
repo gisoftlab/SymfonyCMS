@@ -1,0 +1,14 @@
+<p></p>
+<p></p>
+<p><strong>Dane Zamawiającego</strong></p>
+{% if data.name %}<p>Imie Nazwisko  : {{data.name}}</p>{% endif %}
+{% if data.email %}<p>Email   : {{data.email}}</p>{% endif %}
+<p></p>
+<p><strong>Dane Produktu</strong></p>
+{% if product.title %}<p>Nazwa  : {{product.title}}</p>{% endif %}
+{% if product.price %}<p>Cena  : {{product.price}} PLN</p>{% endif %}
+{% if product.deposit %}<p>Kaucja  : {{product.deposit}} PLN</p>{% endif %}
+<p></p>
+<p><strong>Rezerwacja</strong></p>
+{% if data.email %}<p>Od   : {{data.dateFrom}} Do   : {{data.dateTo}}</p>{% endif %}
+{% if data.description %}<p>Treść   : {{data.description}}</p>{% endif %}

@@ -1,0 +1,15 @@
+{% extends "AppBackendBundle::layout.html.twig" %}
+
+{% block title "Edit - Page"|trans({},'gsPages') %}
+{% block page_title "Edytuj Stronę"|trans({},'gsPages') %}
+
+{% block content %}
+    <div class="x_content">
+        {% include 'AppPagesBundle:Pages:_form.html.twig' with {'form': form,'description':'Formularz do edycji danych statycznej strony'|trans({},'gsPages') } %}
+    </div>
+    <div class="clearfix"></div>
+    {% autoescape 'html' %}
+        <div id="uploader" ajax='{"selector":"#uploader", "action":"{{ path('_files_upload') }}","id":"{{ pageId }}" }' ></div>
+    {% endautoescape %}
+    <div class="clearfix"></div>
+{% endblock %}

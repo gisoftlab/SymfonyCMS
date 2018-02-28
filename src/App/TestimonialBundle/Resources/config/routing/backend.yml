@@ -1,0 +1,37 @@
+_testimonial_new:
+    path:  /testimonial/new
+    defaults: { _controller: AppTestimonialBundle:Testimonial:new}
+      
+_testimonial_edit:
+    path:  /testimonial/{id}/edit
+    defaults: { _controller: AppTestimonialBundle:Testimonial:edit}
+    requirements: { id: \d+ }
+
+_testimonial_delete:
+    path:  /testimonial/{id}/delete
+    defaults: { _controller: AppTestimonialBundle:Testimonial:delete}
+    requirements: { id: \d+ }
+
+_testimonial_show:
+    path:  /testimonial/{id}
+    defaults: { _controller: AppTestimonialBundle:Testimonial:index,  id: null }
+
+_testimonial_response:
+    path:  /testimonial/{id}/response
+    defaults: { _controller: AppTestimonialBundle:Testimonial:sendResponse}
+    requirements: { id: \d+ }
+
+_testimonial_published:
+    path:  /testimonial/{id}/published/{value}/{page}
+    defaults: { _controller: AppTestimonialBundle:Testimonial:published, value: 0, page: 1 }
+    requirements: { id: \d+ }
+
+_testimonial_unpublished:
+    path:  /testimonial/{id}/unpublished/{value}/{page}
+    defaults: { _controller: AppTestimonialBundle:Testimonial:published, value: 1, page: 1 }
+    requirements: { id: \d+ }
+
+_testimonial_multi:
+    path:  /testimonial/multi/{page}
+    defaults: { _controller: AppPagesBundle:Testimonial:multi, page: 1, parentId: null }
+    requirements: { id: \d+ }

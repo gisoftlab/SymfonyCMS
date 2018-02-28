@@ -1,0 +1,6 @@
+<span>{{ 'Szybkie Akcje:'|trans({},'gsPages') }}</span>
+
+<a  ajax='{"action":"loadGetAction","targetTag":"#load-form", "post":{"id":"{{ page.id }}"}}' class="quick-link info-tooltip" href="{{ path('_pages_quickEdit', {'id':page.id,'quick':1}) }}" title="{{ 'Szybka edycja informacji'|trans({},'gsPages') }}">{{ 'Edycja'|trans({},'gsPages') }}</a>
+<a  ajax='{"action":"loadQuickUploader","targetTag":".load-form", "post":{"id":"{{ page.id }}"}}' class="quick-link info-tooltip gallery" href="{{ path('_files_upload', {'id':page.id,'quick':1}) }}" title="{{ 'Szybka edycja galerii'|trans({},'gsPages') }}">{{ 'Galeria'|trans({},'gsPages') }}</a>
+<a class="quick-link info-tooltip" style="color:#067C0E" href="{{ path('_pages_show', mergeParams(page,'parentId') ) }}" title="{{ 'Podstrony -  zarządzanie podstonami'|trans({},'gsPages') }}"> {{ 'Pokaż podstrony'|trans({},'gsPages') }}</a>
+{#<a class="quick-link info-tooltip" style="color:#105493" href="{{ path('_product_show', {'page':1,'PagesId':page.id}) }}" title="{{ 'Produkty -  zarządzanie produkatami'|trans({},'gsPages') }}"> {{ 'Pokaż produkty'|trans({},'gsPages') }}</a>#}

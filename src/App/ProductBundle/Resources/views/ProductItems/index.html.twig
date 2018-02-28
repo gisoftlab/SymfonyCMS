@@ -1,0 +1,59 @@
+{% extends "AppBackendBundle::layout.html.twig" %}
+
+{% block title "Parametry - ogólne produktu" %}
+
+{% block content_header '' %}
+
+{% block content %}
+   <div id="page-heading"><h1>Lista parametrów produktu "{{product.title}}"</h1></div>    
+<div class="content-table-inner more-round">
+    <div class="table-content">                  
+          {% include 'AppBackendBundle::_note.html.twig' %}                
+        <div class="margin-bottom">   
+             <a class="btn round" href="{{ path('_product_show', mergeParams(null,{'id':''}))}}" title="Powrót" >Powrót</a>            
+            <a class="btn round" href="{{ path('_product_items_new', mergeParams(null,{'id':''})) }}" title="Add">Dodaj Parametr</a>                                       
+        </div>	        
+        <table class="product-table">
+            <tr>
+                <th>{{knp_pagination_sortable(pager,'#', 'a.id')|raw }}</th>                 
+                <th{% if pager.isSorted('a.Sequence') %} class="sorted"{% endif %}>{{knp_pagination_sortable(pager,'Przesuń', 'a.sequence')|raw }}</th>                
+                <th{% if pager.isSorted('a.field') %} class="sorted"{% endif %}>{{knp_pagination_sortable(pager,'Pole', 'a.field')|raw }}</th>
+                <th{% if pager.isSorted('a.content') %} class="sorted"{% endif %}>{{knp_pagination_sortable(pager,'Wartość', 'a.content')|raw }}</th>
+                <th{% if pager.isSorted('a.description') %} class="sorted"{% endif %}>{{knp_pagination_sortable(pager,'Opis -  niewyświetlany', 'a.description')|raw }}</th>                
+                <th{% if pager.isSorted('a.CreatedAt') %} class="sorted"{% endif %}>{{knp_pagination_sortable(pager,'Stworzono', 'a.createdAt')|raw }}</th>
+                <th><a href="#">Akcje</a></th>
+            </tr>                
+            {% for key, row in pager %}
+                                     
+             <tr {% if loop.index is odd %}class="color"{% endif %}>                 
+                    <td><a title="Edit Parametr" href="{{ path('_product_items_edit', mergeParams(null,{'id':row.id})) }}">{{ getIIter(pager,key) }}</a></td>
+                      <td>
+                                {% if key != 0 %}                                
+                                 <a class="ui-state-default ui-corner-all info-tooltip" title="Do góry" href="{{ path('_product_items_higher', mergeParams(row,{sequence:row.sequence})) }}">
+                                    <span class="ui-icon ui-icon-circle-triangle-n"></span>
+                                </a>
+                                {% endif %}
+                           
+                            {% if pager.count != key+1 %}
+                                   <a class="ui-state-default ui-corner-all info-tooltip" title="Na dół" href="{{ path('_product_items_lower', mergeParams(row,{sequence:row.sequence})) }}">
+                                    <span class="ui-icon ui-icon-circle-triangle-s"></span>
+                                </a>
+                            {% endif %}
+                    </td>
+                    <td><a title="Edit Parametr" href="{{ path('_product_items_edit', mergeParams(null,{'id':row.id})) }}">{{ row.field }}</a></td>
+                    <td>{{ row.content }}</td>
+                    <td>{{ row.description }}</td>                                              
+                    <td>{{ row.createdAt|date("Y/m/d") }}</td>                                          
+                    <td class="last"> 
+                        <a class="icon-1 info-tooltip" href="{{ path('_product_items_edit', mergeParams(null,{'id':row.id})) }}" title="Edit"> </a>                                                                          
+                        <a class="icon-2 info-tooltip" href="{{ path('_product_items_delete', mergeParams(null,{'id':row.id})) }}" onclick="return confirm('Napewno chcesz skasować Parametr ?')" title="Usuń"> </a>                                                                                                           
+                    </td> 
+               </tr>     
+            {% endfor %}
+        </table>
+    </div>    
+     {{ knp_pagination_render(pager) }}       
+    <div class="clear"></div>
+</div>
+{% endblock %}
+      

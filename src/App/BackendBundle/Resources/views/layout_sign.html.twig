@@ -1,0 +1,55 @@
+{% extends 'AppBackendBundle::base.html.twig' %}
+
+{% block title %}{{backend.metatag.title|trans({},'gsMetatag')}}{% endblock %}
+ {% block meta %}
+            <meta name="description" content="{% block meta_description %}{{backend.metatag.description|trans({},'gsMetatag')}}{% endblock %}">
+            <meta name="keywords" content="{% block meta_keywords %}{{backend.metatag.keywords|trans({},'gsMetatag')}}{% endblock %}">
+            <meta name="author" content="{% block meta_author %}{{backend.metatag.author|trans({},'gsMetatag')}}{% endblock %}">
+{% endblock %}
+
+{% block stylesheets %}
+    <!-- Bootstrap -->
+    <link href="/assets/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="/assets/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <!-- Animate.css -->
+    <link href="/assets/vendors/animate.css/animate.min.css" rel="stylesheet">
+
+{% endblock%}
+
+{% block stylesheets_custom %}
+    <!-- Custom Theme Style -->
+    <link href="{{ asset('assets/css/custom.css') }}" rel="stylesheet">
+{% endblock%}
+        
+{% block javascripts_main %}
+    <!-- jQuery -->
+    <script type="text/javascript" src="{{ asset('assets/vendors/jquery/dist/jquery.min.js') }}"></script>
+    <!-- jQuery sunmit -->
+    <script type="text/javascript" src="{{ asset('backend/js/jquery/jquery.form.js') }}"></script>
+    <!-- Bootstrap -->
+    <script type="text/javascript" src="{{ asset('assets/vendors/bootstrap/dist/js/bootstrap.min.js') }}"></script>
+{% endblock%}
+
+{% block javascripts_custom %}
+    <!-- Custom Theme Scripts -->
+    <script src="{{ asset('backend/js/gs/gsAjax.js') }}"></script>
+    <script src="{{ asset('backend/js/gs/custom_cms.js') }}"></script>
+    <script src="{{ asset('assets/js/custom.js') }}"></script>
+{% endblock %}
+
+{% block bodyClass %}login{% endblock %}
+
+{% block body %}
+    <div>
+        <a class="hiddenanchor" id="forgotbox"></a>
+        <a class="hiddenanchor" id="signup"></a>
+        <a class="hiddenanchor" id="signin"></a>
+
+        <div class="login_wrapper">
+            {% block content %}{% endblock %}
+        </div>
+    </div>
+{% endblock %}
+
+    

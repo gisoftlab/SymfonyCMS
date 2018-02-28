@@ -1,0 +1,40 @@
+<div class="breadcrumbs">
+    <ul>
+        <li class="home">
+            <a title="Start" href="{{ path('_homepage') }}">Home</a>
+            <span> </span>
+        </li>
+        <li class="link">
+
+            {% if page.parent == false %}
+                    <strong>{{page.title}}</strong>
+            {% else %}
+
+                {% if page.parent.parent == false %}
+                    {% if page.parent.id != static.root %}
+                     <a title="Start" href="{{ path('_web_show_page',{'slug':page.parent.slug}) }}">{{ page.parent.title }}</a>
+                     <span> </span>
+                    {% endif %}
+                   <strong>{{page.title}}</strong>
+                {% else %}
+                    {% if page.parent.parent.id != static.root %}
+                        <a title="Start" href="{{ path('_web_show_page',{'slug':page.parent.parent.slug}) }}">{{ page.parent.parent.title }}</a>
+                        <span> </span>
+                    {% endif %}
+                    <a title="Start" href="{{ path('_web_show_page',{'slug':page.parent.slug}) }}">{{ page.parent.title }}</a>
+                    <span> </span>
+                   {% if product %}
+                        <a title="Start" href="{{ path('_web_show_page',{'slug':page.slug}) }}">{{ page.title }}</a>
+                   {% else %}
+                        <strong>{{page.title}}</strong>
+                   {% endif %}
+
+                {% endif %}
+            {% endif %}  
+            {% if product %}     
+                    <span> </span>
+                   <strong>{{product.title}}</strong>          
+            {% endif %}           
+        </li>
+    </ul>
+</div>

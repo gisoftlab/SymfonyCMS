@@ -1,0 +1,58 @@
+parameters:  
+  entity.Metatag: 'App\PagesBundle\Entity\Metatag'
+  entity.Page: 'App\PagesBundle\Entity\Page'
+  entity.PageTranslation: 'App\PagesBundle\Entity\PageTranslation'
+  entity.PageFiles: 'App\PagesBundle\Entity\PageFiles'
+  entity.PageCategory: 'App\PagesBundle\Entity\Category'
+
+services:        
+
+    # TWIG
+    app.twig.url_extension:
+        class: 'App\PagesBundle\Twig\UrlExtension'
+        arguments:
+          #doctrine: '@doctrine'          
+          container: '@service_container'
+        tags:
+          - { name: twig.extension }         
+
+    # FORM
+    main_searcher:
+        class: App\PagesBundle\Form\SearcherType
+        arguments:   
+          doctrine: '@doctrine'    
+        tags:
+          - { name: form.type }              
+
+    # REPOSITORY
+    repo.metatag:
+      class: '%entity.Metatag%'
+      factory: ['@app.repo.factory', 'getRepository']
+      arguments:
+        - '%entity.Metatag%'
+        
+    repo.page:
+      class: '%entity.Page%'
+      factory: ['@app.repo.factory', 'getRepository']
+      arguments:
+        - '%entity.Page%'
+      calls:
+          - [setChainCaching, ['@cache.chain']]
+        
+    repo.pageTranslation:
+      class: '%entity.PageTranslation%'
+      factory: ['@app.repo.factory', 'getRepository']
+      arguments:
+        - '%entity.PageTranslation%'
+        
+    repo.pageFiles:
+      class: '%entity.PageFiles%'
+      factory: ['@app.repo.factory', 'getRepository']
+      arguments:
+        - '%entity.PageFiles%'
+        
+    repo.pageBlock:
+      class: '%entity.PageCategory%'
+      factory: ['@app.repo.factory', 'getRepository']
+      arguments:
+        - '%entity.PageCategory%'

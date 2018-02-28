@@ -1,0 +1,11 @@
+services:
+    #
+    # AGGREGATOR ASSETS
+    #
+    app.aggregator_factory:
+          class: App\CoreBundle\Services\AggregatorFactory
+
+    app.aggregator:
+        class:   App\CoreBundle\Services\AggregatorAssetics
+        # call a method on the specified service
+        factory: ['@app.aggregator_factory', initialize]

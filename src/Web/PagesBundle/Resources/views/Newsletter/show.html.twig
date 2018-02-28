@@ -1,0 +1,13 @@
+<div class="box-newletter more-round-upper">
+    <h2>Newsletter </h2>
+    <form id="newsletter_form" method="POST" action="{{ getUri() }}" {{ form_enctype() }}>
+        {{ form_errors(form) }}
+        {{ form_widget(form._token) }}        
+        <div class="form-search middel-round">                                
+            <button class="btn orange" title="Zapisz" type="submit">Zapisz</button>            
+            {{ form_widget(form.email, { 'attr': {'id': 'newsletter','class': 'input-text round','autocomplete': 'off','value': 'Podaj swój email...'} }) }}
+            {{ form_errors(form.email) }}                                                         
+        </div>
+    </form>
+    <br class="clear"/>
+</div>

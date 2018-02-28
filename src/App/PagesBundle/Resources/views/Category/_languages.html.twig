@@ -1,0 +1,8 @@
+{% if count(languages) %}
+        <span>{{ 'Tłumaczenia:'|trans({},'gsPages') }}</span>
+    {% for  key , value in languages  %}   
+        {% if value.getLanguage != lang %}
+            <a  ajax='{"action":"loadGetAction","targetTag":"#load-form", "post":{"id":"{{ page.id }}","culture": "{{value.getLanguage}}"}}' class="quick-link info-tooltip" href="{{ path('_pages_block_translate', {'id':page.id,'culture':value.getLanguage,quick:1}) }}" title="{{ 'Tłumaczenie kategorii:'|trans({},'gsPages') }} -  {{value.countryName}}"> {{value.countryName}}</a>
+        {% endif %}
+     {% endfor %}
+{% endif %}

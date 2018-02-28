@@ -1,0 +1,47 @@
+<div class="slider-wrapper theme-yellow more-round">
+    <div id="slider" class="nivoSlider">             
+        
+        {% for  key , value in entities  %}        
+            <a href="{{ path('_web_show_page',{'slug':value.uri}) }}" title="{{ value.title}}"><img src="{{ getImage(value.icon,'original')}}" {% if loop.index is odd %} data-thumb="/frontend/nivo-slider/demo/images/toystory.jpg" {% else %}data-thumb="/frontend/nivo-slider/demo/images/nemo.jpg" {% endif %} alt="" {% if loop.index is odd %}data-transition="sliceDownRight"{% else %}data-transition="boxRainReverse"{% endif %} title="#htmlcaption{{key}}" /></a>                        
+         {% endfor %}       
+            {#
+        <a href="projects.html"><img src="/frontend/images/panels/panel2.jpg" data-thumb="/frontend/nivo-slider/demo/images/up.jpg" alt="" data-transition="sliceDownRight" title="#htmlcaption1" /></a>                        
+        <a href="projects.html"><img src="/frontend/images/panels/panel3.jpg" data-thumb="/frontend/nivo-slider/demo/images/walle.jpg" alt="" data-transition="boxRainReverse" title="#htmlcaption2"/></a>                        
+        <a href="projects.html"><img src="/frontend/images/panels/panel4.jpg" data-thumb="/frontend/nivo-slider/demo/images/nemo.jpg" data-transition="boxRain" alt=""  title="#htmlcaption3"/></a>                                                                                                                        
+        <a href="projects.html"><img src="/frontend/images/panels/panel5.jpg" data-thumb="/frontend/nivo-slider/demo/images/nemo.jpg" data-transition="boxRain" alt=""  title="#htmlcaption4"/></a>                                                                                                                        
+        #}
+        
+    </div>
+</div>  
+ {% for  key , value in entities  %}   
+
+<div id="htmlcaption{{key}}" class="nivo-html-caption">
+    <div class="darkSlideBG"></div>
+    <div class="darkSlide">
+        <div class="titleSlide">
+            <a href="{{ path('_web_show_page',{'slug':value.uri}) }}"><h1>{{ value.title}}</h1></a>
+        </div>
+        <div class="slider-description">
+            {% if value.description %}  
+                {{ value.description|raw}}
+                </br>
+            {% endif %}    
+            {% if value.children %}            
+            <ul>
+                {% for  k , val in value.children  %}                      
+                    <li><a href="{{ path('_web_show_page',{'slug':val.uri}) }}" class="{{ val.short}}">{{ val.title}}</a></li>
+                {% endfor %}  
+            </ul>                                            
+            {% endif %}
+        </div>
+    </div>    
+</div>   
+{% endfor %}       
+<script type="text/javascript">
+    $(window).load(function() {
+        jQuery('#slider').nivoSlider({
+            effect: 'sliceDownRight',
+            pauseTime: 5000
+        });
+    });
+    </script>

@@ -1,0 +1,4 @@
+
+_web_show_page:
+    path:  /{slug}/{page}
+    defaults: { _controller: WebPagesBundle:Pages:index , page: 1, slug: none }

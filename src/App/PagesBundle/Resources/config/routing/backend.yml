@@ -1,0 +1,141 @@
+_pages_new:
+    path:  /pages/new/{page}/{parentId}
+    defaults: { _controller: AppPagesBundle:Pages:new, page: 1, parentId: null }
+
+_pages_edit:
+    path:  /pages/{id}/edit/{page}/{parentId}
+    defaults: { _controller: AppPagesBundle:Pages:edit, page: 1, parentId: null }
+    requirements: { id: \d+ }
+
+_pages_quickEdit:
+    path:  /pages/{id}/quickEdit/{quick}
+    defaults: { _controller: AppPagesBundle:Pages:quickEdit }
+    requirements: { id: \d+ }
+
+_pages_translate:
+    path:  /pages/{id}/translate/{quick}/{culture}
+    defaults: { _controller: AppPagesBundle:Pages:translate, id: 1, culture: '%locale%' }
+    requirements: { id: \d+ }
+
+_pages_delete:
+    path:  /pages/{id}/delete
+    defaults: { _controller: AppPagesBundle:Pages:delete}
+    requirements: { id: \d+ }
+
+_pages_higher:
+    path:  /pages/{id}/higher/{move}/{page}/{parentId}
+    defaults: { _controller: AppPagesBundle:Pages:move, move: 'up', page: 1, parentId: null }
+    requirements: { id: \d+ }
+
+_pages_lower:
+    path:  /pages/{id}/lower/{move}/{page}/{parentId}
+    defaults: { _controller: AppPagesBundle:Pages:move, move: 'down', page: 1, parentId: null }
+    requirements: { id: \d+ }
+
+_pages_published:
+    path:  /pages/{id}/published/{value}/{page}/{parentId}
+    defaults: { _controller: AppPagesBundle:Pages:published, value: 1, page: 1, parentId: null }
+    requirements: { id: \d+ }
+
+_pages_unpublished:
+    path:  /pages/{id}/unpublished/{value}/{page}/{parentId}
+    defaults: { _controller: AppPagesBundle:Pages:published, value: 0, page: 1, parentId: null }
+    requirements: { id: \d+ }
+
+_pages_multi:
+    path:  /pages/multi/{page}/{parentId}
+    defaults: { _controller: AppPagesBundle:Pages:multi, page: 1, parentId: null }
+    requirements:
+
+_pages_show:
+    path:  /pages/{page}/{parentId}
+    defaults: { _controller: AppPagesBundle:Pages:index, page: 1, parentId: null }
+
+_pages_block_new:
+    path:  /pages-block/new/{page}/{ParentId}
+    defaults: { _controller: AppPagesBundle:Category:new, page: 1, ParentId: null }
+
+_pages_block_edit:
+    path:  /pages-block/{id}/edit/{page}/{parentId}
+    defaults: { _controller: AppPagesBundle:Category:edit, page: 1, parentId: null }
+    requirements: { id: \d+ }
+
+_pages_block_delete:
+    path:  /pages-block/{id}/delete
+    defaults: { _controller: AppPagesBundle:Category:delete}
+    requirements: { id: \d+ }
+
+_pages_block_higher:
+    path:  /pages-block/{id}/higher/{move}/{page}/{parentId}
+    defaults: { _controller: AppPagesBundle:Category:move, move: 'up', page: 1, parentId: null }
+    requirements: { id: \d+ }
+
+_pages_block_lower:
+    path:  /pages-block/{id}/higher/{move}/{page}/{parentId}
+    defaults: { _controller: AppPagesBundle:Category:move, move: 'down', page: 1, parentId: null }
+    requirements: { id: \d+ }
+
+_pages_block_published:
+    path:  /pages-block/{id}/published/{value}/{page}/{parentId}
+    defaults: { _controller: AppPagesBundle:Category:published, value: 1, page: 1, parentId: null }
+    requirements: { id: \d+ }
+
+_pages_block_unpublished:
+    path:  /pages-block/{id}/unpublished/{value}/{page}/{parentId}
+    defaults: { _controller: AppPagesBundle:Category:published, value: 0, page: 1, parentId: null }
+    requirements: { id: \d+ }
+
+_pages_block_multi:
+    path:  /pages-block/multi/{page}/{parentId}
+    defaults: { _controller: AppPagesBundle:Category:multi, page: 1, parentId: null }
+
+_pages_block_show:
+    path:  /pages-block/{page}/{parentId}
+    defaults: { _controller: AppPagesBundle:Category:index, page: 1, parentId: null }
+
+_pages_block_quickEdit:
+    path:  /pages-block/{id}/quickEdit/{quick}
+    defaults: { _controller: AppPagesBundle:Category:quickEdit }
+    requirements: { id: \d+ }
+
+_pages_block_translate:
+    path:  /pages-block/{id}/translate/{quick}/{culture}
+    defaults: { _controller: AppPagesBundle:Category:translate, id: 1, culture: '%locale%' }
+    requirements: { id: \d+ }
+
+_metatag_new:
+    path:  /metatag/new
+    defaults: { _controller: AppPagesBundle:Metatag:new}
+
+_metatag_edit:
+    path:  /metatag/{id}/edit
+    defaults: { _controller: AppPagesBundle:Metatag:edit}
+    requirements: { id: \d+ }
+
+_metatag_quickEdit:
+    path:  /metatag/{id}/quickEdit/{quick}
+    defaults: { _controller: AppPagesBundle:Metatag:quickEdit }
+    requirements: { id: \d+ }
+
+_metatag_translate:
+    path:  /metatag/{id}/translate/{quick}/{culture}
+    defaults: { _controller: AppPagesBundle:Metatag:translate, id: 1, culture: '%locale%' }
+    requirements: { id: \d+ }
+
+_metatag_delete:
+    path:  /metatag/{id}/delete
+    defaults: { _controller: AppPagesBundle:Metatag:delete}
+    requirements: { id: \d+ }
+
+_metatag_multi:
+    path:  /metatag/multi/{page}
+    defaults: { _controller: AppPagesBundle:Metatag:multi, page: 1, parentId: null }
+    requirements: { id: \d+ }
+
+_metatag_show:
+    path:  /metatag/{page}/{pagesId}
+    defaults: { _controller: AppPagesBundle:Metatag:index, page: 1, pagesId: null }
+
+_searcher_seek:
+    path:  /searcher/seek
+    defaults: { _controller: AppPagesBundle:Searcher:seek}

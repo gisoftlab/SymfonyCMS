@@ -1,0 +1,5 @@
+<span>{{ 'Szybkie Akcje:'|trans({},'gsPages') }}</span>
+
+<a  ajax='{"action":"loadGetAction","targetTag":"#load-form", "post":{"id":"{{ page.id }}"}}' class="quick-link info-tooltip" href="{{ path('_pages_block_quickEdit', {'id':page.id,'quick':1}) }}" title="{{ 'Szybka edycja informacji'|trans({},'gsPages') }}">{{ 'Edycja'|trans({},'gsPages') }}</a>
+{#<a  ajax='{"action":"loadQuickUploader","targetTag":".load-form", "post":{"id":"{{ page.id }}"}}' class="quick-link info-tooltip gallery" href="{{ path('_files_upload', {'id':page.id,'quick':1}) }}" title="{{ 'Szybka edycja galerii'|trans({},'gsPages') }}">Galeria</a>#}
+<a class="quick-link info-tooltip" style="color:#067C0E" href="{{ path('_pages_block_show', mergeParams(page,'parentId') ) }}" title="{{ 'Pod kategorie -  zarządzanie podkategoriami'|trans({},'gsPages') }}"> {{ 'Pokaż podkategorie'|trans({},'gsPages') }}</a>

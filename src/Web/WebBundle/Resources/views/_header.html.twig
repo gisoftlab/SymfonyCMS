@@ -1,0 +1,17 @@
+<div id="header">
+    <div id="logo">
+        <a class="logo round" title="{{ getSettingCompanyName() }}" href="{{ path('_homepage') }}">                            
+            <img alt="{{getSettingCompanyName()}}" src="/frontend/images/logo.png"/>
+        </a> 
+    </div>                            
+    <div class="clear"></div>           
+    {{ render(controller('WebPagesBundle:Menu:show', { 'request': app.request })) }}    
+    {{ render(controller('WebPagesBundle:Searcher:show', { 'request': app.request })) }}
+    <div class="clear"></div>
+    {{ render(controller('WebPagesBundle:Menu:rental', { 'request': app.request })) }}    
+    <div class="clear"></div>      
+    {% block navigation %}
+    {{ render(controller('WebPagesBundle:Navigation:show', { 'request': app.request })) }}              
+    {% endblock %} 
+</div>
+<div class="clear"></div>  

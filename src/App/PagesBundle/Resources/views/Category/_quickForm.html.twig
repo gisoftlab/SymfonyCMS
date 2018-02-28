@@ -1,0 +1,48 @@
+{% form_theme form with 'AppBackendBundle:Form:form_admin_fields.html.twig' %}
+
+<div class="content-table-inner more-round">
+    <form id="quickForm{{ id }}" class="quickForm" action="{{ path('_pages_block_quickEdit', {'id':id, 'quick':quick}) }}" method="post" >
+        <fieldset>
+        <div>
+            {{ form_errors(form) }}
+            {{ form_widget(form._token) }}
+        </div>
+
+        <div>{{ form_label(form.name, '', { 'label_attr': {'class': ''} }) }}</div>
+        <div>
+            {{ form_widget(form.name, { 'attr': {
+                'style': 'max-width:60%',
+                'required':'required'
+            } }) }}
+        </div>
+        <div>{{ form_errors(form.name) }}</div>
+
+        <div>{{ form_label(form.description) }}</div>
+        {# quick is necessery to activate multi tinymce #}
+        <div>{{ form_widget(form.description, {'id': 'quick_description_'~id, 'attr': {'style': 'max-width:60%;height:150px'} }) }}</div>
+        <div>{{ form_errors(form.description) }}</div>
+
+
+        <a href="#" class="btnShowBlock">Edytuj rodzica</a>
+        <div class="showBlock">
+            <div>{{ form_label(form.parent) }}</div>
+            <div>{{ form_widget(form.parent, { 'attr': {'style': 'width:150px'} }) }}</div>
+            <div>{{ form_errors(form.parent) }}</div>
+        </div>
+
+        {{ form_rest(form) }}
+        <div class="ln_solid"></div>
+        <div class="btn-group">
+            <a class="btn btn-primary closeQuickAction" href='#load-form{{ id }}' ajax='{"id": "{{ id }}"}'>{{ 'Zamknij'|trans({},'gsPages') }}</a>
+
+            <div class="submit">
+                <button type="submit" class="btn btn-success saveQuickAction" ajax='{"target":"#load-form","data":{"id":"{{ id }}"}}' >{{ 'Zapisz'|trans({},'gsPages') }}</button>
+                <span class="loader"><p id="LoadingInfo{{ id }}"></p></span>
+            </div>
+        </div>
+        </fieldset>
+    </form>
+</div>
+
+{# Render Js in line in javascript loaded sources#}
+{{ renderJsInline() }}

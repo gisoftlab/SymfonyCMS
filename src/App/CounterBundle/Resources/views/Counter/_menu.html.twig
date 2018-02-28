@@ -1,0 +1,11 @@
+ <div class="margin-bottom">    
+    <h3> {{ 'Odwiedzin'|trans({},'gsCounter') }}: <span>{{ getCounter() }}</span> </h3>
+</div>
+<div class="margin-bottom">     
+    <a class="btn round {{ (active == 'all')?'active':''}}" href="{{ path('_counter_show') }}" title="{{ 'Wszystkie'|trans({},'gsCounter') }}">{{ 'Wszystkie'|trans({},'gsCounter') }}</a>                                       
+    <a class="btn round {{ (active == 'year')?'active':''}}" href="{{ path('_statistic_year') }}" title="{{ 'Ilość odwiedzin w Roku'|trans({},'gsCounter') }}">{{ 'Ilość odwiedzin w roku'|trans({},'gsCounter') }}</a>                                       
+    <a class="btn round {{ (active == 'month')?'active':''}}" href="{{ path('_statistic_month') }}" title="{{ 'Ilość odwiedzin w Miesiącu'|trans({},'gsCounter') }}">{{ 'Ilość odwiedzin w miesiącu'|trans({},'gsCounter') }}</a>                                       
+    <a class="btn round {{ (active == 'day')?'active':''}}" href="{{ path('_statistic_day') }}" title="{{ 'Ilość odwiedzin w dniu'|trans({},'gsCounter') }}">{{ 'Ilość odwiedzin w dniu'|trans({},'gsCounter') }}</a>                                       
+    <a class="btn round {{ (active == 'ip')?'active':''}}" href="{{ path('_statistic_ip') }}" title="{{ 'Ilość odwiedzin w dniu i IP'|trans({},'gsCounter') }}">{{ 'Ilość odwiedzin w dniu i IP'|trans({},'gsCounter') }}</a>                                       
+    <a class="btn round {{ (active == 'browser')?'active':''}}" href="{{ path('_statistic_browser') }}" title="{{ 'Ilość odwiedzin w dniu i przeglądarce'|trans({},'gsCounter') }}">{{ 'Ilość odwiedzin w dniu i przeglądarce'|trans({},'gsCounter') }}</a>  
+</div>    

@@ -1,0 +1,17 @@
+#top-search{margin: 50px 0 0 600px;}
+.field div label{width: 17px;}
+.field input[type="text"]{width: 300px;}
+.field textarea{width: 600px;}
+.welcome-user{margin: -20px 5px 0 0 !important;display: block;float: none}
+#footer-left{padding-bottom: 0px;}
+.content-table-inner.gallery div.content-gallery span b{float:none}
+.field div{float: left;display: block}
+.field{clear: both}
+.table-content form{margin-top: 20px}
+.page-heading h1{margin-top: 10px;}
+#top-search a{position: relative;z-index: 300}
+.top-search-inp{padding: 6px 6px 0px 10px !important}
+#SearcherPages_mainpages {    
+    margin: 0 6px 5px 6px;
+    padding: 5px;
+}

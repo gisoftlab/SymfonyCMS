@@ -1,0 +1,35 @@
+  
+_files_upload:
+    path:  /files/upload/{id}
+    defaults: { _controller: AppFilesBundle:Files:upload, id: '0', quick: 0 }
+    
+_files_product_upload:
+    path:  /files/product/upload/{id}
+    defaults: { _controller: AppFilesBundle:Files:uploadProduct, id: '0', quick: 0 }    
+    
+_files_product_upload_promoted:
+    path:  /files/product/uploadPromoted/{id}
+    defaults: { _controller: AppFilesBundle:Files:uploadProductPromoted, id: '0', quick: 0 }        
+      
+_files_editTitle:
+    path:  /files/editTitle
+    defaults: { _controller: AppFilesBundle:Files:editTitle}
+    requirements:
+        _method: POST              
+      
+_files_delete:
+    path:  /files/delete/{id}/{fileId}
+    defaults: { _controller: AppFilesBundle:Files:delete, id: '0', fileId: 0 }
+    
+_files_delete_product:
+    path:  /files/deleteProduct/{id}/{fileId}
+    defaults: { _controller: AppFilesBundle:Files:deleteProduct, id: '0', fileId: 0 }
+      
+_files_setIcon:
+    path:  /files/setIcon/{id}/{fileId}
+    defaults: { _controller: AppFilesBundle:Files:setIcon, id: '0', fileId: 0 }
+    
+_files_setIcon_product:
+    path:  /files/setIconProduct/{id}/{fileId}
+    defaults: { _controller: AppFilesBundle:Files:setIconProduct, id: '0', fileId: 0 }
+      

@@ -1,0 +1,19 @@
+{% if paginator.haveToPaginate %}
+<div class="navigation">
+     {% if paginator.getNextPage() == paginator.getPage() %}
+      <div class="alignleft"></div>
+    {% else %}
+        <div class="alignleft">
+            <a href="{{ url }}?page={{ paginator.getNextPage() }}">Next</a>
+        </div>
+    {% endif %}
+
+    {% if 1 == paginator.getPage %}
+      <div class="alignright"></div>
+    {% else %}
+        <div class="alignright">
+            <a href="{{ url }}?page={{ paginator.getPreviousPage() }}">Previuos</a>
+        </div>
+    {% endif %}
+</div>
+{% endif %}

@@ -1,0 +1,32 @@
+services:
+    #
+    # TWIG EXTENTIONS
+    #
+
+    app_core.twig.aggregator_extension:
+        class: App\CoreBundle\Twig\AggregatorExtension
+        arguments:
+          container: '@service_container'
+        tags:
+          - { name: twig.extension }
+
+    app_core.twig.formater_extension:
+        class: App\CoreBundle\Twig\FormaterExtension
+        arguments:
+          container: '@service_container'
+        tags:
+          - { name: twig.extension }
+
+    app_core.twig.tinymce_extension:
+        class: App\CoreBundle\Twig\TinymceExtension
+        arguments:
+          container: '@service_container'
+        tags:
+          - { name: twig.extension }
+
+    app_core.twig.source_code_extension:
+        public:    false
+        class:     App\CoreBundle\Twig\SourceCodeExtension
+        arguments: ['%kernel.root_dir%']
+        tags:
+            - { name: twig.extension }

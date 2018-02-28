@@ -1,0 +1,59 @@
+<div class="content-table-inner gallery more-round">
+    <!--  start table-content  -->
+    <div class="table-content"> 
+        {% if quick != true %}
+            <h2>Galeria</h2>    
+        {% endif %}        
+        <fieldset class="gallery">
+            {% if quick %}
+                <legend><a class="btn close-gallery btn-primary" closeTag="#quick-form{{ id }}" href="#load-form{{ id }}">Zamknij Edycję Galerii</a></legend>
+            {% else %}
+                <legend>Dodaj zdjęcie lub dokument do Strony</legend>
+            {% endif %}
+            
+            <form action="{{ path('_files_upload') }}" method="post" id="fileManager{{ id }}" class="fileManager">
+                {{ form_widget(form.id) }}
+                {{ form_widget(form._token) }}
+                 
+                <div class="field">
+                    <div></div>
+                    <div>{{ form_label(form.sourceTitle) }}</div>
+                    <div style="margin-left: 140px;">{{ form_label(form.sourceFile) }}</div>
+                </div>  
+                <div class="clear"></div>
+                <div class="field">
+                    <div>{{ form_widget(form.sourceTitle) }}</div>
+                    <div>               
+                        {% if chackOldBrowser() %}                         
+                          <div class="file">
+                              {{ form_widget(form.sourceFile) }}
+                              <div class="input-file {{ (iconUrl)?'iconUrl':'' }}" icon="{{ (iconUrl)?iconUrl:'' }}"></div>
+                              <span class="input-file-btn">Wybierz<p id="loadingInfo{{ id }}"></p></span>
+                              <input type="submit" value="Dodaj" class="round"/>
+                              <span class="loader" ajax='{"idx": "{{ id }}", "target":"#fileManager", "feedback": "{{ feedback }}", "quick": "{{ quick?1:0 }}"}'></span>
+                          </div>
+                       {% else %}
+                            {{ form_widget(form.sourceFile) }}
+                            <input type="submit" value="Dodaj" class="round"/>
+                       {% endif %}
+                    </div>                    
+                    <div>                        
+                      {% if form.sourceFile.vars.errors|length %}
+                        <div class="error-left error-left-active">
+                            <div class="field-validation-error">
+                                <span>{{ form_errors(form.sourceFile) }} {{ form_errors(form.sourceTitle) }}                                      
+                                </span>
+                            </div>
+                        </div>                                    
+                        {% endif %}
+                    </div>                                   
+                </div>
+            </form>
+            <div class="clear"></div>
+            <div class="content-gallery">
+                {% include "AppFilesBundle:Files:_gallery.html.twig" with { files: files,  quick: quick} %}
+            </div>
+           </fieldset>	
+    </div>
+</div>
+

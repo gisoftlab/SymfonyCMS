@@ -1,0 +1,22 @@
+services:
+     
+   web.twig.product_extension:
+        class: 'Web\ProductBundle\Twig\ProductExtension'
+        arguments:
+          #doctrine: '@doctrine'          
+          container: '@service_container'
+        tags:
+          - { name: twig.extension }               
+          
+   product.recentlyViwed:
+      class: 'Web\ProductBundle\Services\serviceRecently'
+      arguments: ['@doctrine.orm.entity_manager','@service_container']       
+      
+   product.order:
+      class: 'Web\ProductBundle\Services\serviceCart'
+      arguments: ['@doctrine.orm.entity_manager','@service_container']           
+        
+        
+      
+               
+     

@@ -1,0 +1,79 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" datatype="plaintext" original="file.ext">
+        <body>        
+            <trans-unit id="1">
+                <source>Zapomniałeś hasła?</source>
+                <target>Forgot your password?</target>
+            </trans-unit>
+            <trans-unit id="2">
+                <source>resetting.request.title</source>
+                <target>Write your email and reset password</target>
+            </trans-unit>
+            <trans-unit id="3">
+                <source>resetting.request.username</source>
+                <target>Email or Username</target>
+            </trans-unit>
+            <trans-unit id="4">
+                <source>resetting.request.placeholder</source>
+                <target>Login or email...</target>
+            </trans-unit>
+            <trans-unit id="5">
+                <source>resetting.request.invalid_username</source>
+                <target>Email or Login '%username%' is invalid</target>
+            </trans-unit>            
+            <trans-unit id="6">
+                <source>resetting.request.submit</source>
+                <target>Reset Password</target>
+            </trans-unit>
+            <trans-unit id="7">
+                <source>resetting.request.return</source>
+                <target>Return</target>
+            </trans-unit>            
+            <trans-unit id="8">
+                <source>resetting.reset.title</source>
+                <target>reset title</target>
+            </trans-unit>            
+            <trans-unit id="9">
+                <source>Forgot Password</source>
+                <target>Forgot Password</target>
+            </trans-unit>            
+            <trans-unit id="10">
+                <source>resetting.reset.new_password</source>
+                <target>resetting.reset.new_password</target>
+            </trans-unit>            
+            <trans-unit id="11">
+                <source>resetting.reset.new_password_confirmation</source>
+                <target>resetting.reset.new_password_confirmation</target>
+            </trans-unit>            
+            <trans-unit id="12">
+                <source>resetting.reset.submit</source>
+                <target>resetting.reset.submit</target>
+            </trans-unit>     
+            <trans-unit id="13">
+                <source>resetting.password_already_requested</source>
+                <target>resetting.password_already_requested</target>
+            </trans-unit>                 
+            <trans-unit id="14">
+                <source>resetting.email.subject</source>
+                <target>resetting.email.subject</target>
+            </trans-unit>
+            <trans-unit id="15">
+                <source>resetting.email.message</source>
+                <target>resetting.email.message</target>
+            </trans-unit>
+            <trans-unit id="16">
+                <source>resetting.check_email.title</source>
+                <target>resetting.check_email.title</target>
+            </trans-unit>
+            <trans-unit id="17">
+                <source>resetting.check_email.message</source>
+                <target>resetting.check_email.message</target>
+            </trans-unit>
+            <trans-unit id="18">
+                <source>resetting.check_email.button</source>
+                <target>resetting.check_email.button</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

@@ -1,0 +1,134 @@
+{% extends "AppBackendBundle::layout.html.twig" %}
+
+{% block title "Page - menage flat product" %}
+
+{% block content_header '' %}
+
+{% block content %}
+<script type="text/javascript" language="javascript" src="{{ asset('backend/js/gs/customAjax.js') }}"></script>
+
+<div id="page-heading"><h1>Lista Produktów</h1></div>    
+<div class="content-table-inner more-round">
+    <div class="table-content">                  
+          {% include 'AppBackendBundle::_note.html.twig' %}                
+            
+            <div class="margin-bottom">    
+             {% if parent %}                         
+                {% if parent.parent %}                         
+                    <a class="btn round" href="{{ path('_pages_show', mergeParams(parent.parent,'ParentId'))}}" title="Powrót" >Powrót</a>            
+                {% else %}
+                    <a class="btn round" href="{{ path('_pages_show')}}" title="Powrót" >Powrót</a>                                 
+                {% endif %}
+                <a class="btn round" href="{{ path('_product_new', mergeParams(parent))}}" title="Add">Dodaj Produkt do - {{parent.title}}</a>                    
+             {% else %}
+                <a class="btn round" href="{{ path('_product_new')}}" title="Add">Dodaj Produkt</a>                    
+             {% endif %}            
+        </div>
+        <form action="{{ path('_product_multi', mergeParams())}}" id="mainform" method="post" name="mainform">				    
+        <table class="product-table">
+            <tr>
+                <th><a id="toggle-all" ></a></th>        
+                <th>{{ knp_pagination_sortable(pager,'#', 'a.id')|raw }}</th>                                 
+                <th{% if pager.isSorted('a.Icon') %} class="sorted"{% endif %}>{{knp_pagination_sortable(pager,'Icona', 'a.id')|raw }}</th>                
+                <th{% if pager.isSorted('a.IconPromoted') %} class="sorted"{% endif %}>{{knp_pagination_sortable(pager,'Zdjęcie Promocji', 'a.id')|raw }}</th>                
+                <th{% if pager.isSorted('a.Sequence') %} class="sorted"{% endif %}>{{knp_pagination_sortable(pager,'Przesuń', 'a.sequence')|raw }}</th>                
+                <th{% if pager.isSorted('a.Page') %} class="sorted"{% endif %}>{{knp_pagination_sortable(pager,'Kategoria', 'a.page.id')|raw }}</th>                                
+                <th{% if pager.isSorted('a.Title') %} class="sorted"{% endif %}>{{knp_pagination_sortable(pager,'Tytuł', 'a.title')|raw }}</th>
+                <th{% if pager.isSorted('a.Slug') %} class="sorted"{% endif %}>{{knp_pagination_sortable(pager,'Podgląd', 'a.slug')|raw }}</th>                
+                <th{% if pager.isSorted('a.Price') %} class="sorted"{% endif %}>{{knp_pagination_sortable(pager,'Cena', 'a.price')|raw }}</th>                
+                <th{% if pager.isSorted('a.Deposit') %} class="sorted"{% endif %}>{{knp_pagination_sortable(pager,'Kaucja', 'a.deposit')|raw }}</th>                                
+                <th{% if pager.isSorted('a.Published') %} class="sorted"{% endif %}>{{knp_pagination_sortable(pager,'Widoczny', 'a.published')|raw }}</th>                
+                <th{% if pager.isSorted('a.Promoted') %} class="sorted"{% endif %}>{{knp_pagination_sortable(pager,'Promowany', 'a.published')|raw }}</th>                                
+                <th{% if pager.isSorted('a.CreatedAt') %} class="sorted"{% endif %}>{{knp_pagination_sortable(pager,'Stworzono', 'a.createdAt')|raw }}</th>
+                <th{% if pager.isSorted('a.UpdatedAt') %} class="sorted"{% endif %}>{{knp_pagination_sortable(pager,'Modyfikowano', 'a.updatedAt')|raw }}</th>
+                <th><a href="#">Actions</a></th>
+            </tr>                
+            {% for key, row in pager %}
+             <tr class="one{% if loop.index is odd %} color{% endif %}">       
+                    <td><input id="multiCheckBox_{{ row.id }}" name="multiCheckBox[{{ row.id }}]" type="checkbox" value="{{ row.id }}" /></td>                       
+                    <td><a class="info-tooltip" title="Edytuj Produkt" href="{{ path('_product_edit', {'id': row.id}) }}">{{ getIIter(pager,key) }}</a></td>                                               
+                    <td Id="productIcon{{ row.id }}">
+                        {% if hasIcon(row) %}
+                            {{ thumbnail(row.icon,'smaller') }}
+                        {% else %}
+                            <a  onclick="loadQuickUploader($(this),'.load-form','{{ row.id }}'); return false;" class='add-icon info-tooltip' href="{{ path('_files_product_upload', {'id':row.id,'quick':1}) }}" title='Dodaj Ikonę - dodaj obrazek w galerii - zaznacz jako ikona'>&nbsp;</a>
+                        {% endif %}
+                    </td>
+                     <td Id="productIconPromoted{{ row.id }}">
+                        {% if hasIconPromoted(row) %}
+                            {{ thumbnail(row.iconPromoted,'smaller') }}         
+                              <a class="icon-2 info-tooltip" onclick="return confirm('Napewno chcesz skasować Zdjęcie ?')" Title="Skasuj ikonę" href="{{ path('_product_icon_promoted_delete', mergeParams(row)) }}"></a>
+                         {% else %}    
+                             <a  onclick="loadQuickUploader($(this),'.load-form','{{ row.id }}'); return false;" class='add-icon2 info-tooltip' href="{{ path('_files_product_upload_promoted', {'id':row.id,'quick':1}) }}" title='Dodaj Promocje - dodaj obrazek w galerii - zaznacz jako ikona'>&nbsp;</a>
+                        {% endif %}
+                    </td>
+                    <td>
+                            {% if row.page  is not null %}
+                                {% if key != 0 %}                                
+                                 <a class="ui-state-default ui-corner-all info-tooltip" title="Do góry" href="{{ path('_product_higher', mergeParams(row,{sequence:row.sequence})) }}">
+                                    <span class="ui-icon ui-icon-circle-triangle-n"></span>
+                                </a>
+                                {% endif %}
+                           
+                            {% if pager.count != key+1 %}
+                                   <a class="ui-state-default ui-corner-all info-tooltip" title="Na dół" href="{{ path('_product_lower', mergeParams(row,{sequence:row.sequence})) }}">
+                                    <span class="ui-icon ui-icon-circle-triangle-s"></span>
+                                </a>
+                            {% endif %}
+                           {% endif %}                                                                
+                    </td>
+                    <td>{{ row.page }}</td>                    
+                    <td Id="productTitle{{row.id}}"><a class="info-tooltip" title="Edytuj Stronę" href="{{ path('_product_edit', mergeParams(row)) }}">{{ row.title }}</a></td>                         
+                    <td Id="productSlug{{row.id}}"><a class="info-tooltip" title="Podgląd Strony" href="/{{ row.slug }}">{{ row.slug }}</a></td>                        
+                    <td>{{ row.price }}</td>   
+                    <td>{{ row.deposit }}</td>   
+                    <td Id="productPublish{{row.id}}">
+                                {% if row.published %} 
+                                    <a class="icon-5-ok info-tooltip" Title="Nie wyświetlaj produktu" href="{{ path('_product_unpublished', mergeParams(row)) }}"></a>
+                                  {% else %} 
+                                    <a class="icon-5 info-tooltip" Title="Wyświetl produkt" href="{{ path('_product_published', mergeParams(row)) }}"></a>
+                                  {% endif %}                                 
+                    </td>                    
+                    <td Id="productPublish{{row.id}}">
+                                {% if row.promoted %} 
+                                    <a class="icon-5-ok info-tooltip" Title="Wyłącz promocję" href="{{ path('_product_unpromoted', mergeParams(row)) }}"></a>
+                                  {% else %} 
+                                    <a class="icon-5 info-tooltip" Title="Promuj na główne" href="{{ path('_product_promoted', mergeParams(row)) }}"></a>
+                                  {% endif %}                                 
+                    </td>                    
+                    <td>{{ row.createdAt|date("d-m-Y") }}</td>                                          
+                    <td>{{ row.updatedAt|date("d-m-Y") }}</td>         
+                    <td class="last">                                                                    
+                        
+                        <a class="icon-1 info-tooltip" href="{{ path('_product_edit', mergeParams(row)) }}" title="Edycja - Umożliwia edytowanie tekstu - dodawanie obrazków do galerii"> </a>                            
+                        <a class="icon-3 info-tooltip" href="{{ path('_product_show', mergeParams(row,'ParentId') ) }}" title="Opis Produktu - Pokazuje listę  - umożliwia zarządzanie podstonami"> </a>
+                        <a class="icon-2 info-tooltip" href="{{ path('_product_delete', {'id': row.id,}) }}" onclick="return confirm('Napewno chcesz skasować Produkt ?')" title="Usuń"> </a>                                                                                                           
+                    </td> 
+                 </tr>
+                 <tr class="second">
+                    <td colspan="15">
+                        <div class="quick-form" id="quick-form{{ row.id }}" style="margin-left: 5px;">
+                             {% include "AppProductBundle:Product:_quickActions.html.twig" with { product: row} %}                                                        
+                            <div class="load-form" id="load-form{{ row.id }}"></div>     
+                        </div>   
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+           <div id="actions-box">
+                <a href="" class="action-slider more-round-upper gradient-gray-gray">Wybierz</a>
+                <div id="actions-box-slider">
+                    <a class="action-delete" href="#" id="actions-box-slider-delete" onClick="$('#mainform').submit(); return false;" title="Multi-kasowanie">Usuń</a>          					        
+                </div>                      
+
+                <div class="clear"></div>
+            </div>      
+            <!-- end actions-box........... -->
+        </form>       
+    </div>    
+    {{ knp_pagination_render(pager) }}    
+
+    <div class="clear"></div>
+</div>
+{% endblock %}
+      

@@ -1,0 +1,74 @@
+{% extends "AppBackendBundle::layout.html.twig" %}
+
+{% block title "Show - Settings" %}
+{% block page_title "Lista Ustawień" %}
+
+{% block content_header '' %}
+
+{% block content %}
+<div class="col-md-12 col-sm-12 col-xs-12">
+    <div class="x_panel">
+        <div class="x_title">
+            <h2></h2>
+            <ul class="nav navbar-right panel_toolbox">
+
+                <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="#">Settings 1</a>
+                        </li>
+                        <li><a href="#">Settings 2</a>
+                        </li>
+                    </ul>
+                </li>
+                <li><a class="close-link"><i class="fa fa-close"></i></a>
+                </li>
+            </ul>
+            <div class="clearfix"></div>
+        </div>
+
+        <div class="x_content">
+            <div class="row">
+                <a class="btn btn-primary" href="{{ path('_settings_new')}}" title="Add">Dodaj Ustawienie</a>
+            </div>
+
+            <div class="table-responsive">
+                <table class="table table-striped jambo_table bulk_action">
+                    <thead>
+                    <tr class="headings">
+                        <th class="column-title">{{ knp_pagination_sortable(pager,'#', 'a.id')|raw }}</th>
+                        <th class="column-title {% if pager.isSorted('a.name') %} sorted{% endif %}">{{knp_pagination_sortable(pager,'Name', 'a.name')|raw }}</th>
+                        <th class="column-title {% if pager.isSorted('a.value') %} sorted{% endif %}">{{knp_pagination_sortable(pager,'Value', 'a.value')|raw }}</th>
+                        <th class="column-title {% if pager.isSorted('a.description') %} sorted{% endif %}">{{knp_pagination_sortable(pager,'Description', 'a.description')|raw }}</th>
+                        <th class="column-title {% if pager.isSorted('a.CreatedAt') %} sorted{% endif %}">{{knp_pagination_sortable(pager,'Created', 'a.createdAt')|raw }}</th>
+                        <th class="column-title {% if pager.isSorted('a.UpdatedAt') %} sorted{% endif %}">{{knp_pagination_sortable(pager,'Updated', 'a.UpdatedAt')|raw }}</th>
+                        <th class="column-title no-link last"><span class="nobr">Action</span></th>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+
+                    {% for key, row in pager %}
+                            <tr {% if loop.index is odd %}class="even pointer"{% else %} class="odd pointer"{% endif %}>
+                                <td><a title="Edit Setting" href="{{ path('_settings_edit', {'id': row.id}) }}">{{ getIIter(pager,key) }}</a></td>
+                                <td><a title="Edit Setting" href="{{ path('_settings_edit', {'id': row.id}) }}">{{ row.name }}</a></td>
+                                <td>{{ row.value }}</td>
+                                <td>{{ row.description }}</td>
+                                <td>{{ row.createdAt|date("Y/m/d") }}</td>
+                                <td>{{ row.updatedAt|date("Y/m/d") }}</td>
+                                <td class=" last">
+                                    <a class="icon-1 info-tooltip" href="{{ path('_settings_edit', {'id': row.id}) }}" title="Edit"> <i class="fa fa-pencil"></i></a>
+                                </td>
+                            </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+                {{ knp_pagination_render(pager) }}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+      

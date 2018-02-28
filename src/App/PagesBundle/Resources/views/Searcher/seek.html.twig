@@ -1,0 +1,16 @@
+
+<form method="get" class="main-form-search" action="{{ path('_pages_show', mergeParams(null,{'id':''})) }}" {{ form_enctype() }}>
+    {{ form_errors(form) }}
+
+    {{ form_errors(form.search) }}
+    {{ form_widget(form.search, { 'attr': {
+            'class': 'form-control form-algin-left',
+            'placeholder': 'Szukaj',
+        } }) }}
+
+    {{ form_errors(form.mainpages) }}
+    {{ form_widget(form.mainpages, { 'attr': {'class': 'form-control form-algin-left'} }) }}
+    <span class="input-group-btn form-algin-left">
+      <button class="btn btn-default" type="submit" >Szukaj</button>
+    </span>
+</form>

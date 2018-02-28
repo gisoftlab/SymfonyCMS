@@ -1,0 +1,71 @@
+parameters:
+  doctrine.orm.cache.chain.class: Doctrine\Common\Cache\ChainCache
+  doctrine.orm.cache.filesystem.class: Doctrine\Common\Cache\FilesystemCache
+
+services:
+
+    #
+    # Adapters connection
+    #
+#    cache.redis_connection:
+#        class: Redis
+#        calls:
+#            - [connect, ['%doctrine.orm.cache.redis_host%', '%doctrine.orm.cache.redis_port%']]
+
+    cache.redis_connection:
+        class: Redis
+        calls:
+            - [connect, ['%doctrine.orm.cache.redis_host%']]
+
+    cache.memcached_connection:
+        class: Memcached
+        calls:
+            - [addServer , ['%doctrine.orm.cache.memcached_host%','%doctrine.orm.cache.memcached_port%']]
+
+    #
+    # Adapter caching
+    #
+    cache.apcu:
+        parent: cache.adapter.apcu
+        tags:
+            - name: cache.pool
+
+    cache.filesystem:
+        parent: cache.adapter.filesystem
+        tags:
+            - name: cache.pool
+
+    cache.redis:
+        parent: cache.adapter.redis
+        tags:
+            - name: cache.pool
+
+    cache.chain:
+        class: 'App\CoreBundle\Libraries\Cache\ChainAdapter'
+        arguments:
+          - [ '@cache.redis', '@cache.filesystem']
+          - 600
+    #
+    # Doctrine caching
+    #
+    doctrine.cache.filesystem:
+        class: '%doctrine.orm.cache.filesystem.class%'
+        arguments:
+          - '%kernel.cache_dir%/doctrine.filesystem'
+
+    doctrine.cache.redis:
+        class: '%doctrine.orm.cache.redis.class%'
+        calls:
+            - [setRedis, ['@cache.redis_connection']]
+
+    doctrine.cache.memcached:
+        class: '%doctrine.orm.cache.memcached.class%'
+        calls:
+            - [setMemcached, ['@cache.memcached_connection']]
+
+
+    doctrine.cache.chain:
+        class: '%doctrine.orm.cache.chain.class%'
+        arguments:
+          - '@doctrine.cache.redis'
+          - '@doctrine.cache.filesystem'

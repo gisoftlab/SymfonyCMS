@@ -1,0 +1,110 @@
+<!-- top navigation -->
+<div class="top_nav">
+    <div class="nav_menu">
+        <nav class="">
+            <div class="nav toggle">
+                <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+            </div>
+
+            <a class="btn btn-success" href="{{ path("_homepage") }}" style="margin-top: 10px;">{{ 'Powrot do strony'|trans({},'gsSettingMenu') }}</a>
+
+            <ul class="nav navbar-nav navbar-right">
+                <li class="">
+                    <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                        <img src="{{ asset('assets/images/user.png') }}" alt="">{{ app.user.username }}
+                        <span class=" fa fa-angle-down"></span>
+                    </a>
+                    <ul class="dropdown-menu dropdown-usermenu pull-right">
+                        <li><a href="{{ path('_users_edit',{'id':app.user.id})}}"> {{ 'Profile'|trans({},'gsSettingMenu') }}</a></li>
+                        <li><a href="#">{{ 'Pomoc'|trans({},'gsSettingMenu') }}</a></li>
+                        <li><a href="{{ path('fos_user_security_logout') }}"><i class="fa fa-sign-out pull-right"></i> {{ 'Wyloguj'|trans({},'gsLayout') }}</a></li>
+                    </ul>
+                </li>
+
+                <li role="presentation" class="dropdown">
+                    <a href="javascript:;" class="dropdown-toggle icon-big info-number" data-toggle="dropdown" aria-expanded="false">
+                        <i class="glyphicon glyphicon-cog"></i>
+                        {#<span class="badge bg-green">!</span>#}
+                    </a>
+                    <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
+                        <li>
+                            <a href="{{ path('_settings_show') }}" title="{{ 'Ustawienia'|trans({},'gsSettingMenu') }}">
+                                <span>
+                                    <h5> <i class="fa fa-gear"></i> {{ 'Ustawienia'|trans({},'gsSettingMenu') }}</h5>
+                                </span>
+                                <span class="message">
+                                    {{ 'Zmien podstawowe ustawienia'|trans({},'gsSettingMenu') }}
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ path('_users_show') }}" title="{{ 'Użytkownicy'|trans({},'gsSettingMenu') }}">
+                                <span>
+                                    <h5> <i class="fa fa-user"></i> {{ 'Użytkownicy'|trans({},'gsSettingMenu') }}</h5>
+                                </span>
+                                <span class="message">
+                                    {{ 'Zarzadzanie uzytkownikami'|trans({},'gsSettingMenu') }}
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ path('_languages_show') }}" title="{{ 'Tłumaczenia'|trans({},'gsSettingMenu') }}">
+                                <span>
+                                    <h5> <i class="fa fa-language"></i> {{ 'Tłumaczenia'|trans({},'gsSettingMenu') }}</h5>
+                                </span>
+                                <span class="message">
+                                    {{ 'Dodaj jezyk'|trans({},'gsSettingMenu') }}
+
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ path('_counter_show') }}" title="{{ 'Statystyki'|trans({},'gsSettingMenu') }}">
+                                <span>
+                                    <h5> <i class="fa fa-newspaper-o"></i> {{ 'Statystyki'|trans({},'gsSettingMenu') }}</h5>
+                                </span>
+                                <span class="message">
+                                    {{ 'Sprawdz statystyki odwiedzin'|trans({},'gsSettingMenu') }}
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ path('_users_logs_show') }}" title="{{ 'Logi użytkowników'|trans({},'gsSettingMenu') }}">
+                                <span>
+                                    <h5> <i class="fa fa-list"></i> {{ 'Logi użytkowników'|trans({},'gsSettingMenu') }}</h5>
+                                </span>
+                                <span class="message">
+                                    {{ 'Sprawdz ostatnie logowanie do systemu'|trans({},'gsSettingMenu') }}
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ path('_email_reporting_show') }}" title="{{ 'Email Reporting'|trans({},'gsSettingMenu') }}">
+                                <span>
+                                    <h5> <i class="fa fa-envelope-square"></i> {{ 'Email Reporting'|trans({},'gsSettingMenu') }}</h5>
+                                </span>
+                                <span class="message">
+                                    {{ 'Sprawdz email reporting'|trans({},'gsSettingMenu') }}
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ path('_newsletter_show') }}" title="{{ 'Newsletter Emaile'|trans({},'gsSettingMenu') }}">
+                                <span>
+                                    <h5> <i class="fa fa-newspaper-o"></i> {{ 'Newsletter Emaile'|trans({},'gsSettingMenu') }}</h5>
+                                </span>
+                                <span class="message">
+                                    {{ 'Sprawdz email reporting'|trans({},'gsSettingMenu') }}
+                                </span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="">
+
+                </li>
+            </ul>
+        </nav>
+    </div>
+</div>
+<!-- /top navigation -->

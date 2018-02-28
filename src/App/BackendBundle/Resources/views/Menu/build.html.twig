@@ -1,0 +1,8 @@
+<ul class="nav child_menu">
+    {% if pages %}
+        <li><a class="symfony-docs" href="{{ path('_pages_show', { 'category': category }) }}">wszystkie</a></li>
+    {% for  key , value in pages  %}
+        <li><a class="symfony-docs" href="{{ path('_pages_show', { 'parentId': value.id }) }}">{{ value.title}}</a></li>
+    {% endfor %}
+    {% endif %}
+</ul>

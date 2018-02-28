@@ -1,0 +1,8 @@
+<div class="row-1 middel-round">
+        <ul class="nav">
+            {% for  key , value in entities  %}
+                <li><a href="{{ path('_web_show_page',{'slug':value.slug}) }}" class="{{ isMenuActive(value,page) }} {% if key == 1 %}first{% endif %}" title="{{ value.title}}">{{ value.title}}</a></li>
+            {% endfor %}      
+        </ul>
+    </div>
+    <div class="clear"></div>     

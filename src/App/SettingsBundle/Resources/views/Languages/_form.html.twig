@@ -1,0 +1,36 @@
+{% form_theme form with 'AppBackendBundle:Form:form_admin_fields.html.twig' %}
+
+<form action="{{ getUri() }}" method="post" {{ form_enctype() }} data-parsley-validate >
+    <span class="section">{{ description is defined ? description: '' }}</span>
+    <div>
+        {{ form_errors(form) }}
+        {{ form_widget(form._token) }}
+    </div>
+
+    <div>{{ form_label(form.country) }}</div>
+    <div>{{ form_widget(form.country) }}</div>
+    <div>{{ form_errors(form.country) }}</div>
+
+    <div>{{ form_label(form.culture) }}</div>
+    <div>{{ form_widget(form.culture) }}</div>
+    <div>{{ form_errors(form.culture) }}</div>
+
+    <div>{{ form_label(form.countryName) }}</div>
+    <div>{{ form_widget(form.countryName) }}</div>
+    <div>{{ form_errors(form.countryName) }}</div>
+
+    <div class="checkbox">
+        <label>{{ form_widget(form.isUsed, { 'attr': {
+                'class': 'flat',
+            } }) }}
+        </label>
+    </div>
+
+    {{ form_rest(form) }}
+    <div class="ln_solid"></div>
+    <div>
+        <a class="btn btn-primary" href="{{ path('_languages_show') }}">Powrót</a>
+        <button id="send" type="submit" class="btn btn-success">Zapisz</button>
+    </div>
+
+</form>

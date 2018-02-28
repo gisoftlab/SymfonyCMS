@@ -1,0 +1,33 @@
+<div class="wrapper x">
+    <div id="main">        
+        <section class="forgot-password">
+            <h1>
+                {{ 'resetting.reset.title'|trans({},'gsSecurity') }}
+            </h1>
+            <form name="forgot-password" id="reset-password" action="{{ path('fos_user_resetting_reset', {'token': token}) }}" {{ form_enctype() }} method="POST">
+                {{ form_errors(form) }}
+                <fieldset>
+                    <legend>{{ 'Forgot Password'|trans({},'gsSecurity') }}</legend>
+                    <div class="row x">
+                        <label>
+                	    {{ 'resetting.reset.new_password'|trans({},'gsSecurity') }}
+                        </label>
+                        {{ form_widget(form.plainPassword.first, { 'attr' : { 'class' : 'text' } }) }}
+                        {{ form_errors(form.plainPassword.first) }}
+                    </div>
+                    <div class="row x">
+                        <label>
+                	    {{ 'resetting.reset.new_password_confirmation'|trans({},'gsSecurity') }}
+                        </label>
+                        {{ form_widget(form.plainPassword.second, { 'attr' : { 'class' : 'text' } } ) }}
+                        {{ form_errors(form.plainPassword.second) }}
+                    </div>
+                    {{ form_rest(form) }}
+                    <div class="fp_btn" id="resetpass-holder">
+                        <input class="fb_btn_submit" type="submit" value="{{ 'resetting.reset.submit'|trans({},'gsSecurity') }}" />
+                    </div>
+                </fieldset>
+            </form>
+        </section>     
+    </div>
+</div>

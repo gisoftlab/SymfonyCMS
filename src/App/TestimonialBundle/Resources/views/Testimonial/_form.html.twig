@@ -1,0 +1,52 @@
+{% form_theme form with 'AppBackendBundle:Form:form_admin_fields.html.twig' %}
+
+<form action="{{ getUri() }}" method="post">&nbsp;
+    <span class="section">{{ description is defined ? description: '' }}</span>
+
+    <div>
+        {{ form_errors(form) }}
+        {{ form_widget(form._token) }}
+    </div>
+    <div>{{ form_label(form.name, '', { 'label_attr': {'class': ''} }) }}</div>
+    <div>
+        {{ form_widget(form.name, { 'attr': {
+            'required':'required'
+        } }) }}
+    </div>
+    <div>{{ form_errors(form.name) }}</div>
+
+    <div>{{ form_label(form.email, '', { 'label_attr': {'class': ''} }) }}</div>
+    <div>
+        {{ form_widget(form.email, { 'attr': {
+            'required':'required'
+        } }) }}
+    </div>
+    <div>{{ form_errors(form.email) }}</div>
+
+    <div>{{ form_label(form.city, '', { 'label_attr': {'class': ''} }) }}</div>
+    <div>
+        {{ form_widget(form.city, { 'attr': {
+            'required':'required'
+        } }) }}
+    </div>
+    <div>{{ form_errors(form.city) }}</div>
+
+    <div>{{ form_label(form.message) }}</div>
+    <div>{{ form_widget(form.message, { 'attr': {'style': 'width:100%;height:400px'} }) }}</div>
+    <div>{{ form_errors(form.message) }}</div>
+
+    <div class="checkbox">
+        <label>{{ form_widget(form.published, { 'attr': {
+                'class': 'flat',
+            } }) }}
+        </label>
+    </div>
+
+
+    {{ form_rest(form) }}
+    <div class="ln_solid"></div>
+    <div>
+        <a class="btn btn-primary" href="{{ path('_testimonial_show') }}">{{ 'Powrót:'|trans({},'gsPages') }}</a>
+        <button id="send" type="submit" class="btn btn-success">{{ 'Zapisz:'|trans({},'gsPages') }}</button>
+    </div>
+</form>

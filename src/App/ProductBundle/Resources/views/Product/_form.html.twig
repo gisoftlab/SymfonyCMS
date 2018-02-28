@@ -1,0 +1,105 @@
+<form action="{{ getUri() }}" method="post" {{ form_enctype() }}>
+    &nbsp;
+    
+    <fieldset>
+        <div>
+        {{ form_errors(form) }}
+        {{ form_widget(form._token) }}        
+        </div>   
+            <div class="field"></div>      
+            <div class="field">
+                <div>{{ form_label(form.title) }}</div>
+                <div>{{ form_widget(form.title, { 'attr': {'class': 'foo'} }) }}</div>
+                <div>{{ form_errors(form.title) }}</div>    
+            </div>              
+            <div class="field">
+                <div>{{ form_label(form.short) }}</div>
+                <div>{{ form_widget(form.short, { 'attr': {'class': 'foo'} }) }}</div>
+                <div>{{ form_errors(form.short) }}</div>        
+            </div>  
+            <div class="field">
+                <div>{{ form_label(form.price) }}</div>
+                <div>{{ form_widget(form.price, { 'attr': {'class': 'foo'} }) }}</div>
+                <div>{{ form_errors(form.price) }}</div>        
+            </div>  
+            <div class="field">
+                <div>{{ form_label(form.deposit) }}</div>
+                <div>{{ form_widget(form.deposit, { 'attr': {'class': 'foo'} }) }}</div>
+                <div>{{ form_errors(form.deposit) }}</div>        
+            </div>  
+            
+            {% if  form.vars.value.id  %}
+            <div class="field">
+                <div>{{ form_label(form.iconPromoted) }}</div>
+                <div>{{ form_widget(form.iconPromoted, { 'attr': {'class': 'foo'} }) }}</div>
+                <div>{{ form_errors(form.iconPromoted) }}</div>    
+            </div>    
+            {% endif %}
+            <div class="field">
+                <div>{{ form_label(form.description) }}</div>
+                <div>{{ form_widget(form.description) }}                 
+                </div>                    
+                <div>{{ form_errors(form.description) }}</div>        
+            </div>         
+              <div class="field">
+                <div>{{ form_label(form.published) }}</div>
+                <div>{{ form_widget(form.published, { 'attr': {'class': 'foo'} }) }}</div>
+                <div>{{ form_errors(form.published) }}</div>    
+            </div> 
+             <div class="field">
+                <div>{{ form_label(form.promoted) }}</div>
+                <div>{{ form_widget(form.promoted, { 'attr': {'class': 'foo'} }) }}</div>
+                <div>{{ form_errors(form.promoted) }}</div>    
+            </div> 
+            <div class="field">
+                <div>{{ form_label(form.page) }}</div>
+                <div>{{ form_widget(form.page, { 'attr': {'class': 'foo'} }) }}</div>
+                <div>{{ form_errors(form.page) }}</div>    
+            </div>              
+            <div class="field1">
+                <a href="#" class="btnShowBlock">Pokaż URL</a>            
+                <div class="showBlock">
+                <div class="field">
+                    <div>{{ form_label(form.slug) }}</div>
+                    <div>{{ form_widget(form.slug, { 'attr': {'class': 'foo'} }) }}</div>
+                    <div>{{ form_errors(form.slug) }}</div>    
+                </div>                           
+                </div>   
+            </div>
+            <div class="field1">
+                <a href="#" class="btnShowBlock">Pokaż metatagi</a>
+                <div class="showBlock"> 
+                    <div class="field">
+                        <div>{{ form_label(form.metaTitle) }}</div>
+                        <div>{{ form_widget(form.metaTitle, { 'attr': {'class': 'foo'} }) }}</div>
+                        <div>{{ form_errors(form.metaTitle) }}</div>    
+                    </div> 
+                    <div class="field">
+                        <div>{{ form_label(form.metaKeywords) }}</div>
+                        <div>{{ form_widget(form.metaKeywords, { 'attr': {'class': 'foo'} }) }}</div>
+                        <div>{{ form_errors(form.metaKeywords) }}</div>    
+                    </div> 
+                    <div class="field">
+                        <div>{{ form_label(form.metaDescription) }}</div>
+                        <div>{{ form_widget(form.metaDescription, { 'attr': {'class': 'foo'} }) }}</div>
+                        <div>{{ form_errors(form.metaDescription) }}</div>    
+                    </div> 
+                </div>  
+            </div>
+
+            {{ form_rest(form) }}
+            <div class="field" style="margin-top: 10px;">       
+                <a class="btn round box-shadow" href="{{ path('_product_show', mergeParams(null,{'id':''})) }}">Powrót</a>    
+                <input type="submit" value="Save" class="round"/>                
+            </div> 
+        </fieldset>
+       
+    </form>
+
+<script>
+    $(".btnShowBlock").click(function () {        
+        $(this).parent().children(".showBlock") .toggle();
+        return false;
+    });
+    //$("div.GrayMenuItem:first").css('border-top', '0px');
+</script>

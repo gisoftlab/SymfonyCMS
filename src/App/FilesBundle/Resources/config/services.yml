@@ -1,0 +1,65 @@
+parameters:  
+  entity.Files: 'App\FilesBundle\Entity\File'
+  entity.Thumbnail: 'App\FilesBundle\Entity\Thumbnail'
+
+  files_imagine.factory: 'App\FilesBundle\DependencyInjection\Factory\ImagineFactory'
+  
+  imagine.gd.class: 'Imagine\Gd\Imagine'
+  imagine.imagick.class: 'Imagine\Imagick\Imagine'
+  imagine.gmagick.class: 'Imagine\Gmagick\Imagine'
+  imagine.box.class: 'Imagine\Image\Box'
+  
+services:
+  #  ImagineInterface instances  
+    imagine:
+       alias: imagine.gd
+    imagine.gd:
+       class: '%imagine.gd.class%'
+    imagine.imagick:
+       class: '%imagine.imagick.class%'
+    imagine.gmagick:
+       class: '%imagine.gmagick.class%'
+   
+    files_imagine:
+        class: '%app_files.driver.class%'
+        factory: ['%files_imagine.factory%', create]
+        arguments:
+             - '%app_files.driver%'
+
+   #  HELPERS
+    app.twig.files_extension:
+        class: 'App\FilesBundle\Twig\FilesExtension'
+        arguments:
+          doctrine: '@doctrine'
+          context: '@security.token_storage'
+          container: '@service_container'
+        tags:
+          - { name: twig.extension }
+   
+    #  SERVICES
+    service.uploader:
+        class: 'App\FilesBundle\Services\UploaderService'
+        arguments: ['@request_stack', '@doctrine', '@service_container']
+        
+    #  FORM    
+    form.files.upload:
+        class:        'App\FilesBundle\Form\UploadType'
+        arguments:     
+          doctrine: '@doctrine'
+          container: '@service_container'
+        tags:
+          - { name: form.type }
+    
+    #  REPOSITORY          
+    repo.files:
+       class: '%entity.Files%'
+       factory: ['@app.repo.factory', 'getRepository']
+       arguments:
+         - '%entity.Files%'
+           
+    repo.thumbnail:
+         class: '%entity.Thumbnail%'
+         factory: ['@app.repo.factory', 'getRepository']
+         arguments:
+           - '%entity.Thumbnail%'
+     

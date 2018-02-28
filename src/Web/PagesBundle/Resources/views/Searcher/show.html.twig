@@ -1,0 +1,8 @@
+<form id="search_mini_form" method="GET" action="{{ path('_web_show_page',{'slug':'wypozyczalnia'}) }}" >
+        <div class="form-search middel-round">
+            <button class="btn orange" title="Szukaj" type="submit">Szukaj</button>
+            {#<input id="search" class="input-text round" type="text" value="Szukaj..." name="q" autocomplete="off" ></input>#}
+            {{ form_widget(form.search, { 'attr': {'id': 'search','class': 'input-text round','autocomplete': 'off','value': 'Szukaj...'} }) }}
+            {{ form_errors(form.search) }}
+        </div>
+</form>

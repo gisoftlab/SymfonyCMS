@@ -1,0 +1,32 @@
+{% form_theme form with 'AppBackendBundle:Form:form_admin_fields.html.twig' %}
+
+<form action="{{ getUri() }}" method="post">&nbsp;
+    <span class="section">{{ description is defined ? description: '' }}</span>
+
+    <div>
+    {{ form_errors(form) }}
+    {{ form_widget(form._token) }}
+    </div>
+    <div>{{ form_label(form.name, '', { 'label_attr': {'class': ''} }) }}</div>
+    <div>
+        {{ form_widget(form.name, { 'attr': {
+            'required':'required'
+        } }) }}
+    </div>
+    <div>{{ form_errors(form.name) }}</div>
+
+    <div>{{ form_label(form.description) }}</div>
+    <div>{{ form_widget(form.description, { 'attr': {'style': 'width:100%;height:400px'} }) }}</div>
+    <div>{{ form_errors(form.description) }}</div>
+
+    <div>{{ form_label(form.parent) }}</div>
+    <div>{{ form_widget(form.parent, { 'attr': {'style': 'width:150px'} }) }}</div>
+    <div>{{ form_errors(form.parent) }}</div>
+
+    {{ form_rest(form) }}
+    <div class="ln_solid"></div>
+    <div>
+        <a class="btn btn-primary" href="{{ path('_pages_block_show', mergeParams(null,{'id':''})) }}">{{ 'Powrót:'|trans({},'gsPages') }}</a>
+        <button id="send" type="submit" class="btn btn-success">{{ 'Zapisz:'|trans({},'gsPages') }}</button>
+    </div>
+</form>

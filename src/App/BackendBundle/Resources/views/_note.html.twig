@@ -1,0 +1,34 @@
+<div id="notification" class="col-md-12 col-sm-12 col-xs-12">
+{% for flashMessage in app.session.flashbag.get('error') %} 
+ <div class="flash error x_panel">
+    <div class="flash-content">
+        <div> {{ flashMessage|trans({},'gsMessages') }}</div>
+    <a class="close close-link"></a>
+    </div>
+ </div>    
+{% endfor %}    
+{% for flashMessage in app.session.flashbag.get('ok') %}
+<div class="flash ok x_panel">
+    <div class="flash-content">
+        <div> {{ flashMessage|trans({},'gsMessages') }}</div>
+    <a class="close close-link"></a>
+    </div>
+</div>
+{% endfor %}    
+{% for flashMessage in app.session.flashbag.get('info') %}    
+<div class="flash info x_panel">
+    <div class="flash-content">
+        <div> {{ flashMessage|trans({},'gsMessages') }}</div>
+    <a class="close close-link"></a>
+    </div>
+</div>
+{% endfor %}    
+{% for flashMessage in app.session.flashbag.get('notice') %}        
+<div class="flash notice x_panel">
+    <div class="flash-content">
+        <div> {{ flashMessage|trans({},'gsMessages') }}</div>
+    <a class="close close-link"></a>
+    </div>
+</div>
+{% endfor %}    
+</div>

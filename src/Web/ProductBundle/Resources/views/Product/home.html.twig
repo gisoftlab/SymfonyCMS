@@ -1,0 +1,17 @@
+{% for key, entity in entities %}  
+<div class="product-item">
+    <figure >
+        <a href="{{ path('_web_show_page',{'slug':entity.slug}) }}">{{ thumbnail(entity.icon,'small') }}</a>
+    </figure>
+    <strong class="title">
+        <a href="{{ path('_web_show_page',{'slug':entity.slug}) }}">{{entity.title|truncate(40)}}</a>
+    </strong>
+    <div class="prices">                                
+        <div><span>Cena:</span> {{entity.price}} PLN</div>
+        <div><span>Kaucja:</span> {{entity.deposit}} PLN</div>
+    </div>
+    <div class="alignright">
+        <a href="{{ path('_web_show_page',{'slug':entity.slug}) }}" class="btn orange round">zamów</a>
+    </div>                        
+</div>
+{% endfor %}

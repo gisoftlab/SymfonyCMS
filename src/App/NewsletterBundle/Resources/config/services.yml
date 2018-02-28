@@ -1,0 +1,11 @@
+parameters:  
+  entity.NewsletterEmail: 'App\NewsletterBundle\Entity\NewsletterEmail'  
+  
+services:               
+    
+    repo.newsletterEmail:
+      class: '%entity.NewsletterEmail%'
+      factory: ['@app.repo.factory', 'getRepository']
+      arguments:
+        - '%entity.NewsletterEmail%'
+         

@@ -1,0 +1,45 @@
+<div class="row">
+    <p>Zdjecia w galerii</p>
+    {% for  key , value in files  %}
+        {% if value.file.fileType == getTypeName("Images") %}
+        <div class="col-md-40 file{{value.file.id}}">
+            <div class="formTitle formTitleObj{{value.file.id}}">
+                <div class="field">
+                    <form class="titleFileEdit" id="FileTitle{{value.file.id}}" method="post" enctype="multipart/form-data" action="{{ path('_files_editTitle') }}">
+                        <input type="hidden" value="{{value.file.id}}" name="Title[FilesId]">
+                        <input type="hidden" value="{{value.page.id}}" name="Title[PagesId]">
+                        <input type="text" name="Title[FileTitle]" value="{{ getImageTitle(value.file) }} ">
+                        <a class="btn-green" href="#">Zapisz</a>
+                    </form>
+                </div>
+            </div>
+            <div class="imageTitle icon-title{{ value.file.id }}">
+                <span class="showImageTitle"><a href="#">{{ getImageTitle(value.file) }}</a></span>
+                <span>
+                    {% if isIcon(value) %}
+                        <b class="round-upper icon">ikona</b>
+                    {% else %}
+                        <span class="blank">&nbsp;</span>
+                    {% endif %}
+                </span>
+            </div>
+            <div class="thumbnail">
+                <div class="image view view-first">
+                    <img style="width: 100%; display: block;" src='{{ getImage(value.file,"small") }} ' alt='{{ getImageTitle(value.file) }}' />
+                    <div class="mask">
+                        <p>{{ getImageTitle(value.file)?getImageTitle(value.file): "Miejsce na tytul" }}</p>
+                        <div class="tools tools-bottom">
+                            {% if isIcon(value) != true %}
+                                <a href="{{ path('_files_setIcon', {'id':value.page.id,'fileId':value.file.id}) }}" ajax='{"target":".content-gallery", "idx": "{{value.page.id}}", "callback": "{{ path('_files_upload', {'id':value.page.id,'quick':1}) }}", "srcx": "{{ getImage(value.file,"smaller") }}"}' class="green setup-icon" title="Ustaw jako ikone" ><i class="fa fa-chevron-down"></i></a>
+                            {% endif %}
+                            <a href="#" ajax='{"target": ".formTitleObj", "idf": "{{ value.file.id }}" }' class="edit-title" title="Edycja tytulu"><i class="fa fa-pencil" ></i></a>
+                            <a href="{{ path('_files_delete', {'id':value.page.id,'fileId':value.file.id}) }}" ajax='{"target":".content-gallery", "callback": "{{ path('_files_upload', {'id':value.page.id,'quick':1}) }}", "idx": "{{value.page.id}}","idf": "{{value.file.id}}",  "confirmedMessage": "Skasować Plik?" }' class="red delete-image" title="Skasuj obrazek" ><i class="fa fa-times"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    {% endfor %}
+    <div class="clear"></div>
+ </div>

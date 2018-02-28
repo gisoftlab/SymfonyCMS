@@ -1,0 +1,10 @@
+{% extends "AppBackendBundle::layout.html.twig" %}
+
+{% block title "Edit - Block"|trans({},'gsPages') %}
+{% block page_title "Edytuj Block"|trans({},'gsPages') %}
+
+{% block content %}
+    <div class="x_content">
+        {% include 'AppPagesBundle:Category:_form.html.twig' with {'form': form,'description':'Formularz do edycji danych bloków'|trans({},'gsPages')} %}
+    </div>
+{% endblock %}

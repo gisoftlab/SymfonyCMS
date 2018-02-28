@@ -1,0 +1,21 @@
+<div id="footer-menu" class="more-round-lower">
+    {% for  key , value in entities  %}        
+    <div class="col-{{key+1}}">
+        <h4>{{value.title}}</h4>
+        <ul class="list-1">
+            {% for  k , val in value.children  %}       
+                {% if val.uri %}
+                        {% if "http" in val.uri  %}                
+                            <li><a href="{{val.uri}}">{{val.title}}</a></li>
+                        {% else %}
+                            <li><a href="{{ path('_web_show_page',{'slug':val.slug}) }}">{{val.title}}</a></li>                         
+                        {% endif %}    
+                {% else %}
+                <li><span>{{val.title}}</span>{{val.short}}</li>     
+                {% endif %}
+            {% endfor %}           
+        </ul>
+    </div>
+    {% endfor %}         
+    <br class="clear"/>
+</div>    

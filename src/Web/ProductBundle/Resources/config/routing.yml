@@ -1,0 +1,24 @@
+
+#_web_show_product:
+#    path:  /{slug}/{page}
+#    defaults: { _controller: WebProductBundle:Product:index , page: 1, slug: none }
+    
+_web_save_order:
+    path:  /saveOrder
+    defaults: { _controller: WebProductBundle:Order:saveOrder } 
+    
+_web_save_cart:
+    path:  /saveCart
+    defaults: { _controller: WebProductBundle:Order:saveCart }     
+    
+_web_order:
+    path:  /saveOrder
+    defaults: { _controller: WebProductBundle:Order:show }     
+    
+_web_order_rent:
+    path:  /saveRent
+    defaults: { _controller: WebProductBundle:Cart:rent }     
+    
+_web_order_clear:
+    path:  /saveClear
+    defaults: { _controller: WebProductBundle:Cart:clear }         

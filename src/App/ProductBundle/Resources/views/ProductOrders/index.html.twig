@@ -1,0 +1,55 @@
+{% extends "AppBackendBundle::layout.html.twig" %}
+
+{% block title "Parametry - ogólne produktu" %}
+
+{% block content_header '' %}
+
+{% block content %}
+
+<div id="page-heading"><h1>Lista zamówień produktu "{% if product %}{{product.title}}{% endif %}"</h1></div>    
+<div class="content-table-inner more-round">
+    <div class="table-content">                  
+          {% include 'AppBackendBundle::_note.html.twig' %}                
+        <div class="margin-bottom">   
+             <a class="btn round" href="{{ path('_product_show', mergeParams(null,{'id':''}))}}" title="Powrót" >Powrót</a>                        
+        </div>	        
+        <table class="product-table">
+            <tr>
+                <th>{{knp_pagination_sortable(pager,'#', 'a.id')|raw }}</th>                                 
+                <th{% if pager.isSorted('a.name') %} class="sorted"{% endif %}>{{knp_pagination_sortable(pager,'Imię Nazwisko', 'a.name')|raw }}</th>
+                <th{% if pager.isSorted('a.email') %} class="sorted"{% endif %}>{{knp_pagination_sortable(pager,'Email', 'a.email')|raw }}</th>
+                <th{% if pager.isSorted('a.dateFrom') %} class="sorted"{% endif %}>{{knp_pagination_sortable(pager,'od', 'a.dateFrom')|raw }}</th>                
+                <th{% if pager.isSorted('a.dateTo') %} class="sorted"{% endif %}>{{knp_pagination_sortable(pager,'od', 'a.dateTo')|raw }}</th> 
+                <th{% if pager.isSorted('a.description') %} class="sorted"{% endif %}>{{knp_pagination_sortable(pager,'Opis', 'a.description')|raw }}</th> 
+                <th{% if pager.isSorted('a.product.title') %} class="sorted"{% endif %}>{{knp_pagination_sortable(pager,'Produkt', 'a.product.title')|raw }}</th>
+                <th{% if pager.isSorted('a.product.price') %} class="sorted"{% endif %}>{{knp_pagination_sortable(pager,'Cena', 'a.product.price')|raw }}</th>
+                <th{% if pager.isSorted('a.product.deposit') %} class="sorted"{% endif %}>{{knp_pagination_sortable(pager,'Kaucja', 'a.product.deposit')|raw }}</th>
+                <th{% if pager.isSorted('a.CreatedAt') %} class="sorted"{% endif %}>{{knp_pagination_sortable(pager,'Stworzono', 'a.createdAt')|raw }}</th>
+                <th><a href="#">Akcje</a></th>
+            </tr>                
+            {% for key, row in pager %}
+                                     
+             <tr {% if loop.index is odd %}class="color"{% endif %}>                 
+                    <td><a title="Edit Zamówienie" href="{{ path('_product_orders_edit', mergeParams(null,{'id':row.id})) }}">{{ getIIter(pager,key) }}</a></td>                      
+                    <td><a title="Edit Zamówienie" href="{{ path('_product_orders_edit', mergeParams(null,{'id':row.id})) }}">{{ row.name }}</a></td>
+                    <td>{{ row.email }}</td>
+                    <td>{{ row.dateFrom|date("Y/m/d")  }}</td>
+                    <td>{{ row.dateTo|date("Y/m/d")  }}</td>
+                    <td>{{ row.description }}</td>                                              
+                    <td>{{ row.product.title }}</td>    
+                    <td>{{ row.product.price }}</td>    
+                    <td>{{ row.product.deposit }}</td>    
+                    <td>{{ row.createdAt|date("Y/m/d") }}</td>                                          
+                    <td class="last"> 
+                       {# <a class="icon-1 info-tooltip" href="{{ path('_product_orders_edit', mergeParams(null,{'id':row.id})) }}" title="Edit"> </a>  #}
+                        <a class="icon-2 info-tooltip" href="{{ path('_product_orders_delete', mergeParams(null,{'id':row.id})) }}" onclick="return confirm('Napewno chcesz skasować Zamówienie ?')" title="Usuń"> </a>                                                                                                           
+                    </td> 
+               </tr>     
+            {% endfor %}
+        </table>
+    </div>    
+     {{ knp_pagination_render(pager) }}       
+    <div class="clear"></div>
+</div>
+{% endblock %}
+      

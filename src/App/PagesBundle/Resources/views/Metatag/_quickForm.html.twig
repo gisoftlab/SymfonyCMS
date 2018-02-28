@@ -1,0 +1,44 @@
+{% form_theme form with 'AppBackendBundle:Form:form_admin_fields.html.twig' %}
+
+<div class="content-table-inner more-round">
+    <form id="quickForm{{ id }}" class="quickForm" action="{{ path('_metatag_quickEdit', {'id':id,'quick':quick}) }}" method="post" {{ form_enctype() }}>
+        <fieldset>
+            <div>
+                {{ form_errors(form) }}
+                {{ form_widget(form._token) }}
+            </div>
+            <div>{{ form_label(form.title, '', { 'label_attr': {'class': ''} }) }}</div>
+            <div>
+                {{ form_widget(form.title, { 'attr': {
+                    'style': 'max-width:60%',
+                    'required':'required'
+                } }) }}
+            </div>
+            <div>{{ form_errors(form.title) }}</div>
+            <div>{{ form_label(form.keywords, '', { 'label_attr': {'class': ''} }) }}</div>
+            <div>
+                {{ form_widget(form.keywords, { 'attr': {
+                    'style': 'max-width:60%',
+                    'required':'required'
+                } }) }}
+            </div>
+            <div>{{ form_errors(form.keywords) }}</div>
+            <div>
+                <div>{{ form_label(form.description) }}</div>
+                <div>{{ form_widget(form.description, {'id': 'quick_description_'~id, 'attr': {'style': 'max-width:60%;height:150px'} }) }}</div>
+                <div>{{ form_errors(form.description) }}</div>
+            </div>
+            <div class="ln_solid"></div>
+            <div class="btn-group">
+                <a class="btn btn-primary closeQuickAction" href='#load-form{{ id }}' ajax='{"id": "{{ id }}"}'>{{ 'Zamknij'|trans({},'gsPages') }}</a>
+
+                <div class="submit">
+                    <button type="submit" class="btn btn-success saveQuickAction" ajax='{"target":"#load-form","data":{"id":"{{ id }}" }}' >{{ 'Zapisz'|trans({},'gsPages') }}</button>
+                    <span class="loader"><p id="LoadingInfo{{ id }}"></p></span>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+</div>
+
+{{ renderJsInline() }}

@@ -1,0 +1,17 @@
+_newsletter_new:
+    path:  /newsletter/new
+    defaults: { _controller: AppNewsletterBundle:NewsletterEmail:new}
+      
+_newsletter_edit:
+    path:  /newsletter/{id}/edit
+    defaults: { _controller: AppNewsletterBundle:NewsletterEmail:edit}
+    requirements: { id: \d+ }
+
+_newsletter_delete:
+    path:  /newsletter/{id}/delete
+    defaults: { _controller: AppNewsletterBundle:NewsletterEmail:delete}
+    requirements: { id: \d+ }
+    
+_newsletter_show:
+    path:  /newsletter/{id}
+    defaults: { _controller: AppNewsletterBundle:NewsletterEmail:index,  id: null }

@@ -1,0 +1,6 @@
+<span>Szybkie Akcje:</span>             
+
+<a  onclick="gsAjax.loadGetAction($(this),'#load-form', {id:{{ product.id }}});return false;" class="quick-link info-tooltip" href="{{ path('_product_quickEdit', {'id':product.id,'quick':1}) }}" title="Szybka edycja informacji">Edycja</a>                            
+<a  onclick="gsAjax.loadQuickUploader($(this),'.load-form',{id:{{ product.id }}}); return false;" class="quick-link info-tooltip" href="{{ path('_files_product_upload', {'id':product.id,'quick':1}) }}" title="Szybka edycja galerii">Galeria</a>
+<a class="quick-link info-tooltip" style="color:#067C0E" href="{{ path('_product_items_show', mergeParams(product,{'productId':product.id}))  }}" title="Parametry Produktu -  zarządzanie opisem"> Pokaż parametry produktu</a>                         
+<a class="quick-link info-tooltip" style="color:#105493" href="{{ path('_product_orders_show', mergeParams(product,{'productId':product.id})) }}" title="Pokaż zamówienia -  zarządzanie opisem"> Pokaż zamówienia</a>                         

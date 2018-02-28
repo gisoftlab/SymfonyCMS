@@ -1,0 +1,8 @@
+{% if count(languages) %}
+    <span class="quick-link"><a href="#">Tłumaczenia : </a></span>    
+    {% for  key , value in languages  %}   
+        {% if value.getLanguage != lang %}
+            <a  onclick="gsAjax.loadGetAction(this,'#load-form', {id:{{page.id}},culture:'{{value.getLanguage}}'});return false;" class="quick-link info-tooltip" href="{{ path('_pages_translate', {'id':page.id,'culture':value.getLanguage,quick:1}) }}" title="Tłumaczenie strony -  {{value.countryName}}"> {{value.countryName}}</a>
+        {% endif %}
+     {% endfor %}
+{% endif %}

@@ -1,0 +1,20 @@
+
+{% for key, row in pager %}
+<div class="product-item">
+    <figure >
+        <a href="{{ path('_web_show_page',{'slug':row.slug}) }}"> {{ thumbnail(row.icon,'small') }}</a>
+    </figure>
+    <strong class="title">
+        <a href="{{ path('_web_show_page',{'slug':row.slug}) }}">{{row.title|truncate(30)}}</a>
+    </strong>
+    <div class="prices">                                
+        <div><span>Cena:</span> {{row.price}} PLN</div>
+        <div><span>Kaucja:</span> {{row.deposit}} PLN</div>
+    </div>
+    <div class="alignright">
+        <a href="{{ path('_web_show_page',{'slug':row.slug}) }}" class="btn orange round">zamów</a>
+    </div>                        
+</div>
+{% endfor %}
+<div class="clear"></div>     
+ {{ knp_pagination_render(pager) }}    

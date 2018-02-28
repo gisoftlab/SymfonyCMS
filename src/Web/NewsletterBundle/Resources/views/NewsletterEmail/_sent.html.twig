@@ -1,0 +1,68 @@
+<span id="target-newsletter-form">
+<div class="box-newletter more-round-upper">
+ <span id="FlashMessageNews"></span>   
+{% include 'WebWebBundle::_noteSpan.html.twig' %}    
+    <h2>Newsletter </h2>
+    <form id="newsletter_form" method="POST" action="{{ path('_newsletterEmail') }}" {{ form_enctype() }}>
+        {{ form_errors(form) }}
+        {{ form_widget(form._token) }}        
+        <div class="form-search middel-round">                                
+            <button class="btn orange" title="Zapisz" type="submit">Zapisz</button><p id="LoadingInfoNews"></p>            
+            {{ form_widget(form.email, { 'attr': {'id': 'newsletter','class': 'input-text round','autocomplete': 'off','value': 'Podaj swój email...'} }) }}
+            {{ form_errors(form.email) }}                                                         
+        </div>
+    </form>
+    <br class="clear"/>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function(){                             
+         $("#newsletter_form").submit(function(){                
+                
+                var form  = $("#newsletter_form");
+                
+                $(form).ajaxSubmit({
+                    type: "POST",
+                    url: $(form).attr("action"),                
+                    data: {},
+                    dataType: "html",
+                    
+                    beforeSend: function(data){                        
+                        $("#LoadingInfoNews").show();
+                    },
+                    success: function(data){     
+                        
+                       var json = $.parseJSON(data);
+                         
+                        if(json.note != "ok"){   
+                            $("#target-newsletter-form").html(json.html);                            
+                            
+                            if(json.note == "error"){   
+                                notification(json.note,json.msg,"#FlashMessageNews");
+                            }
+                        }
+                        else{
+                            notification(json.note,json.msg,"#FlashMessageNews");
+                            
+                            $("input[type=email]",form).val("");
+                            $(".input-error").html("");                               
+                            $(".input").removeClass("error");                            
+                            $("textarea").removeClass("input-validation-error");    
+                            $("#LoadingInfoNews").hide();
+                            
+                        }                                                
+                    },
+                    error:function(data){
+                        //console.log(data);
+                    },
+                    complete:function(data){
+                    }
+                    
+                });
+                
+                return false;                    
+            });                          
+    });    
+</script>
+
+</span>

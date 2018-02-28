@@ -1,0 +1,39 @@
+{% form_theme form with 'AppBackendBundle:Form:form_admin_fields.html.twig' %}
+
+<form action="{{ getUri() }}" method="post" {{ form_enctype() }} data-parsley-validate >
+
+    <span class="section">{{ description is defined ? description: '' }}</span>
+    <div>
+    {{ form_errors(form) }}
+    {{ form_widget(form._token) }}
+    </div>
+
+    <div>{{ form_label(form.name, '', { 'label_attr': {'class': ''} }) }}</div>
+    <div>
+        {% if form.vars.value.id %}
+            {{ form_widget(form.name, { 'attr': {
+                'readonly':'readonly',
+            } }) }}
+        {% else %}
+            {{ form_widget(form.name, { 'attr': {
+                'required':'required'
+            } }) }}
+        {% endif %}
+    </div>
+    <div>{{ form_errors(form.name) }}</div>
+
+    <div>{{ form_label(form.value) }}</div>
+    <div>{{ form_widget(form.value) }}</div>
+    <div>{{ form_errors(form.value) }}</div>
+
+    <div>{{ form_label(form.description) }}</div>
+    <div>{{ form_widget(form.description) }}</div>
+    <div>{{ form_errors(form.description) }}</div>
+
+    {{ form_rest(form) }}
+    <div class="ln_solid"></div>
+    <div>
+        <a class="btn btn-primary" href="{{ path('_settings_show') }}">Powrót</a>
+        <button id="send" type="submit" class="btn btn-success">Zapisz</button>
+    </div>
+</form>

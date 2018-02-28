@@ -1,0 +1,33 @@
+parameters:  
+  entity.Settings: 'App\SettingsBundle\Entity\Settings'    
+  entity.Languages: 'App\SettingsBundle\Entity\Languages'    
+  
+services:
+
+    # SERVICE
+    service.settings:
+        class: 'App\SettingsBundle\Services\SettingsService'
+        arguments: ['@request_stack', '@doctrine.orm.entity_manager', '@service_container']
+
+    # TWIG
+    app.twig.settings_extension:
+        class: 'App\SettingsBundle\Twig\SettingsExtension'
+        arguments: ['@service_container']          
+        tags:
+          - { name: twig.extension }
+
+    # REPOSITORY
+    repo.settings:
+      class: '%entity.Settings%'
+      factory: ['@app.repo.factory', 'getRepository']
+      arguments:
+        - '%entity.Settings%'
+        
+    repo.languages:
+      class: '%entity.Languages%'
+      factory: ['@app.repo.factory', 'getRepository']
+      arguments:
+        - '%entity.Languages%'
+                    
+                
+     

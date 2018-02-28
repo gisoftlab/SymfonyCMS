@@ -1,0 +1,20 @@
+_homepage:
+    path:  /
+    defaults: { _controller: WebPagesBundle:Pages:index , page: 1, slug: '' }
+      
+admin:
+    path:  /admin/
+    defaults: { _controller: AppPagesBundle:Pages:index }
+      
+_static_contact:
+    resource: '@WebContactBundle/Resources/config/routing.yml'               
+
+_newsletter_email:
+    resource: '@WebNewsletterBundle/Resources/config/routing.yml'    
+
+_web_product:
+    resource: '@WebProductBundle/Resources/config/routing.yml'        
+    
+_static_pages:
+    resource: '@WebPagesBundle/Resources/config/routing.yml'               
+                        

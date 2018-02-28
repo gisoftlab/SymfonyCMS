@@ -1,0 +1,10 @@
+{% extends "AppBackendBundle::layout.html.twig" %}
+
+{% block title "Create - Block"|trans({},'gsPages') %}
+{% block page_title "Utwórz Block"|trans({},'gsPages') %}
+
+{% block content %}
+    <div class="x_content">
+        {% include 'AppPagesBundle:Category:_form.html.twig' with {'form': form,'description':'Formularz do dodawania bloków'|trans({},'gsPages')} %}
+    </div>
+{% endblock %}

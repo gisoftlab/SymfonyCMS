@@ -1,0 +1,115 @@
+{% extends 'AppBackendBundle::base.html.twig' %}
+
+{% block title %}{{backend.metatag.title|trans({},'gsMetatag')}}{% endblock %}
+
+{% block meta %}
+    <meta name="description" content="{% block meta_description %}{{backend.metatag.description|trans({},'gsMetatag')}}{% endblock %}">
+    <meta name="keywords" content="{% block meta_keywords %}{{backend.metatag.keywords|trans({},'gsMetatag')}}{% endblock %}">
+    <meta name="author" content="{% block meta_author %}{{backend.metatag.author|trans({},'gsMetatag')}}{% endblock %}">
+{% endblock %}
+
+{% block stylesheets %}
+    <!-- Bootstrap -->
+    <link href="{{ asset('assets/vendors/bootstrap/dist/css/bootstrap.min.css') }}" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="{{ asset('assets/vendors/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet">
+    <!-- iCheck -->
+    <link href="{{ asset('assets/vendors/iCheck/skins/flat/green.css') }}" rel="stylesheet">
+{% endblock stylesheets %}
+
+{% block stylesheets_render %}
+    {{ renderCss() }}
+{% endblock%}
+
+{% block stylesheets_custom %}
+    <!-- Custom Theme Style -->
+    <link href="{{ asset('assets/css/custom.css') }}" rel="stylesheet">
+{% endblock%}
+
+{% block bodyClass %}nav-md{% endblock %}
+        
+{% block body %}
+
+    <div class="container body">
+        <div class="main_container">
+            {% include 'AppBackendBundle::_sidebar.html.twig' %}
+            {% include 'AppBackendBundle::_topnav.html.twig' %}
+
+            <!-- page content -->
+            <div class="right_col" role="main">
+                <div class="">
+                    {% block top_content_header %}
+                        <div class="page-title">
+                            <div class="title_left">
+                                {{ render(controller('AppBackendBundle:Roadmap:prepare', { 'parentId': app.request.get("parentId"), 'id': app.request.get("id") })) }}
+                                <h3>{% block page_title %}Page Title{% endblock page_title %}</h3>
+
+                            </div>
+
+                            <div class="title_right">
+                                <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+                                    <div class="input-group">
+                                        {{ render(controller('AppPagesBundle:Searcher:seek')) }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endblock top_content_header %}
+                    <div class="clearfix"></div>
+                    <div class="row">
+                        {% include 'AppBackendBundle::_note.html.twig' %}
+                    </div>
+                    {% block content %}{% endblock %}
+                </div>
+            </div>
+            <!-- /page content -->
+            {% include 'AppBackendBundle::_footer.html.twig' %}
+        </div>
+    </div>
+{% endblock %}
+
+{#{% block javascripts_footer %}#}
+    {#{% javascripts#}
+            {#'backend/js/gs/gsAjax.js'#}
+            {#'backend/js/gs/custom_jquery.js'#}
+            {#'backend/js/jquery/jquery.form.js'#}
+
+            {#output='public/js/compiled-footer.js'#}
+            {#filter='?yui_js'#}
+            {#%}#}
+
+            {#<script type="text/javascript"  src="{{ asset_url }}"></script>#}
+        {#{% endjavascripts %}#}
+{#{% endblock%}#}
+
+{% block javascripts_main %}
+    <!-- jQuery -->
+    <script type="text/javascript" src="{{ asset('assets/vendors/jquery/dist/jquery.min.js') }}"></script>
+    <!-- jQuery sunmit -->
+    <script type="text/javascript" src="{{ asset('backend/js/jquery/jquery.form.js') }}"></script>
+    <!-- Bootstrap -->
+    <script type="text/javascript" src="{{ asset('assets/vendors/bootstrap/dist/js/bootstrap.min.js') }}"></script>
+    <!-- FastClick -->
+    <script type="text/javascript" src="{{ asset('assets/vendors/fastclick/lib/fastclick.js') }}"></script>
+    <!-- NProgress -->
+    <script type="text/javascript" src="{{ asset('assets/vendors/nprogress/nprogress.js') }}"></script>
+    <!-- iCheck -->
+    <script type="text/javascript" src="{{ asset('assets/vendors/iCheck/icheck.min.js') }}"></script>
+    <!-- Select2 -->
+    <script type="text/javascript" src="{{ asset('assets/vendors/select2/dist/js/select2.full.min.js') }}"></script>
+    <!-- Parsley -->
+    <script type="text/javascript" src="{{ asset('assets/vendors/parsleyjs/dist/parsley.min.js') }}"></script>
+{% endblock %}
+
+{% block javascripts_render %}
+    {{ renderJs() }}
+    {{ renderJsInline() }}
+{% endblock%}
+
+
+{% block javascripts_custom %}
+<!-- Custom Theme Scripts -->
+<script src="{{ asset('backend/js/gs/gsAjax.js') }}"></script>
+<script src="{{ asset('backend/js/gs/custom_cms.js') }}"></script>
+<script src="{{ asset('assets/js/custom.js') }}"></script>
+{% endblock %}

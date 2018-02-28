@@ -1,0 +1,55 @@
+{#
+   Each field type is rendered by a template fragment, which is determined
+   by the name of your form type class (DateTimePickerType -> date_time_picker)
+   and the suffix "_widget". This can be controlled by overriding getBlockPrefix()
+   in DateTimePickerType.
+
+   See http://symfony.com/doc/current/cookbook/form/create_custom_field_type.html#creating-a-template-for-the-field
+#}
+
+{% block date_time_picker_widget %}
+    {% spaceless %}
+        <div class="input-group date" data-toggle="datetimepicker">
+            {{ block('datetime_widget') }}
+            <span class="input-group-addon">
+                <span class="fa fa-calendar" aria-hidden="true"></span>
+            </span>
+        </div>
+    {% endspaceless %}
+{% endblock %}
+
+{%- block form_label -%}
+    {% if label is not same as(false) -%}
+        {% if not compound -%}
+            {% set label_attr = label_attr|merge({'for': id}) %}
+        {%- endif -%}
+        {% if label is empty -%}
+            {%- if label_format is not empty -%}
+                {% set label = label_format|replace({
+                '%name%': name,
+                '%id%': id,
+                }) %}
+            {%- else -%}
+                {% set label = name|humanize %}
+            {%- endif -%}
+        {%- endif -%}
+        <label{% for attrname, attrvalue in label_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>{{ translation_domain is same as(false) ? label : label|trans({}, translation_domain) }}{% if required -%}<span class="required">*</span>{%- endif -%}</label>
+    {%- endif -%}
+{%- endblock form_label -%}
+
+{%- block form_widget_simple -%}
+    {%- set type = type|default('text') -%}
+
+    {% if type == 'text' %}
+        
+    {% endif %}
+
+    {% set attr = attr|merge({class: (attr.class|default('') ~ ' ' ~ block('form_input_class'))|trim}) %}
+
+
+    <input type="{{ type }}" {{ block('widget_attributes') }} {% if value is not empty %}value="{{ value }}" {% endif %}"/>
+{%- endblock form_widget_simple -%}
+
+{% block form_input_class -%}
+    form-control
+{%- endblock form_input_class %}

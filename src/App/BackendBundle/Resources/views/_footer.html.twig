@@ -1,0 +1,10 @@
+{% block footer %}
+    <!-- footer content -->
+    <footer>
+        <div class="pull-right">
+            {{ "now"|date("Y")}} &copy; Copyright <a href="http://{{company.host}}">{{company.name}}</a>. {{company.title}} v {{version}}
+        </div>
+        <div class="clearfix"></div>
+    </footer>
+    <!-- /footer content -->
+{% endblock %}

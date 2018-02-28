@@ -1,0 +1,162 @@
+{% extends "AppBackendBundle::layout.html.twig" %}
+
+{% block title 'Page - menage flat pages'|trans({},'gsPages') %}
+{% block page_title 'Lista Stron'|trans({},'gsPages') %}
+
+{% block tinymce_init %}
+<!-- Tinymce -->
+<script type="text/javascript" src="{{ asset('bundles/stfalcontinymce/vendor/tinymce/jquery.tinymce.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('bundles/stfalcontinymce/js/init.jquery.js') }}"></script>
+{% endblock%}
+
+{% block content %}
+<div class="col-md-12 col-sm-12 col-xs-12">
+    <div class="x_panel">
+        <div class="x_title">
+            <h2>{{ 'Zarzadzanie stronami'|trans({},'gsPages') }}<span></span></h2>
+            <ul class="nav navbar-right panel_toolbox">
+                <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                    <ul class="dropdown-menu" role="menu">
+                    </ul>
+                </li>
+                <li><a class="close-link"><i class="fa fa-close"></i></a>
+                </li>
+            </ul>
+            <div class="clearfix"></div>
+        </div>
+
+        <div class="x_content">
+            <div class="row">
+                {% if parent %}
+                    {% if parent.parent %}
+                        <a class="btn btn-navbar" href="{{ path('_pages_show', mergeParams(parent.parent,'parentId'))}}" title="{{ 'Powrót'|trans({},'gsPages') }}" >{{ 'Powrót'|trans({},'gsPages') }}</a>
+                    {% else %}
+                        <a class="btn btn-navbar" href="{{ path('_pages_show')}}" title="{{ 'Powrót'|trans({},'gsPages') }}" >{{ 'Powrót'|trans({},'gsPages') }}</a>
+                    {% endif %}
+                    <a class="btn btn-primary" href="{{ path('_pages_new', mergeParams(parent))}}" title="{{ 'Add'|trans({},'gsPages') }}">{{ 'Dodaj Podstronę do - %parentTitle%'|trans({'%parentTitle%': parent.title},'gsPages') }}</a>
+                {% else %}
+                    <a class="btn btn-primary" href="{{ path('_pages_new')}}" title="{{ 'Add'|trans({},'gsPages') }}">{{ 'Dodaj Stronę'|trans({},'gsPages') }}</a>
+                {% endif %}
+            </div>
+            <div class="table-responsive">
+                <form action="#" id="multiform" method="post" name="multiform">
+                    <form></form> <!-- dump form to allow nested forms-->
+                    <table class="table table-striped jambo_table bulk_action">
+                        <thead>
+                        <tr class="headings">
+                            <th>
+                                <input type="checkbox" id="check-all" class="flat">
+                            </th>
+                            <th class="column-title">{{ knp_pagination_sortable(pager,'#', 'a.id')|raw }}</th>
+                            <th class="column-title {% if pager.isSorted('a.icon') %} sorted{% endif %}">{{ knp_pagination_sortable(pager,'Icona'|trans({},'gsPages'), '')|raw }}</th>
+                            <th class="column-title {% if pager.isSorted('r.title') %} sorted{% endif %}">{{ knp_pagination_sortable(pager,'Rodzic'|trans({},'gsPages'), 'r.title')|raw }}</th>
+                            <th class="column-title {% if pager.isSorted('c.name') %} sorted{% endif %}">{{ knp_pagination_sortable(pager,'Blok'|trans({},'gsPages'), 'c.name')|raw }}</th>
+                            <th class="column-title {% if pager.isSorted('a.title') %} sorted{% endif %}">{{ knp_pagination_sortable(pager,'Tytuł'|trans({},'gsPages'), 'a.title')|raw }}</th>
+                            <th class="column-title {% if pager.isSorted('a.slug') %} sorted{% endif %}">{{ knp_pagination_sortable(pager,'Podgląd'|trans({},'gsPages'), 'a.slug')|raw }}</th>
+                            <th class="column-title" >{{ 'Przesuń'|trans({},'gsPages') }}</th>
+                            <th class="column-title {% if pager.isSorted('a.published') %} sorted{% endif %}">{{ knp_pagination_sortable(pager,'Publikowna'|trans({},'gsPages'), 'a.published')|raw }}</th>
+                            <th class="column-title {% if pager.isSorted('a.createdAt') %} sorted{% endif %}">{{ knp_pagination_sortable(pager,'Stworzono'|trans({},'gsPages'), 'a.createdAt')|raw }}</th>
+                            <th class="column-title {% if pager.isSorted('a.updatedAt') %} sorted{% endif %}">{{ knp_pagination_sortable(pager,'Modyfikowano'|trans({},'gsPages'), 'a.updatedAt')|raw }}</th>
+                            <th class="column-title no-link last"><span class="nobr">{{ 'Action'|trans({},'gsPages') }}</span></th>
+                            <th class="bulk-actions" colspan="12">
+                                <a class="antoo" style="color:#fff; font-weight:500;">{{ 'Operacja na wielu wierszach'|trans({},'gsPages') }}( <span class="action-cnt"> </span> ) <i class="fa fa-chevron-down"></i></a>
+                            </th>
+                        </tr>
+                        </thead>
+
+                        <tbody>
+
+                        {% for key, row in pager %}
+                            <tr {% if loop.index is odd %}class="even pointer"{% else %} class="odd pointer"{% endif %}>
+                                <td class="a-center ">
+                                    <input type="checkbox" class="flat" name="multiCheckBox[]" value="{{ row.id }}">
+                                </td>
+
+                                <td><a class="info-tooltip" title="{{ 'Edytuj Stronę'|trans({},'gsPages') }}" href="{{ path('_pages_edit', {'id': row.id}) }}">{{ getIIter(pager,key) }}</a></td>
+                                <td id="pagesIcon{{ row.id }}">
+                                    {% if hasIcon(row) %}
+                                        {{ thumbnail(row.icon,'smaller') }}
+                                    {% else %}
+                                        <a  ajax='{"target":".load-form", "post":{"id":"{{ row.id }}"}}' class='add-icon page-list icon green info-tooltip' href="{{ path('_files_upload', {'id':row.id,'quick':1}) }}" title='{{ 'Dodaj Ikonę - dodaj obrazek w galerii - zaznacz jako ikona'|trans({},'gsPages') }}'><i class="fa fa-plus-circle"></i></a>
+                                    {% endif %}
+                                </td>
+                                <td>{{ row.parent }}</td>
+                                <td>{{ row.category }}</td>
+                                <td id="pagesTitle{{row.id}}"><a class="info-tooltip" title="{{ 'Edytuj Stronę'|trans({},'gsPages') }}" href="{{ path('_pages_edit', mergeParams(row)) }}">{{ row.title }}</a></td>
+                                <td id="pagesSlug{{row.id}}"><a class="info-tooltip" title="{{ 'Podgląd Strony'|trans({},'gsPages') }}" href="/{{ row.slug }}">{{ row.slug }}</a></td>
+                                <td>
+                                    {% if row.parent  is not null %}
+                                        {% if row.parent.children[0].id != row.id %}
+                                            <a class="icon info-tooltip" title="{{ 'Do góry'|trans({},'gsPages') }}" href="{{ path('_pages_higher', mergeParams(row)) }}">
+                                                <i class="fa fa-chevron-up"></i>
+                                            </a>
+                                        {% endif %}
+                                    {% endif %}
+                                    {% if row.parent  is not null %}
+                                        {% if row.parent.children[row.parent.children|length - 1].id != row.id %}
+                                            <a class="icon info-tooltip" title="{{ 'Na dół'|trans({},'gsPages') }}" href="{{ path('_pages_lower', mergeParams(row)) }}">
+                                                <i class="fa fa-chevron-down"></i>
+
+                                            </a>
+                                        {% endif %}
+                                    {% endif %}
+                                </td>
+                                <td id="pagesPublish{{row.id}}">
+                                    {% if row.published %}
+                                        <a class="icon green info-tooltip" Title="{{ 'Nie wyświetlaj strony'|trans({},'gsPages') }}" href="{{ path('_pages_unpublished', mergeParams(row)) }}">
+                                            <i class="fa fa-check-square"></i>
+                                        </a>
+                                    {% else %}
+                                        <a class="icon info-tooltip" Title="{{ 'Wyświetl stronę'|trans({},'gsPages') }}" href="{{ path('_pages_published', mergeParams(row)) }}">
+                                            <i class="fa fa-check-square-o"></i>
+                                        </a>
+                                    {% endif %}
+                                </td>
+                                <td>{{ row.createdAt|date("d-m-Y") }}</td>
+                                <td>{{ row.updatedAt|date("d-m-Y") }}</td>
+                                <td class="last">
+                                    {#<a class="icon-4 info-tooltip" href="{{ path('_product_show', {'page':1,'pagesId':row.id}) }}" title="{{ 'Produkty - Umożliwia wylistowanie produktów w kategorii'|trans({},'gsPages') }}"> </a>#}
+                                    <a class="icon info-tooltip" href="{{ path('_pages_edit', mergeParams(row)) }}" title="{{ 'Edycja - Umożliwia edytowanie tekstu - dodawanie obrazków do galerii'|trans({},'gsPages') }}"><i class="fa fa-pencil"></i> </a>
+                                    <a class="icon info-tooltip" href="{{ path('_pages_show', mergeParams(row,'parentId') ) }}" title="{{ 'Podstrony - Pokazuje listę podstron - umożliwia zarządzanie podstonami'|trans({},'gsPages') }}"><i class="fa fa-arrow-down"></i> </a>
+                                    <a class="icon red info-tooltip" href="{{ path('_pages_delete', {'id': row.id}) }}" onclick="return confirm('{{ 'Napewno chcesz skasować Stronę?'|trans({},'gsPages') }}')" title="{{ 'Usuń'|trans({},'gsPages') }}"><i class="fa fa-remove"></i> </a>
+                                </td>
+                            </tr>
+                            <tr class="second">
+                                <td colspan="14">
+                                    <div class="quick-form" id="quick-form{{ row.id }}" style="margin-left: 5px;">
+                                        {% include "AppPagesBundle:Pages:_quickActions.html.twig" with { page: row} %}
+                                        {% include "AppPagesBundle:Pages:_languages.html.twig" with { page: row, languages: languages,lang: lang,} %}
+                                        <div class="load-form" id="load-form{{ row.id }}"></div>
+                                    </div>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </form>
+                {{ knp_pagination_render(pager) }}
+            </div>
+            <div class="btn-group">
+                <button class="btn btn-danger" type="button">{{ 'Wybierz'|trans({},'gsPages') }}</button>
+                <button class="btn btn-danger dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
+                    <span class="caret"></span>
+                    <span class="sr-only">{{ 'Toggle Dropdown'|trans({},'gsPages') }}</span>
+                </button>
+                <ul class="dropdown-menu" role="menu">
+                    <li>
+                        <a class="action-delete" href="{{ path('_pages_multi', mergeParams())}}" id="actions-box-slider-delete" title="{{ 'Multi-kasowanie'|trans({},'gsPages') }}">{{ 'Usuń'|trans({},'gsPages') }}</a>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        {#<a href="#">Separated link</a>#}
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+      

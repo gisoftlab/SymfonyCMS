@@ -1,0 +1,13 @@
+{% if  count(category.children) %}
+<div class="box-inside more-round-upper">         
+    <h2>Kategorie </h2>
+    <ul>
+        {% for  key , value in category.children  %}
+        <li>
+            <a class="{{isCategoryActive(value,page)}}" href="{{ path('_web_show_page',{'slug':value.slug}) }}">{{value.title}}</a>
+        </li>
+        {% endfor %}      
+    </ul>                         
+    <br class="clear"/>
+</div>    
+{% endif %}      
